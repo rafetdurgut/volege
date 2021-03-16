@@ -178,4 +178,13 @@ public function isemriArama(){
   ];
   return view('isemri.isemri-arama',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
 }
+public function isemriKapat(){
+
+  $pageConfigs = ['pageHeader' => true];
+
+  $breadcrumbs = [
+    ["link" => "/", "name" => "Home"],["link" => "#", "name" => "İş Emri"],["name" => "Kapat"]
+  ];
+  return view('isemri.isemri-kapat',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+}
 }

@@ -10,6 +10,8 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\ExComponentController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\IsEmriController;
+
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AuthenticationController;
@@ -115,6 +117,9 @@ Route::group(['prefix' => 'extra-component'], function () {
 Route::group(['prefix' => 'isemri'], function () {
   Route::get('ekle', [FormController::class, 'isemriEkle'])->name('isemri-ekle');
   Route::get('arama', [FormController::class, 'isemriArama'])->name('isemri-arama');
+  Route::get('kapat', [FormController::class, 'isemriKapat'])->name('isemri-kapat');
+  Route::get('listele', [IsEmriController::class, 'listele'])->name('isemri-listele');
+
 });
 // form elements
 Route::group(['prefix' => 'form'], function () {
@@ -141,6 +146,7 @@ Route::group(['prefix' => 'table'], function () {
     Route::get('extended', [TableController::class, 'extendedTable'])->name('table-extended');
     Route::get('datatable', [TableController::class, 'dataTable'])->name('table-datatable');
 });
+
 
 // page Route
 Route::group(['prefix' => 'page'], function () {
