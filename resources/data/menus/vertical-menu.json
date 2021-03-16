@@ -1,0 +1,124 @@
+{
+  "menu": [
+    {
+      "navheader": "Tamirhane"
+    },
+    {
+      "url": "#",
+      "name": "İş Emri",
+      "slug": "isemri",
+      "icon": "notebook",
+      "tagcustom": "badge badge-light-danger badge-pill badge-round float-right mr-50",
+      "submenu": [
+        {
+          "url": "isemri/ekle",
+          "name": "İş Emri Aç",
+          "slug": "isemri-ekle",
+          "icon": "bx bx-add-to-queue"
+        },
+        {
+          "url": "isemri/listele",
+          "name": "İş Emri Listele",
+          "slug": "isemri-listele",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "isemri/arama",
+          "name": "İş Emri Arama",
+          "slug": "isemri-arama",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+
+    {
+      "url": "#",
+      "name": "Arama",
+      "slug": "arama",
+      "icon": "search",
+      "submenu": [
+        {
+          "url": "arama/musteri",
+          "name": "Müşteri Arama",
+          "slug": "musteri-arama",
+          "icon": "bx bx-add-to-queue"
+        },
+        {
+          "url": "arama/arac",
+          "name": "Araç Arama",
+          "slug": "arac-arama",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "arama/yedekparca",
+          "name": "Yedek Parça Arama",
+          "slug": "arama-yedekparca",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+
+    {
+      "url": "#",
+      "name": "Ekspertiz",
+      "slug": "ekspertiz",
+      "icon": "car",
+      "submenu": [
+        {
+          "url": "ekspertiz/ekle",
+          "name": "Ekspertiz Oluştur",
+          "slug": "app-isemri-ekle",
+          "icon": "bx bx-add-to-queue"
+        },
+        {
+          "url": "resimli-ekspertiz/ekle",
+          "name": "Resimli Ekspertiz Oluştur",
+          "slug": "resimli-ekspertiz-ekle",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
+    },
+    {
+      "navheader": "Yedek Parça"
+    },
+    {
+      "url": "yedekparca/ekle",
+      "name": "Yedek Parça Girişi",
+      "slug": "yedekparca-ekle",
+      "icon": "gears"
+    },
+    {
+      "url": "fatura/ekle",
+      "name": "Alış Fatura Girişi",
+      "slug": "fatura-ekle",
+      "icon": "file-import"
+    },
+    {
+      "url": "yedekparca/stok",
+      "name": "Stok Kontrol",
+      "slug": "yedekparca-stok",
+      "icon": "check-alt"
+    },
+    {
+      "navheader": "Muhasebe"
+    },
+    {
+      "url": "fatura/ekle",
+      "name": "Satış Fatura",
+      "slug": "fatura-ekle",
+      "icon": "file-export"
+    },
+    {
+      "url": "cari/",
+      "name": "Cari Kontrol",
+      "slug": "cari",
+      "icon": "bar-chart"
+    },
+    {
+      "url": "cari/odeme",
+      "name": "Ödeme Girişi",
+      "slug": "cari-odeme",
+      "icon": "credit-card-in"
+    }
+  ]
+}
