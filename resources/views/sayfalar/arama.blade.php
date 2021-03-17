@@ -41,15 +41,15 @@
                 <div class="tab-pane show active" id="list-musteri" role="tabpanel" aria-labelledby="list-musteri-list">
                   <form>
                     <div class="form-group row">
-                      <label for="eposta" class="col-sm-3 col-form-label">Ad Soyad</label>
+                      <label for="adsoyad" class="col-sm-3 col-form-label">Ad Soyad</label>
                       <div class="col-sm-9">
-                      <input type="text" class="form-control" id="eposta" placeholder="">
+                      <input type="text" class="form-control" id="adsoyad" name="adsoyad" placeholder="">
                       </div>
                   </div>
                   <div class="form-group row">
-                    <label for="eposta" class="col-sm-3 col-form-label">TC NO</label>
+                    <label for="tckimlikno" class="col-sm-3 col-form-label">TC Kimlik No</label>
                     <div class="col-sm-9">
-                    <input type="password" class="form-control" id="eposta" placeholder="">
+                    <input type="password" name="tckimlikno" class="form-control" id="tckimlikno" placeholder="">
                     </div>
                 </div>
                 <div class="clearfix">
@@ -105,15 +105,15 @@
                 <div class="tab-pane" id="list-arac" role="tabpanel" aria-labelledby="list-arac-list">
                   <form>
                     <div class="form-group row">
-                      <label for="eposta" class="col-sm-3 col-form-label">Plaka</label>
+                      <label for="plaka" class="col-sm-3 col-form-label">Plaka</label>
                       <div class="col-sm-9">
-                      <input type="text" class="form-control" id="eposta" placeholder="">
+                      <input type="text" class="form-control" id="plaka" name="plaka" placeholder="">
                       </div>
                   </div>
                   <div class="form-group row">
-                    <label for="eposta" class="col-sm-3 col-form-label">Şase No</label>
+                    <label for="saseno" class="col-sm-3 col-form-label">Şase No</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" id="eposta" placeholder="">
+                    <input type="text" class="form-control" id="saseno" name="saseno" placeholder="">
                     </div>
                 </div>
                 <div class="clearfix">
@@ -163,15 +163,15 @@
                 <div class="tab-pane" id="list-isemri" role="tabpanel" aria-labelledby="list-isemri-list">
                   <form>
                     <div class="form-group row">
-                      <label for="eposta" class="col-sm-3 col-form-label">Emir Kodu</label>
+                      <label for="emirkodu" class="col-sm-3 col-form-label">Emir Kodu</label>
                       <div class="col-sm-9">
-                      <input type="text" class="form-control" id="eposta" placeholder="">
+                      <input type="text" class="form-control" id="emirkodu" name="emirkodu" placeholder="">
                       </div>
                   </div>
                   <div class="form-group row">
-                    <label for="eposta" class="col-sm-3 col-form-label">Emir Tarihi</label>
+                    <label for="emirtarihi" class="col-sm-3 col-form-label">Emir Tarihi</label>
                     <div class="col-sm-9">
-                    <input type="date" class="form-control" id="eposta" placeholder="">
+                    <input type="date" class="form-control" id="emirtarihi" name="emirtarihi" placeholder="">
                     </div>
                 </div>
 
@@ -219,21 +219,21 @@
                 </div>
                 <div class="tab-pane" id="list-parca" role="tabpanel" aria-labelledby="list-parca-list"> <form>
                   <div class="form-group row">
-                    <label for="eposta" class="col-sm-3 col-form-label">Stok Kodu</label>
+                    <label for="stokkodu" class="col-sm-3 col-form-label">Stok Kodu</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" id="eposta" placeholder="">
+                    <input type="text" class="form-control" id="stokkodu" name="stokkodu" placeholder="">
                     </div>
                 </div>
                 <div class="form-group row">
-                  <label for="eposta" class="col-sm-3 col-form-label">Parça Adı</label>
+                  <label for="parcaadi" class="col-sm-3 col-form-label">Parça Adı</label>
                   <div class="col-sm-9">
-                  <input type="text" class="form-control" id="eposta" placeholder="">
+                  <input type="text" class="form-control" name="parcaadi" id="parcaadi" placeholder="">
                   </div>
               </div>
               <div class="form-group row">
-                <label for="eposta" class="col-sm-3 col-form-label">Grup</label>
+                <label for="grup" class="col-sm-3 col-form-label">Grup</label>
                 <div class="col-sm-9">
-                <input type="text" class="form-control" id="eposta" placeholder="">
+                <input type="text" class="form-control" id="grup" name="grup" placeholder="">
                 </div>
             </div>
               <div class="clearfix">
@@ -282,15 +282,15 @@
               </div>
               <div class="tab-pane" id="list-ekspertiz" role="tabpanel" aria-labelledby="list-ekspertiz-list"><form>
                 <div class="form-group row">
-                  <label for="eposta" class="col-sm-3 col-form-label">Ekspertiz Kodu</label>
+                  <label for="ekspertizkodu" class="col-sm-3 col-form-label">Ekspertiz Kodu</label>
                   <div class="col-sm-9">
-                  <input type="text" class="form-control" id="eposta" placeholder="">
+                  <input type="text" class="form-control" id="ekspertizkodu" name="ekspertizkodu" placeholder="">
                   </div>
               </div>
               <div class="form-group row">
-                <label for="eposta" class="col-sm-3 col-form-label">Ekspertiz Tarihi</label>
+                <label for="ekspertiztarihi" class="col-sm-3 col-form-label">Ekspertiz Tarihi</label>
                 <div class="col-sm-9">
-                <input type="date" class="form-control" id="eposta" placeholder="">
+                <input type="date" class="form-control" name="ekspertiztarihi" id="ekspertiztarihi" placeholder="">
                 </div>
             </div>
 

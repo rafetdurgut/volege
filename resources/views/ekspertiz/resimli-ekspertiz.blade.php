@@ -8,23 +8,23 @@
       <div class="form-group row">
           <div class="col-sm-6">
               <div class="form-group row">
-                  <label for="tc_kimlik" class="col-sm-3 col-form-label">TC Kimlik No:</label>
+                  <label for="tckimlik" class="col-sm-3 col-form-label">TC Kimlik No:</label>
                   <div class="col-sm-9">
-                  <input type="email" class="form-control" id="tc_kimlik" placeholder="" required autocomplete="off">
+                  <input type="email" class="form-control" name="tckimlik" id="tckimlik" placeholder="" required autocomplete="off">
                   </div>
               </div>
 
               <div class="form-group row">
-                  <label for="isim_soyisim" class="col-sm-3 col-form-label">İsim Soyisim:</label>
+                  <label for="adsoyad" class="col-sm-3 col-form-label">İsim Soyisim:</label>
                   <div class="col-sm-9">
-                  <input type="password" class="form-control" id="isim_soyisim" placeholder="" required>
+                  <input type="tex" class="form-control" id="adsoyad" name="adsoyad" placeholder="" required>
                   </div>
               </div>
 
               <div class="form-group row">
                   <label for="eposta" class="col-sm-3 col-form-label">E-Posta</label>
                   <div class="col-sm-9">
-                  <input type="password" class="form-control" id="eposta" placeholder="">
+                  <input type="email" class="form-control" name="eposta" id="eposta" placeholder="">
                   </div>
               </div>
 
@@ -40,21 +40,21 @@
               <div class="form-group row">
                   <label for="telefon" class="col-sm-3 col-form-label">Telefon:</label>
                   <div class="col-sm-9">
-                  <input type="email" class="form-control" id="telefon" placeholder="">
+                  <input type="tel" class="form-control" id="telefon" name="telefon" placeholder="">
                   </div>
               </div>
 
               <div class="form-group row">
                   <label for="vergino" class="col-sm-3 col-form-label">Vergi No:</label>
                   <div class="col-sm-9">
-                  <input type="password" class="form-control" id="vergino" placeholder="">
+                  <input type="text" class="form-control" name="vergino" id="vergino" placeholder="">
                   </div>
               </div>
 
               <div class="form-group row">
                   <label for="vergidairesi" class="col-sm-3 col-form-label">Vergi Dairesi:</label>
                   <div class="col-sm-9">
-                  <input type="password" class="form-control" id="vergidairesi" placeholder="">
+                  <input type="text" class="form-control" name="vergidairesi" id="vergidairesi" placeholder="">
                   </div>
               </div>
 
@@ -71,23 +71,23 @@
       <div class="form-group row">
           <div class="col-sm-6">
               <div class="form-group row">
-                  <label for="tc_kimlik" class="col-sm-3 col-form-label">Plaka:</label>
+                  <label for="plaka" class="col-sm-3 col-form-label">Plaka:</label>
                   <div class="col-sm-9">
-                  <input type="email" class="form-control" id="tc_kimlik" placeholder="" required autocomplete="off">
+                  <input type="text" class="form-control" id="plaka" name="plaka" placeholder="" required autocomplete="off">
                   </div>
               </div>
 
               <div class="form-group row">
-                  <label for="isim_soyisim" class="col-sm-3 col-form-label">Tip:</label>
+                  <label for="isim_soyisim" class="col-sm-3 col-form-label">Marka:</label>
                   <div class="col-sm-9">
-                  <input type="password" class="form-control" id="isim_soyisim" placeholder="" required>
+                  <input type="text" class="form-control" id="isim_soyisim" value="Volvo" placeholder="">
                   </div>
               </div>
 
               <div class="form-group row">
-                  <label for="isim_soyisim" class="col-sm-3 col-form-label">Yakıt Durumu:</label>
+                  <label for="yakit" class="col-sm-3 col-form-label">Yakıt Durumu:</label>
                   <div class="col-sm-9">
-                      <input type="range" class="form-control-range" min="0" max="1" step="0.1" id="yakit" oninput="this.nextElementSibling.value = this.value">
+                      <input type="range" class="form-control-range" min="0" max="1" step="0.1" name="yakit" id="yakit" oninput="this.nextElementSibling.value = this.value">
                   <output>0.2</output>
                   </div>
               </div>
@@ -95,44 +95,50 @@
 
           <div class="col-sm-6">
               <div class="form-group row">
-                  <label for="telefon" class="col-sm-3 col-form-label">Şase No:</label>
+                  <label for="saseno" class="col-sm-3 col-form-label">Şase No:</label>
                   <div class="col-sm-9">
-                      <input type="email" class="form-control" id="telefon" placeholder="">
+                      <input type="text" class="form-control" name="saseno" id="saseno" placeholder="">
                   </div>
               </div>
-
               <div class="form-group row">
-                  <label for="vergino" class="col-sm-3 col-form-label">Model:</label>
+                <label for="motorno" class="col-sm-3 col-form-label">Motor No:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="motorno" id="motorno" placeholder="">
+                </div>
+            </div>
+              <div class="form-group row">
+                  <label for="model" class="col-sm-3 col-form-label">Model:</label>
                   <div class="col-sm-9">
-                  <input type="password" class="form-control" id="vergino" placeholder="">
+                  <input type="text" class="form-control" name="model" id="model" placeholder="">
                   </div>
               </div>
           </div>
       </div>
-
       <legend> Ekspertiz Bilgileri </legend>
       <div class="form-group">
           <div class="form-group row">
-              <label for="tc_kimlik" class="col-sm-3 col-form-label">Giriş Tarihi:</label>
+              <label for="giristarihi" class="col-sm-3 col-form-label">Giriş Tarihi:</label>
               <div class="col-sm-9">
-              <input type="datetime-local" class="form-control" id="tc_kimlik" placeholder="" required autocomplete="off">
+              <input type="datetime-local" class="form-control" id="giristarihi" name="giristarihi" placeholder="" autocomplete="off">
               </div>
           </div>
 
           <div class="form-group row">
-              <label for="isim_soyisim" class="col-sm-3 col-form-label">Kilometre:</label>
+              <label for="kilometre" class="col-sm-3 col-form-label">Kilometre:</label>
               <div class="col-sm-9">
-              <input type="password" class="form-control" id="isim_soyisim" placeholder="" required>
+              <input type="text" class="form-control" name="kilometre" id="kilometre" placeholder="" required>
               </div>
           </div>
           <div class="form-group row">
-              <label for="telefon" class="col-sm-3 col-form-label">Resim:</label>
+              <label for="resim" class="col-sm-3 col-form-label">Resim:</label>
               <div class="col-sm-9">
-                  <input type="file" class="form-control" />
+                  <input type="file" id="resim" name="resim" class="form-control" />
               </div>
           </div>
       </div>
-      <button type="submit" class="btn btn-primary btn-lg">Ekspertiz Girişi Yap</button>
+      <div class="clearfix">
+        <button type="submit" class="btn btn-primary btn-md float-right">Ekspertiz Girişi Yap</button>
+      </div>
   </div>
 </form>
 @endsection

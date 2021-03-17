@@ -37,7 +37,7 @@
         @if(!empty($configData['templateTitle']) && isset($configData['templateTitle']))
         {{$configData['templateTitle']}}
         @else
-        Frest
+        VOLEGE
         @endif
       </h2>
       </a>
@@ -96,7 +96,7 @@
             @if(!empty($configData['templateTitle']) && isset($configData['templateTitle']))
             {{$configData['templateTitle']}}
             @else
-            Frest
+            VOLEGE
             @endif
           </h2>
           </a>
@@ -146,7 +146,7 @@
           @if(!empty($configData['templateTitle']) && isset($configData['templateTitle']))
           {{$configData['templateTitle']}}
           @else
-          Frest
+          VOLEGE
           @endif
         </h2>
       </a>

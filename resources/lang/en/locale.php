@@ -1,6 +1,7 @@
 <?php
 return [
   "İş Emri" => "İş Emri",
+  "İş Emri Kapat" => "İş Emri Kapat",
   "İş Emri Aç" => "İş Emri Aç",
   "İş Emri Listele" => "Açık Emirleri Listele",
   "İş Emri Arama" => "İş Emri Arama",

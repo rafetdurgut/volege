@@ -8,28 +8,28 @@
   <div class="form-group row">
       <div class="col-sm-6">
           <div class="form-group row">
-              <label for="tc_kimlik" class="col-sm-3 col-form-label">Fatura Kodu:</label>
+              <label for="faturakodu" class="col-sm-3 col-form-label">Fatura Kodu:</label>
               <div class="input-group col-sm-9">
-                  <input type="text" class="form-control" id="isim_soyisim" placeholder="" required value="VE10002">
+                  <input type="text" class="form-control" name="faturakodu" id="faturakodu" placeholder="" required value="VE10002">
                   <input type="button" value="Oluştur" class="btn btn-info btn-sm" />
               </div>
           </div>
           <div class="form-group row">
-              <label for="eposta" class="col-sm-3 col-form-label">Fatura Tarihi:</label>
+              <label for="faturatarihi" class="col-sm-3 col-form-label">Fatura Tarihi:</label>
               <div class="input-group col-sm-9">
-                  <input type="datetime-local" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                  <input type="datetime-local" class="form-control" name="faturatarihi" id="faturatarihi" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
               </div>
           </div>
           <div class="form-group row">
-              <label for="eposta" class="col-sm-3 col-form-label">Vadesi</label>
+              <label for="vade" class="col-sm-3 col-form-label">Vadesi</label>
               <div class="input-group col-sm-9">
-                  <input type="datetime-local" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                  <input type="datetime-local" id="vade" name="vade" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
               </div>
           </div>
           <div class="form-group row">
-              <label for="adres" class="col-sm-3 col-form-label">Fatura Durumu</label>
+              <label for="faturadurum" class="col-sm-3 col-form-label">Fatura Durumu</label>
               <div class="col-sm-9">
-                  <select class="form-control" aria-label="Default select example">
+                  <select class="form-control" id="faturadurum" name="faturadurum" aria-label="Default select example">
                       <option value="1" selected>Açık</option>
                       <option value="2">Kapalı</option>
                     </select>
@@ -39,31 +39,31 @@
 
       <div class="col-sm-6">
           <div class="form-group row">
-              <label for="isim_soyisim" class="col-sm-3 col-form-label">Cari Kodu:</label>
+              <label for="carikodu" class="col-sm-3 col-form-label">Cari Kodu:</label>
               <div class="input-group col-sm-9">
-                  <input type="text" class="form-control" id="isim_soyisim" value="CM0001" placeholder="" required>
+                  <input type="text" class="form-control" id="carikodu" name="carikodu" value="CM0001" placeholder="" required>
                   <input type="button" value="Getir" class="btn btn-info btn-sm" />
               </div>
           </div>
           <div class="form-group row">
-              <label for="eposta" class="col-sm-3 col-form-label">Cari Adı</label>
+              <label for="cariadi" class="col-sm-3 col-form-label">Cari Adı</label>
               <div class="input-group col-sm-9">
-                      <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                      <input type="text" id="cariadi" name="cariadi" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
               </div>
           </div>
           <div class="form-group row">
-              <label for="adres" class="col-sm-3 col-form-label">Fatura Tipi</label>
+              <label for="faturatipi" class="col-sm-3 col-form-label">Fatura Tipi</label>
               <div class="col-sm-9">
-                  <select class="form-control" aria-label="Default select example">
-                      <option value="1" selected>Alış</option>
+                  <select id="faturatipi" name="faturatipi" class="form-control" aria-label="Default select example">
+                      <option  value="1" selected>Alış</option>
                       <option value="2">Satış</option>
                     </select>
                   </div>
           </div>
           <div class="form-group row">
-            <label for="adres" class="col-sm-3 col-form-label">GİB Kodu</label>
+            <label for="gibkodu" class="col-sm-3 col-form-label">GİB Kodu</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="isim_soyisim" value="GİB0001" placeholder="" required>
+              <input id="gibkodu" name="gibkodu" type="text" class="form-control" value="GİB0001" placeholder="">
             </div>
         </div>
       </div>
@@ -95,30 +95,31 @@
               <div data-repeater-list="parcalar" id="parcalar" >
                   <div class="form-group parca-satir row" data-repeater-item>
                       <div class="col-sm-1">
-                          <input type="text" class="form-control" />
+                          <input name="stokno" type="text" class="form-control" />
                       </div>
                       <div class="col-sm-2">
-                          <input type="text" class="form-control" />
+                          <input name="stokadi" type="text" class="form-control" />
                       </div>
                       <div class="col-sm-2">
-                        <select class="form-control" aria-label="Default select example">
+                        <select name="stokbirim" class="form-control" aria-label="Default select example">
                           <option value="1" selected>Birim Yok</option>
                           <option value="2">Adet</option>
-                          <option value="2">Litre</option>
-                          <option value="2">Takım</option>
+                          <option value="3">Litre</option>
+                          <option value="4">Takım</option>
+                          <option value="5">Paket</option>
                         </select>
                       </div>
                       <div class="col-sm-2">
-                          <input type="text" class="form-control" />
+                          <input name="birimstok" type="text" class="form-control" />
                       </div>
                       <div class="col-sm-2">
-                          <input type="text" class="form-control" />
+                          <input name="birimfiyat" type="text" class="form-control" />
                       </div>
                       <div class="col-sm-2">
-                        <input type="text" class="form-control" />
+                        <input name="iskonto" type="text" class="form-control" />
                     </div>
                       <div class="col-sm-1">
-                          <input type="text" readonly class="form-control" />
+                          <input name="toplamtutar" type="text" readonly class="form-control" />
                       </div>
                   </div>
                 </div>

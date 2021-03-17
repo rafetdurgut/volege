@@ -16,12 +16,12 @@
           <form class="needs-validation was-validated" novalidate="">
             <div class="form-row">
               <div class="col-md-4 mb-3">
-                <label for="validationTooltip01">Cari Kodu</label>
-                <input type="text" class="form-control" id="validationTooltip01" placeholder="First name" value="CM00001" required="">
+                <label for="carikodu">Cari Kodu</label>
+                <input type="text" class="form-control" id="carikodu" placeholder="CM0001">
               </div>
               <div class="col-md-4 mb-3">
-                <label for="validationTooltip02">İsim Soyisim</label>
-                <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" value="Rafet Durgut" required="">
+                <label for="adsoyad">İsim Soyisim</label>
+                <input type="text" class="form-control" id="adsoyad" placeholder="Ad Soyad" >
               </div>
               <div class="col-md-4 mt-2">
                 <button class="btn btn-primary"> Getir </button>

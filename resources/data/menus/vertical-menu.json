@@ -17,6 +17,12 @@
           "icon": "bx bx-add-to-queue"
         },
         {
+          "url": "isemri/kapat",
+          "name": "İş Emri Kapat",
+          "slug": "isemri-kapat",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
           "url": "isemri/listele",
           "name": "İş Emri Listele",
           "slug": "isemri-listele",

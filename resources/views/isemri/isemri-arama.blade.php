@@ -15,27 +15,33 @@
   <div class="bg-white p-3 shadow">
       <legend> Arama Formu </legend>
           <div class="form-group row">
-              <label for="tc_kimlik" class="col-sm-3 col-form-label">İş Emri Kodu:</label>
+              <label for="isemrikodu" class="col-sm-3 col-form-label">İş Emri Kodu:</label>
               <div class="col-sm-9">
-                  <input type="email" class="form-control" id="tc_kimlik" placeholder="" required autocomplete="off">
+                  <input type="email" class="form-control" id="isemrikodu" placeholder="" autocomplete="off">
               </div>
           </div>
           <div class="form-group row">
-              <label for="tc_kimlik" class="col-sm-3 col-form-label">Araç Plaka:</label>
+            <label for="saseno" class="col-sm-3 col-form-label">Araç Şase No:</label>
+            <div class="col-sm-9">
+                <input type="email" class="form-control" name="saseno" id="saseno" placeholder="" autocomplete="off">
+            </div>
+        </div>
+          <div class="form-group row">
+              <label for="plaka" class="col-sm-3 col-form-label">Araç Plaka:</label>
               <div class="col-sm-9">
-                  <input type="email" class="form-control" id="tc_kimlik" placeholder="" required autocomplete="off">
+                  <input type="email" class="form-control" name="plaka" id="plaka" placeholder="" autocomplete="off">
               </div>
           </div>
           <div class="form-group row">
-              <label for="tc_kimlik" class="col-sm-3 col-form-label">Müşteri TC Kimlik:</label>
+              <label for="tckimlik" class="col-sm-3 col-form-label">Müşteri TC Kimlik:</label>
               <div class="col-sm-9">
-                  <input type="email" class="form-control" id="tc_kimlik" placeholder="" required autocomplete="off">
+                  <input type="email" class="form-control" name="tckimlik" id="tckimlik" placeholder="" autocomplete="off">
               </div>
           </div>
           <div class="form-group row">
-              <label for="tc_kimlik" class="col-sm-3 col-form-label">Müşteri Adı Soyadı:</label>
+              <label for="adsoyad" class="col-sm-3 col-form-label">Müşteri Adı Soyadı:</label>
               <div class="col-sm-9">
-                  <input type="email" class="form-control" id="tc_kimlik" placeholder="" required autocomplete="off">
+                  <input type="email" class="form-control" name="adsoyad" id="adsoyad" placeholder=""  autocomplete="off">
               </div>
           </div>
           <div class="clearfix">

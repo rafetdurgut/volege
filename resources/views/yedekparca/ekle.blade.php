@@ -7,79 +7,87 @@
   <legend> Yedek Parça Bilgileri </legend>
   <div class="form-group row">
       <div class="col-sm-6">
+        <div class="form-group row">
+          <label for="ureticikodu" class="col-sm-3 col-form-label">Üretici Kodu:</label>
+          <div class="col-sm-9">
+          <input type="text" class="form-control" id="ureticikodu" name="ureticikodu" placeholder="" required autocomplete="off">
+          </div>
+      </div>
           <div class="form-group row">
-              <label for="tc_kimlik" class="col-sm-3 col-form-label">Stok Kodu:</label>
+              <label for="stokkodu" class="col-sm-3 col-form-label">Stok Kodu:</label>
               <div class="col-sm-9">
-              <input type="text" class="form-control" id="tc_kimlik" placeholder="" required autocomplete="off">
+              <input type="text" class="form-control" name="stokkodu" id="stokkodu" placeholder="" required autocomplete="off">
               </div>
           </div>
 
           <div class="form-group row">
-              <label for="isim_soyisim" class="col-sm-3 col-form-label">Grup:</label>
+              <label for="grup" class="col-sm-3 col-form-label">Grup:</label>
               <div class="col-sm-9">
-              <input type="text" class="form-control" id="isim_soyisim" placeholder="" required>
+              <input type="text" class="form-control" id="grup" name="grup" placeholder="" required>
               </div>
           </div>
           <div class="form-group row">
-              <label for="eposta" class="col-sm-3 col-form-label">Alış Fiyatı</label>
+              <label for="alisfiyati" class="col-sm-3 col-form-label">Alış Fiyatı</label>
               <div class="input-group col-sm-9">
                       <span class="input-group-text" id="basic-addon1">TL</span>
-                      <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                      <input id="alisfiyati" name="alisfiyati" type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
               </div>
           </div>
 
           <div class="form-group row">
-              <label for="eposta" class="col-sm-3 col-form-label">KDV</label>
+              <label for="kdv" class="col-sm-3 col-form-label">KDV</label>
               <div class="input-group col-sm-9">
                       <span class="input-group-text" id="basic-addon1">%</span>
-                      <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                      <input id="kdv" name="kdv" type="number" class="form-control" value="18" aria-label="Username" aria-describedby="basic-addon1">
               </div>
           </div>
 
           <div class="form-group row">
-              <label for="adres" class="col-sm-3 col-form-label">Uyarı Miktarı</label>
+              <label for="uyarimiktari" class="col-sm-3 col-form-label">Uyarı Miktarı</label>
               <div class="col-sm-9">
-                  <input id="number" class="form-control" />
+                  <input id="uyarimiktari" name="uyarimiktari" type="number" class="form-control" />
               </div>
           </div>
       </div>
 
       <div class="col-sm-6">
           <div class="form-group row">
-              <label for="telefon" class="col-sm-3 col-form-label">Stok Adı:</label>
+              <label for="stokadi" class="col-sm-3 col-form-label">Stok Adı:</label>
               <div class="col-sm-9">
-              <input type="email" class="form-control" id="telefon" placeholder="">
+              <input id="stokadi" name="stokadi" type="text" class="form-control" id="telefon" placeholder="">
               </div>
           </div>
 
           <div class="form-group row">
-              <label for="vergino" class="col-sm-3 col-form-label">Barkod:</label>
+              <label for="barkod" class="col-sm-3 col-form-label">Barkod:</label>
               <div class="col-sm-9">
-              <input type="password" class="form-control" id="vergino" placeholder="">
+              <input name="barkod" id="barkod" type="password" class="form-control" id="vergino" placeholder="">
               </div>
           </div>
 
           <div class="form-group row">
-              <label for="vergidairesi" class="col-sm-3 col-form-label">Birim:</label>
+              <label for="birim" class="col-sm-3 col-form-label">Birim:</label>
               <div class="col-sm-9">
-                  <select class="form-control" aria-label="Default select example">
+                  <select class="form-control" id="birim" aria-label="Default select example">
+                      <option value="1">Birim Yok</option>
                       <option value="1" selected>Adet</option>
                       <option value="2">Litre</option>
                       <option value="3">Takım</option>
+                      <option value="4">Paket</option>
                     </select>
               </div>
           </div>
           <div class="form-group row">
-              <label for="vergidairesi" class="col-sm-3 col-form-label">Stok Adet:</label>
+              <label for="stokadet" class="col-sm-3 col-form-label">Stok Adet:</label>
               <div class="col-sm-9">
-              <input type="number" class="form-control" id="vergidairesi" placeholder="">
+              <input type="number" class="form-control" id="stokadet" name="stokadet" placeholder="">
               </div>
           </div>
           <div class="form-group row">
-              <label for="eposta" class="col-sm-3 col-form-label">Satış Fiyatı:</label>
+              <label for="satisfiyati" class="col-sm-3 col-form-label">Satış Fiyatı:</label>
               <div class="input-group col-sm-9">
                       <span class="input-group-text" id="basic-addon1">TL</span>
-                      <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                      <input type="text" class="form-control" id="satisfiyati" name="satisfiyati" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
               </div>
           </div>
       </div>
