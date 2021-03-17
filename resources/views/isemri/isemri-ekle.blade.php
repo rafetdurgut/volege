@@ -53,14 +53,14 @@
               <div class="form-group row">
                   <label for="vergino" class="col-sm-3 col-form-label">Vergi No:</label>
                   <div class="col-sm-9">
-                  <input type="password" class="form-control"  name="vergino" id="vergino" placeholder="">
+                  <input type="text" class="form-control"  name="vergino" id="vergino" placeholder="">
                   </div>
               </div>
 
               <div class="form-group row">
                   <label for="vergidairesi" class="col-sm-3 col-form-label">Vergi Dairesi:</label>
                   <div class="col-sm-9">
-                  <input type="password" class="form-control" name="vergidairesi" id="vergidairesi" placeholder="">
+                  <input type="text" class="form-control" name="vergidairesi" id="vergidairesi" placeholder="">
                   </div>
               </div>
 
@@ -115,7 +115,7 @@
               <div class="form-group row">
                   <label for="model" class="col-sm-3 col-form-label">Model:</label>
                   <div class="col-sm-9">
-                  <input type="password" class="form-control" id="model" name="model" placeholder="">
+                  <input type="text" class="form-control" id="model" name="model" placeholder="">
                   </div>
               </div>
           </div>
