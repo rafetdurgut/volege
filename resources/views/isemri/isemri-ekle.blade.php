@@ -105,7 +105,6 @@
                     <input type="email" class="form-control" id="telefon" placeholder="">
                 </div>
             </div>
-          <div class="col-sm-6">
               <div class="form-group row">
                   <label for="saseno" class="col-sm-3 col-form-label">Şase No:</label>
                   <div class="col-sm-9">
