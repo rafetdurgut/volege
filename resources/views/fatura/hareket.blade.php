@@ -5,6 +5,34 @@
 <link rel="stylesheet" type="text/css" href="{{asset('css/pages/app-invoice.css')}}">
 @endsection
 @section('content')
+<section id="tooltip-validation">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Cari Bilgileri</h4>
+        </div>
+        <div class="card-body">
+          <form class="needs-validation was-validated" novalidate="">
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="validationTooltip01">Cari Kodu</label>
+                <input type="text" class="form-control" id="validationTooltip01" placeholder="First name" value="CM00001" required="">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="validationTooltip02">İsim Soyisim</label>
+                <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" value="Rafet Durgut" required="">
+              </div>
+              <div class="col-md-4 mt-2">
+                <button class="btn btn-primary"> Getir </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
       <div class="bg-white p-3 shadow">
         <div class="card invoice-print-area">
           <div class="card-body pb-0 mx-25">

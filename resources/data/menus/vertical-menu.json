@@ -99,6 +99,21 @@
       "name": "Ödeme Girişi",
       "slug": "fatura-odeme",
       "icon": "credit-card-in"
+    },
+    {
+      "navheader": "İstatistik"
+    },
+    {
+      "url": "fatura/listele",
+      "name": "Fatura Listele",
+      "slug": "fatura-listele",
+      "icon": "file-import"
+    },
+    {
+      "url": "fatura/cari-listele",
+      "name": "Cari Listele",
+      "slug": "fatura-cari-listele",
+      "icon": "bar-chart"
     }
   ]
 }

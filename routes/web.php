@@ -55,6 +55,8 @@ Route::group(['prefix' => 'fatura'], function () {
   Route::get('odeme', [FaturaController::class, 'odeme'])->name('fatura-odeme');
   Route::get('hareket', [FaturaController::class, 'hareket'])->name('fatura-hareket');
   Route::get('goster', [FaturaController::class, 'goster'])->name('fatura-goster');
+  Route::get('listele', [FaturaController::class, 'listele'])->name('fatura-listele');
+  Route::get('cari-listele', [FaturaController::class, 'cariListele'])->name('fatura-cari-listele');
 
 });
 

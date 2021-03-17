@@ -39,4 +39,25 @@ class FaturaController extends Controller
       ];
       return view('fatura.goster',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
     }
+    public function listele(){
+      $pageConfigs = ['pageHeader' => true];
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Fatura"],["name" => "Listele"]
+      ];
+      return view('fatura.listele',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    }
+    public function cariListele(){
+      $pageConfigs = ['pageHeader' => true];
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Cari"],["name" => "Listele"]
+      ];
+      return view('fatura.cari-listele',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    }
+    public function kasaListele(){
+      $pageConfigs = ['pageHeader' => true];
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Kasa"]
+      ];
+      return view('fatura.kasa-listele',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+    }
 }
