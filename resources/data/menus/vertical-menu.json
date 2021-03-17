@@ -32,30 +32,10 @@
     },
 
     {
-      "url": "#",
+      "url": "arama",
       "name": "Arama",
       "slug": "arama",
-      "icon": "search",
-      "submenu": [
-        {
-          "url": "arama/musteri",
-          "name": "Müşteri Arama",
-          "slug": "musteri-arama",
-          "icon": "bx bx-add-to-queue"
-        },
-        {
-          "url": "arama/arac",
-          "name": "Araç Arama",
-          "slug": "arac-arama",
-          "icon": "bx bx-right-arrow-alt"
-        },
-        {
-          "url": "arama/yedekparca",
-          "name": "Yedek Parça Arama",
-          "slug": "arama-yedekparca",
-          "icon": "bx bx-right-arrow-alt"
-        }
-      ]
+      "icon": "search"
     },
 
     {
@@ -71,7 +51,7 @@
           "icon": "bx bx-add-to-queue"
         },
         {
-          "url": "resimli-ekspertiz/ekle",
+          "url": "ekspertiz/resimli-ekspertiz",
           "name": "Resimli Ekspertiz Oluştur",
           "slug": "resimli-ekspertiz-ekle",
           "icon": "bx bx-right-arrow-alt"
@@ -94,9 +74,9 @@
       "icon": "file-import"
     },
     {
-      "url": "yedekparca/stok",
+      "url": "yedekparca/listele",
       "name": "Stok Kontrol",
-      "slug": "yedekparca-stok",
+      "slug": "yedekparca-listele",
       "icon": "check-alt"
     },
     {
@@ -109,15 +89,15 @@
       "icon": "file-export"
     },
     {
-      "url": "cari/",
+      "url": "fatura/hareket",
       "name": "Cari Kontrol",
-      "slug": "cari",
+      "slug": "fatura-hareket",
       "icon": "bar-chart"
     },
     {
-      "url": "cari/odeme",
+      "url": "fatura/odeme",
       "name": "Ödeme Girişi",
-      "slug": "cari-odeme",
+      "slug": "fatura-odeme",
       "icon": "credit-card-in"
     }
   ]

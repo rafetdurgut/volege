@@ -11,6 +11,7 @@ use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\ExComponentController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\IsEmriController;
+use App\Http\Controllers\SayfaController;
 
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\PageController;
@@ -19,7 +20,9 @@ use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ExtensionsController;
 use App\Http\Controllers\LanguageController;
-
+use App\Http\Controllers\EkspertizController;
+use App\Http\Controllers\YedekParcaController;
+use App\Http\Controllers\FaturaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +39,25 @@ Auth::routes(['verify' => true]);
 // dashboard Routes
 // Route::get('/', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('verified');
 Route::get('/', [DashboardController::class, 'dashboardAnalytics'])->name('anasayfa');
+
+Route::group(['prefix' => 'ekspertiz'], function () {
+  Route::get('ekle', [EkspertizController::class, 'ekle'])->name('ekspertiz-ekle');
+  Route::get('resimli-ekspertiz', [EkspertizController::class, 'resimliEkspertiz'])->name('resimli-ekspertiz');
+});
+
+Route::group(['prefix' => 'yedekparca'], function () {
+  Route::get('ekle', [YedekParcaController::class, 'ekle'])->name('yedekparca-ekle');
+  Route::get('listele', [YedekParcaController::class, 'listele'])->name('yedekparca-listele');
+});
+
+Route::group(['prefix' => 'fatura'], function () {
+  Route::get('ekle', [FaturaController::class, 'ekle'])->name('fatura-ekle');
+  Route::get('odeme', [FaturaController::class, 'odeme'])->name('fatura-odeme');
+  Route::get('hareket', [FaturaController::class, 'hareket'])->name('fatura-hareket');
+  Route::get('goster', [FaturaController::class, 'goster'])->name('fatura-goster');
+
+});
+
 
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('ecommerce', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard-ecommerce');
@@ -114,11 +136,15 @@ Route::group(['prefix' => 'extra-component'], function () {
     Route::get('chips', [ExComponentController::class, 'chipsComponent'])->name('extra-component-chips');
     Route::get('divider', [ExComponentController::class, 'dividerComponent'])->name('extra-component-divider');
 });
+Route::get('arama', [SayfaController::class, 'arama'])->name('arama');
+
 Route::group(['prefix' => 'isemri'], function () {
   Route::get('ekle', [FormController::class, 'isemriEkle'])->name('isemri-ekle');
   Route::get('arama', [FormController::class, 'isemriArama'])->name('isemri-arama');
   Route::get('kapat', [FormController::class, 'isemriKapat'])->name('isemri-kapat');
   Route::get('listele', [IsEmriController::class, 'listele'])->name('isemri-listele');
+  Route::get('goster', [IsEmriController::class, 'goster'])->name('isemri-goster');
+
 
 });
 // form elements

@@ -14,4 +14,12 @@ class IsEmriController extends Controller
     ];
     return view('isemri.isemri-listele',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
+  public function goster(){
+    $pageConfigs = ['pageHeader' => true];
+
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "İş Emri"],["name" => "Göster"]
+    ];
+    return view('isemri.isemri-goster',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+  }
 }

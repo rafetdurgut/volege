@@ -15,7 +15,7 @@ $(document).ready(function () {
       $(this).slideDown();
     },
     hide: function (deleteElement) {
-      if (confirm('Are you sure you want to delete this element?')) {
+      if (confirm('Silmek istediğinize emin misiniz?')) {
         $(this).slideUp(deleteElement);
       }
     }
