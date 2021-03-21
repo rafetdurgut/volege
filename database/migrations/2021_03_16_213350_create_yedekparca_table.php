@@ -15,11 +15,17 @@ class CreateYedekparcaTable extends Migration
     {
         Schema::create('yedekparca', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('ureticikodu')->nullable();
             $table->string('stokkodu');
             $table->string('stokadi');
-            $table->smallInteger('adet');
-            $table->decimal('alisfiyati')->nullable();
+            $table->string('urungrup')->nullable();
+            $table->enum('birim',['Yok','Adet','Litre','Takım','Paket']);
+            $table->integer('adet')->nullable();
+            $table->integer('uyari_adet')->nullable();
+            $table->double('alisfiyati')->nullable();
+            $table->double('satisfiyati')->nullable();
             $table->string('parabirim')->default('TL')->nullable(); // Birim fiyat belki enum yapılabilir.
+            $table->string('iskonto')->nullable(); // Birim fiyat belki enum yapılabilir.
             $table->dateTime('alimtarihi')->nullable();
             $table->timestamps();
         });

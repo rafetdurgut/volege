@@ -23,8 +23,7 @@ class MusteriSeed extends Seeder
             DB::table('musteriler')->insert(
                 [
                     'tc'=> sprintf("%d%d%d", rand(1000,9999),rand(1000,9999),rand(100,999)),
-                    'ad' => $faker->firstName,
-                    'soyad'=> $faker->lastName,
+                    'adsoyad' => $faker->firstName. " ".$faker->lastName,
                     'telefon' => $faker->phoneNumber,
                     'email' =>  $faker->email,
                     'adres' => $faker->streetAddress,

@@ -160,31 +160,5 @@ class FormController extends Controller
 
       return view('pages.form-repeater',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
   }
-  public function isemriEkle(){
 
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"],["link" => "#", "name" => "İş Emri"],["name" => "Yeni Ekle"]
-    ];
-    return view('isemri.isemri-ekle',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-}
-public function isemriArama(){
-
-  $pageConfigs = ['pageHeader' => true];
-
-  $breadcrumbs = [
-    ["link" => "/", "name" => "Home"],["link" => "#", "name" => "İş Emri"],["name" => "Arama"]
-  ];
-  return view('isemri.isemri-arama',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-}
-public function isemriKapat(){
-
-  $pageConfigs = ['pageHeader' => true];
-
-  $breadcrumbs = [
-    ["link" => "/", "name" => "Home"],["link" => "#", "name" => "İş Emri"],["name" => "Kapat"]
-  ];
-  return view('isemri.isemri-kapat',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-}
 }

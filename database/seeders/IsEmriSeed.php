@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
+use Faker\Factory as Faker;
 class IsEmriSeed extends Seeder
 {
     /**
@@ -14,16 +14,6 @@ class IsEmriSeed extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 5; $i++) {
-            DB::table('isemirleri')->insert(
-                [
-                    'aracgiristarihi' => date("Y-m-d H:i:s"),
-                    'isemriolusturmatarihi' => date("Y-m-d H:i:s"),
-                    'arackm' => rand(0, 500000),
-                    'yakitdurumu' => rand(10, 100) / 100,
-                    'created_at' => date("Y-m-d H:i:s"),
-                ]
-            );
-        }
+        
     }
 }

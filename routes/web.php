@@ -23,6 +23,8 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\EkspertizController;
 use App\Http\Controllers\YedekParcaController;
 use App\Http\Controllers\FaturaController;
+use App\Http\Controllers\MusteriController;
+use App\Http\Controllers\AracController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -141,9 +143,10 @@ Route::group(['prefix' => 'extra-component'], function () {
 Route::get('arama', [SayfaController::class, 'arama'])->name('arama');
 
 Route::group(['prefix' => 'isemri'], function () {
-  Route::get('ekle', [FormController::class, 'isemriEkle'])->name('isemri-ekle');
-  Route::get('arama', [FormController::class, 'isemriArama'])->name('isemri-arama');
-  Route::get('kapat', [FormController::class, 'isemriKapat'])->name('isemri-kapat');
+    Route::match(['get', 'post'], 'ekle',  [IsEmriController::class, 'isemriEkle'])->name('isemri-ekle');  
+    Route::match(['get', 'post'], 'kapat',  [IsEmriController::class, 'isemriKapat'])->name('isemri-kapat');   
+    Route::post('isemrikapatmagetir', [IsEmriController::class, 'isemrikapatmagetir'])->name('isemrikapatmagetir');
+  Route::get('arama', [IsEmriController::class, 'isemriArama'])->name('isemri-arama');
   Route::get('listele', [IsEmriController::class, 'listele'])->name('isemri-listele');
   Route::get('goster', [IsEmriController::class, 'goster'])->name('isemri-goster');
 
@@ -241,3 +244,10 @@ Route::group(['prefix' => 'extension'], function () {
 
 // locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap'])->name('lang-locale');
+
+
+//Autocompletes
+Route::post('/tcmusterigetir',[MusteriController::class, 'tcmusterigetir' ])->name('tcmusterigetir');
+Route::post('/plakaaracgetir',[AracController::class, 'plakaaracgetir' ])->name('plakaaracgetir');
+Route::post('/stoknoparcagetir',[YedekParcaController::class, 'stoknoyedekparca' ])->name('stoknoyedekparca');
+Route::post('/stokadparcagetir',[YedekParcaController::class, 'stokadyedekparca' ])->name('stokadyedekparca');

@@ -15,14 +15,14 @@ class ParcaIsemriSeed extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 5; $i++) {
-            DB::table('parcaisemri')->insert(
-                [
-                    'emirid' => rand(1,10),
-                    'yedekparcaid' => rand(1,10),
-                    'created_at' => date("Y-m-d H:i:s"),                    
-                ]
-            );
-        }
+        // for ($i = 0; $i < 5; $i++) {
+        //     DB::table('parcaisemri')->insert(
+        //         [
+        //             'emirid' => rand(1,10),
+        //             'yedekparcaid' => rand(1,10),
+        //             'created_at' => date("Y-m-d H:i:s"),                    
+        //         ]
+        //     );
+        // }
     }
 }

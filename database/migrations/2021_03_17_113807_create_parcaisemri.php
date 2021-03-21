@@ -17,6 +17,10 @@ class CreateParcaisemri extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('emirid');
             $table->unsignedBigInteger('yedekparcaid');
+            $table->double('satisfiyati')->nullable();
+            $table->double('toplamfiyat')->nullable();
+            $table->string('iskonto')->nullable();
+            $table->integer('adet')->nullable();
             $table->timestamps();
         });
     }

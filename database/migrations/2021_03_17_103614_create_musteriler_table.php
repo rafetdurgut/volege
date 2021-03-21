@@ -16,8 +16,7 @@ class CreateMusterilerTable extends Migration
         Schema::create('musteriler', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('tc')->nullable();
-            $table->string('ad');
-            $table->string('soyad');
+            $table->string('adsoyad');
             $table->string('telefon')->nullable();
             $table->string('email')->nullable();
             $table->string('adres')->nullable();
