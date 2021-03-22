@@ -23,8 +23,8 @@ class YedekParcaSeed extends Seeder
                 [
                     'ureticikodu' => sprintf("FR%c-%d", rand(65,90), rand(1000,5000)),
                     'stokkodu' => sprintf("%c-%d", rand(65,90), rand(1000,5000)),
-                    'stokadi' => $faker->productname,
-                    'urungrup' => $faker->category,
+                    'stokadi' => $faker->name,
+                    'urungrup' => $faker->name,
                     'adet' => rand(1,500),
                     'uyari_adet' => rand(1,50),
                     'iskonto' => rand(1,50).'-'.rand(1,50),
@@ -32,7 +32,6 @@ class YedekParcaSeed extends Seeder
                     'alisfiyati' =>$alis_fiyat,
                     'satisfiyati' => $alis_fiyat*1.1,
                     'created_at' => date("Y-m-d H:i:s"),
-                    
                 ]
             );
         }

@@ -86,16 +86,16 @@
                           <input name="stokadi"  type="text" class="form-control ypstokadi" />
                       </div>
                       <div class="col-sm-2">
-                          <input name="adet" type="text" class="form-control" />
+                          <input name="adet" type="text" class="form-control ypadet" required />
                       </div>
                       <div class="col-sm-2">
-                          <input name="birimfiyat"   type="text" class="form-control ypsatisfiyati" />
+                          <input name="birimfiyat"  type="text" class="form-control ypsatisfiyati" required />
                       </div>
                       <div class="col-sm-2">
-                        <input name="iskonto" id="iskonto" type="text" class="form-control" />
+                        <input name="iskonto"  id="iskonto" type="text" class="form-control ypiskonto" />
                     </div>
                       <div class="col-sm-2">
-                          <input name="toplamtutar" id="toplamtutar" type="text" readonly class="form-control" />
+                          <input name="toplamtutar" id="toplamtutar" type="text" readonly class="form-control yptoplam" />
                       </div>
                       <input type="hidden" name="parcaid" class="parcaid" />
                   </div>
@@ -140,6 +140,33 @@
 <script src="{{asset('js/scripts/autocomplete/autocomplete.js')}}"></script>
 <script type="text/javascript">
 $(document).ready( function() {
+
+  $('.parca-satir input').on('change',function()
+  {
+    var adet = $(this).parent().parent().find('.ypadet').val();
+    if(!adet)
+      return false;
+    var birimfiyat = $(this).parent().parent().find('.ypsatisfiyati').val();
+    if(!birimfiyat)
+      return false;
+    var iskonto = $(this).parent().parent().find('.ypiskonto').val();
+    if(iskonto)
+    {
+      iskontolar = iskonto.split('-');
+      console.log(iskontolar);
+      var toplamfiyat = parseFloat(birimfiyat) * parseFloat(adet);
+      iskontolar.forEach(function(value,key){
+        toplamfiyat = toplamfiyat- toplamfiyat*parseFloat(value/100);
+      });
+      $(this).parent().parent().find('.yptoplam').val(toplamfiyat);
+    }
+    else
+    {
+      var toplamfiyat = parseFloat(birimfiyat) * parseFloat(adet);
+      $(this).parent().parent().find('.yptoplam').val(toplamfiyat);
+    }
+
+  });
   //$("#kapatmaFormuDiv").hide();
   $('#icerdekiArac').on('change', function() {
   if(this.value == -100000000)
