@@ -15,9 +15,7 @@ $(document).ready(function () {
       $(this).slideDown();
     },
     hide: function (deleteElement) {
-      if (confirm('Silmek istediğinize emin misiniz?')) {
         $(this).slideUp(deleteElement);
-      }
     }
   });
 

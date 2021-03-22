@@ -63,7 +63,7 @@
                   <div class="col-sm-2">
                       Stok Adı
                   </div>
-                  <div class="col-sm-2">
+                  <div class="col-sm-1">
                     Adet
                 </div>
                   <div class="col-sm-2">
@@ -75,6 +75,9 @@
                   <div class="col-sm-2">
                       Toplam Tutar
                   </div>
+                  <div class="col-sm-1">
+                    
+                </div>
               </div>
               <div data-repeater-list="parcalar" id="parcalar" >
                   <div data-repeater-item>
@@ -85,17 +88,20 @@
                       <div class="col-sm-2">
                           <input name="stokadi"  type="text" class="form-control ypstokadi" />
                       </div>
-                      <div class="col-sm-2">
-                          <input name="adet" type="text" class="form-control ypadet" required />
+                      <div class="col-sm-1">
+                          <input name="adet" type="text" class="form-control ypadet"  />
                       </div>
                       <div class="col-sm-2">
-                          <input name="birimfiyat"  type="text" class="form-control ypsatisfiyati" required />
+                          <input name="birimfiyat"  type="text" class="form-control ypsatisfiyati"  />
                       </div>
                       <div class="col-sm-2">
-                        <input name="iskonto"  id="iskonto" type="text" class="form-control ypiskonto" />
+                        <input name="iskonto" type="text" class="form-control ypiskonto" />
                     </div>
                       <div class="col-sm-2">
-                          <input name="toplamtutar" id="toplamtutar" type="text" readonly class="form-control yptoplam" />
+                          <input name="toplamtutar"  type="text" readonly class="form-control yptoplam" />
+                      </div>
+                      <div class="col-sm-1">
+                        <button class="btn btn-danger" data-repeater-delete class="satirsil" type="button"> Sil</button>
                       </div>
                       <input type="hidden" name="parcaid" class="parcaid" />
                   </div>
@@ -109,7 +115,6 @@
             </div>
           </div>
             <div class="clearfix mt-1 mb-2">
-                <button type="submit" name="action" value="fatura" class="btn btn-info btn-md ">Fatura Kes</button>
                 <button type="submit" name="action" value="cikis"  class="btn btn-danger btn-md">Araç Çıkışı Yap</button>
                 <button type="submit" name="action" value="kayit"  class="btn btn-success btn-md  ">Kaydet</button>
             </div>
@@ -140,8 +145,7 @@
 <script src="{{asset('js/scripts/autocomplete/autocomplete.js')}}"></script>
 <script type="text/javascript">
 $(document).ready( function() {
-
-  $('.parca-satir input').on('change',function()
+  $(document).on("click change", ".parca-satir input",function()
   {
     var adet = $(this).parent().parent().find('.ypadet').val();
     if(!adet)
@@ -169,13 +173,15 @@ $(document).ready( function() {
   });
   //$("#kapatmaFormuDiv").hide();
   $('#icerdekiArac').on('change', function() {
-  if(this.value == -100000000)
+  if(this.value == -1)
   {
-    $("#kapatmaFormuDiv").hide();
+    //$("#kapatmaFormuDiv").hide();
+    $("div#parcalar").empty();
+    $("#satirekle").click();
   }
   else
   {
-    $("#kapatmaFormuDiv").show();
+    //$("#kapatmaFormuDiv").show();
     //Get Ajax
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
@@ -190,6 +196,7 @@ $(document).ready( function() {
           console.log(data);
           $("#yapilanlar").val(data[0].isemirleri.yapilanlar);
           $("#iscilik").val(data[0].isemirleri.iscilik);
+          $("div#parcalar").empty();
           $.each( data[0].parcalar, function( key, value ) {
              $("#satirekle").click();
              $('input[name="parcalar['+key+'][stokno]"]').val(value.stokkodu);

@@ -144,11 +144,12 @@ Route::get('arama', [SayfaController::class, 'arama'])->name('arama');
 
 Route::group(['prefix' => 'isemri'], function () {
     Route::match(['get', 'post'], 'ekle',  [IsEmriController::class, 'isemriEkle'])->name('isemri-ekle');  
+    Route::match(['get', 'post'], 'duzenle/{id}',  [IsEmriController::class, 'isemriDuzenle'])->name('isemri-duzenle');  
     Route::match(['get', 'post'], 'kapat',  [IsEmriController::class, 'isemriKapat'])->name('isemri-kapat');   
+    Route::match(['get', 'post'], 'arama',  [IsEmriController::class, 'isemriArama'])->name('isemri-arama');   
     Route::post('isemrikapatmagetir', [IsEmriController::class, 'isemrikapatmagetir'])->name('isemrikapatmagetir');
-  Route::get('arama', [IsEmriController::class, 'isemriArama'])->name('isemri-arama');
   Route::get('listele', [IsEmriController::class, 'listele'])->name('isemri-listele');
-  Route::get('goster', [IsEmriController::class, 'goster'])->name('isemri-goster');
+  Route::get('goster/{id}', [IsEmriController::class, 'goster'])->name('isemri-goster');
 
 
 });

@@ -17,17 +17,17 @@
           <div class="row">
             <div class="col-lg-4 col-md-12">
               <span class="invoice-number mr-50">İş Emri#</span>
-              <span>000756</span>
+              <span>{{$emir->id}}</span>
             </div>
             <div class="col-lg-8 col-md-12">
               <div class="d-flex align-items-center justify-content-lg-end flex-wrap">
                 <div class="mr-3">
                   <small class="text-muted">Oluşturulma Tarihi:</small>
-                  <span>08/10/2019</span>
+                  <span>{{$emir->created_at}}</span>
                 </div>
                 <div>
                   <small class="text-muted">Araç Çıkış Tarihi:</small>
-                  <span>08/10/2019</span>
+                  <span>{{$emir->araccikistarihi}}</span>
                 </div>
               </div>
             </div>
@@ -35,11 +35,11 @@
           <!-- logo and title -->
           <div class="row my-2 my-sm-3">
             <div class="col-sm-6 col-12 text-center text-sm-left order-2 order-sm-1">
-              <h4 class="text-primary">Invoice</h4>
-              <span>Software Development</span>
+              <h4 class="text-primary">{{$arac->plaka}}</h4>
+              <span>{{ $musteri->adsoyad }}</span>
             </div>
             <div class="col-sm-6 col-12 text-center text-sm-right order-1 order-sm-2 d-sm-flex justify-content-end mb-1 mb-sm-0">
-              <img src="{{asset('images/pages/pixinvent-logo.png')}}" alt="logo" height="46" width="164">
+              <img src="{{asset('images/logo/volege-logo.png')}}" alt="logo" height="46" width="164">
             </div>
           </div>
           <hr>
@@ -48,31 +48,31 @@
             <div class="col-sm-6 col-12 mt-1">
               <h6 class="invoice-from">Müşteri Bilgileri</h6>
               <div class="mb-1">
-                <span>Clevision PVT. LTD.</span>
+                <span>{{ $musteri->adsoyad }}</span>
               </div>
               <div class="mb-1">
-                <span>9205 Whitemarsh Street New York, NY 10002</span>
+                <span>{{ $musteri->adres }}</span>
               </div>
               <div class="mb-1">
-                <span>hello@clevision.net</span>
+                <span>{{ $musteri->email }}</span>
               </div>
               <div class="mb-1">
-                <span>601-678-8022</span>
+                <span>{{ $musteri->telefon }}</span>
               </div>
             </div>
             <div class="col-sm-6 col-12 mt-1">
               <h6 class="invoice-to">Araç Bilgileri</h6>
               <div class="mb-1">
-                <span>Pixinvent PVT. LTD.</span>
+                <span>{{ $arac->plaka }}</span>
               </div>
               <div class="mb-1">
-                <span>203 Sussex St. Suite B Waukegan, IL 60085</span>
+                <span>{{ $arac->marka }}</span>
               </div>
               <div class="mb-1">
-                <span>pixinvent@gmail.com</span>
+                <span>{{ $arac->model }}</span>
               </div>
               <div class="mb-1">
-                <span>987-352-5603</span>
+                <span>Yakıt Durumu: {{ $emir->yakit }}</span>
               </div>
             </div>
           </div>
@@ -83,35 +83,30 @@
           <table class="table table-borderless mb-0">
             <thead>
               <tr class="border-0">
-                <th scope="col">Item</th>
-                <th scope="col">Description</th>
-                <th scope="col">Cost</th>
-                <th scope="col">Qty</th>
-                <th scope="col" class="text-right">Price</th>
+                <th scope="col">Parça Kodu</th>
+                <th scope="col">Parça Adı</th>
+                <th scope="col">Adet</th>
+                <th scope="col">Fiyat</th>
+                <th scope="col">İskonto</th>
+                <th scope="col" class="text-right">Toplam Tutar</th>
               </tr>
             </thead>
             <tbody>
+              @isset($parcalar)
+              @php $aratoplam = 0; $indirimtoplam=0; @endphp
+              @foreach($parcalar as $parca)
+              @php $aratoplam += intval($parca->toplamfiyat); @endphp
+              @php $indirimtoplam += intval($parca->adet * $parca->satisfiyati - $parca->toplamfiyat); @endphp
               <tr>
-                <td>Frest Admin</td>
-                <td>HTML Admin Template</td>
-                <td>28</td>
-                <td>1</td>
-                <td class="text-primary text-right font-weight-bold">$28.00</td>
+                <td>{{$parca->stokkodu}}</td>
+                <td>{{$parca->stokadi}}</td>
+                <td>{{$parca->adet}}</td>
+                <td>{{$parca->satisfiyati}} ₺</td>
+                <td>%{{$parca->iskonto}}</td>
+                <td class="text-primary text-right font-weight-bold">{{$parca->toplamfiyat}} ₺</td>
               </tr>
-              <tr>
-                <td>Apex Admin</td>
-                <td>Anguler Admin Template</td>
-                <td>24</td>
-                <td>1</td>
-                <td class="text-primary text-right font-weight-bold">$24.00</td>
-              </tr>
-              <tr>
-                <td>Stack Admin</td>
-                <td>HTML Admin Template</td>
-                <td>24</td>
-                <td>1</td>
-                <td class="text-primary text-right font-weight-bold">$24.00</td>
-              </tr>
+              @endforeach
+              @endisset
             </tbody>
           </table>
         </div>
@@ -121,36 +116,29 @@
           <hr>
           <div class="row">
             <div class="col-4 col-sm-6 col-12 mt-75">
-              <p>Thanks for your business.</p>
+              <p>Volege Otomobil Servis ve Yedek Parça Ltd. Şti.</p>
             </div>
             <div class="col-8 col-sm-6 col-12 d-flex justify-content-end mt-75">
               <div class="invoice-subtotal">
                 <div class="invoice-calc d-flex justify-content-between">
-                  <span class="invoice-title">Subtotal</span>
-                  <span class="invoice-value">$76.00</span>
+                  <span class="invoice-title">Ara Toplam</span>
+                  <span class="invoice-value">{{ $aratoplam }} ₺</span>
                 </div>
                 <div class="invoice-calc d-flex justify-content-between">
-                  <span class="invoice-title">Discount</span>
-                  <span class="invoice-value">- $09.60</span>
+                  <span class="invoice-title">İndirim</span>
+                  <span class="invoice-value">{{$indirimtoplam}} ₺</span>
                 </div>
                 <div class="invoice-calc d-flex justify-content-between">
-                  <span class="invoice-title">Tax</span>
-                  <span class="invoice-value">21%</span>
+                  <span class="invoice-title">KDV (%18) </span>
+                  <span class="invoice-value">{{ $aratoplam*0.18 }} ₺ </span>
                 </div>
                 <hr>
                 <div class="invoice-calc d-flex justify-content-between">
-                  <span class="invoice-title">Invoice Total</span>
-                  <span class="invoice-value">$66.40</span>
-                </div>
-                <div class="invoice-calc d-flex justify-content-between">
-                  <span class="invoice-title">Paid to date</span>
-                  <span class="invoice-value">$00.00</span>
-                </div>
-                <div class="invoice-calc d-flex justify-content-between">
-                  <span class="invoice-title">Balance (USD)</span>
-                  <span class="invoice-value">$10,953</span>
+                  <span class="invoice-title">Fatura Toplamı</span>
+                  <span class="invoice-value">{{ $aratoplam*1.18 }} ₺</span>
                 </div>
               </div>
+
             </div>
           </div>
         </div>

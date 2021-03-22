@@ -11,111 +11,82 @@
 @endsection
 
 @section('content')
-<form>
+<form method="POST" action="{{route('isemri-arama')}}">
+@csrf
   <div class="bg-white p-3 shadow">
       <legend> Arama Formu </legend>
           <div class="form-group row">
               <label for="isemrikodu" class="col-sm-3 col-form-label">İş Emri Kodu:</label>
               <div class="col-sm-9">
-                  <input type="email" class="form-control" id="isemrikodu" placeholder="" autocomplete="off">
+                  <input type="text" class="form-control" value="{{old('isemrikodu')}}" name="isemrikodu" placeholder="" autocomplete="off">
               </div>
           </div>
           <div class="form-group row">
             <label for="saseno" class="col-sm-3 col-form-label">Araç Şase No:</label>
             <div class="col-sm-9">
-                <input type="email" class="form-control" name="saseno" id="saseno" placeholder="" autocomplete="off">
+                <input type="text" class="form-control" value="{{old('saseno') }}" name="saseno" id="saseno" placeholder="" autocomplete="off">
             </div>
         </div>
           <div class="form-group row">
               <label for="plaka" class="col-sm-3 col-form-label">Araç Plaka:</label>
               <div class="col-sm-9">
-                  <input type="email" class="form-control" name="plaka" id="plaka" placeholder="" autocomplete="off">
+                  <input type="text" class="form-control" value="{{old('plaka')}}" name="plaka" id="plaka" placeholder="" autocomplete="off">
               </div>
           </div>
           <div class="form-group row">
               <label for="tckimlik" class="col-sm-3 col-form-label">Müşteri TC Kimlik:</label>
               <div class="col-sm-9">
-                  <input type="email" class="form-control" name="tckimlik" id="tckimlik" placeholder="" autocomplete="off">
+                  <input type="text" class="form-control" value="{{old('tckimlik')}}" name="tckimlik" id="tckimlik" placeholder="" autocomplete="off">
               </div>
           </div>
           <div class="form-group row">
               <label for="adsoyad" class="col-sm-3 col-form-label">Müşteri Adı Soyadı:</label>
               <div class="col-sm-9">
-                  <input type="email" class="form-control" name="adsoyad" id="adsoyad" placeholder=""  autocomplete="off">
+                  <input type="text" class="form-control" value="{{old('adsoyad')}}" name="adsoyad" id="adsoyad" placeholder=""  autocomplete="off">
               </div>
           </div>
           <div class="clearfix">
               <button type="submit" class="btn btn-primary btn-lg float-right">İş Emri Ara</button>
           </div>
-
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">İş Emri</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Ekspertiz</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Resimli Ekspertiz</a>
-              </li>
-            </ul>
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                   <table class="table table-striped">
                       <thead>
                         <tr>
-                          <th scope="col">#</th>
                           <th scope="col">Emir Kodu</th>
                           <th scope="col">Plaka</th>
                           <th scope="col">Müşteri</th>
-                          <th scope="col">Tarihi</th>
+                          <th scope="col">Giriş Tarihi</th>
+                          <th scope="col">Çıkış Tarihi</th>
                           <th scope="col">İşlemler</th>
 
                         </tr>
                       </thead>
                       <tbody>
+                        @if(isset($emirler))
+                        @foreach($emirler as $emir)
                         <tr>
-                          <th scope="row">1</th>
-                          <td>123456</td>
-                          <td>35ABC35</td>
-                          <td>Rafet Durgut</td>
-                          <td>12.09.1989</td>
-                          <td><a class="btn btn-info btn-sm" href="#">
+                          <td>{{$emir->id}}</td>
+                          <td>{{$emir->plaka}}</td>
+                          <td>{{$emir->adsoyad}}</td>
+                          <td>{{$emir->aracgiristarihi}}</td>
+                          <td>{{$emir->araccikistarihi}}</td>
+                          <td><a class="btn btn-info btn-sm" href="{{route('isemri-goster',$emir->id)}}">
                               <i class="fa fa-search"></i> </a>
                               <a class="btn btn-info btn-sm" href="#">
                                   <i class="fa fa-print"></i> </a>
                           </td>
+                        </tr>
+                        @endforeach
+                        @else
+                        <tr>
+                          <td colspan="6"><p class="font-italic">Arama kriterlerine uygun hiç bir sonuç bulunamadı.</p></td>
+                        </tr>
+                        @endif
 
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>123456</td>
-                          <td>35ABC35</td>
-                          <td>Rafet Durgut</td>
-                          <td>12.09.1989</td>
-                          <td><a class="btn btn-info btn-sm" href="#">
-                              <i class="fa fa-search"></i> </a>
-                              <a class="btn btn-info btn-sm" href="#">
-                                  <i class="fa fa-print"></i> </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>123456</td>
-                          <td>35ABC35</td>
-                          <td>Rafet Durgut</td>
-                          <td>12.09.1989</td>
-                          <td><a class="btn btn-info btn-sm" href="#">
-                              <i class="fa fa-search"></i> </a>
-                              <a class="btn btn-info btn-sm" href="#">
-                                  <i class="fa fa-print"></i> </a>
-                          </td>
-                        </tr>
                       </tbody>
                     </table>
               </div>
-              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-              <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
             </div>
 
   </div>
