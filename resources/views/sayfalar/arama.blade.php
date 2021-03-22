@@ -56,7 +56,7 @@
                     <button class="btn btn-md float-right btn-success" type="button">Getir </button>
                 </div>
                   </form>
-                  <table class="table table-striped mt-4">
+                  <table class="table-responsive table-striped mt-4">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
@@ -120,7 +120,7 @@
                     <button class="btn btn-md float-right btn-success" type="button">Getir </button>
                 </div>
                   </form>
-                  <table class="table table-striped mt-4">
+                  <table class="table-responsive table-striped mt-4">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
@@ -179,7 +179,7 @@
                     <button class="btn btn-md float-right btn-success" type="button">Getir </button>
                 </div>
                   </form>
-                  <table class="table table-striped mt-4">
+                  <table class="table-responsive table-striped mt-4">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
@@ -240,7 +240,7 @@
                   <button class="btn btn-md float-right btn-success" type="button">Getir </button>
               </div>
                 </form>
-                <table class="table table-striped mt-4">
+                <table class="table-responsive table-striped mt-4">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
@@ -298,7 +298,7 @@
                 <button class="btn btn-md float-right btn-success" type="button">Getir </button>
             </div>
               </form>
-              <table class="table table-striped mt-4">
+              <table class="table-responsive table-striped mt-4">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
