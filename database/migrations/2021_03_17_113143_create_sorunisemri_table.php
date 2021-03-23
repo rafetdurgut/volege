@@ -13,12 +13,13 @@ class CreateSorunisemriTable extends Migration
      */
     public function up()
     {
-        Schema::create('sorunisemri', function (Blueprint $table) {
+        /*Schema::create('sorunisemri', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('isemriid'); // ilişkisel isemrine ait sorunu tutacak
             $table->longText('sorunmetni')->nullable(); //isemrine ait sorunlar 
             $table->timestamps();
         });
+        */
     }
 
     /**
