@@ -44,10 +44,6 @@ Auth::routes(['verify' => true]);
 // Route::get('/', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('verified');
 Route::get('/', [DashboardController::class, 'dashboardAnalytics'])->name('anasayfa');
 
-Route::group(['prefix' => 'ekspertiz'], function () {
-  Route::get('ekle', [EkspertizController::class, 'ekle'])->name('ekspertiz-ekle');
-  Route::get('resimli-ekspertiz', [EkspertizController::class, 'resimliEkspertiz'])->name('resimli-ekspertiz');
-});
 
 Route::group(['prefix' => 'yedekparca'], function () {
     Route::match(['get', 'post'], 'ekle',  [YedekParcaController::class, 'ekle'])->name('yedekparca-ekle');
@@ -143,19 +139,36 @@ Route::group(['prefix' => 'extra-component'], function () {
     Route::get('chips', [ExComponentController::class, 'chipsComponent'])->name('extra-component-chips');
     Route::get('divider', [ExComponentController::class, 'dividerComponent'])->name('extra-component-divider');
 });
+
 Route::get('arama', [SayfaController::class, 'arama'])->name('arama');
+Route::get('arama/musteri', [SayfaController::class, 'arama'])->name('arama-musteri');
+Route::get('arama/arac', [SayfaController::class, 'arama'])->name('arama-arac');;
+Route::get('arama/isemri', [SayfaController::class, 'arama']);
+Route::get('arama/parca', [SayfaController::class, 'arama']);
+Route::get('arama/ekspertiz', [SayfaController::class, 'arama']);
+Route::post('arama/musteri', [SayfaController::class, 'aramaMusteri'])->name('arama-musteri');
+Route::post('arama/arac', [SayfaController::class, 'aramaArac'])->name('arama-arac');
+Route::post('arama/isemri', [SayfaController::class, 'aramaEmir'])->name('arama-isemri');
+Route::post('arama/parca', [SayfaController::class, 'aramaParca'])->name('arama-parca');
+Route::post('arama/ekspertiz', [SayfaController::class, 'aramaArac'])->name('arama-ekspertiz');
 
 Route::group(['prefix' => 'isemri'], function () {
-    Route::match(['get', 'post'], 'ekle',  [IsEmriController::class, 'isemriEkle'])->name('isemri-ekle');  
-    Route::match(['get', 'post'], 'duzenle/{id}',  [IsEmriController::class, 'isemriDuzenle'])->name('isemri-duzenle');  
-    Route::match(['get', 'post'], 'kapat',  [IsEmriController::class, 'isemriKapat'])->name('isemri-kapat');   
-    Route::match(['get', 'post'], 'arama',  [IsEmriController::class, 'isemriArama'])->name('isemri-arama');   
+    Route::match(['get', 'post'], 'ekle',  [IsEmriController::class, 'isemriEkle'])->name('isemri-ekle');
+    Route::match(['get', 'post'], 'duzenle/{id}',  [IsEmriController::class, 'isemriDuzenle'])->name('isemri-duzenle');
+    Route::match(['get', 'post'], 'kapat',  [IsEmriController::class, 'isemriKapat'])->name('isemri-kapat');
+    Route::match(['get', 'post'], 'arama',  [IsEmriController::class, 'isemriArama'])->name('isemri-arama');
     Route::post('isemrikapatmagetir', [IsEmriController::class, 'isemrikapatmagetir'])->name('isemrikapatmagetir');
   Route::get('listele', [IsEmriController::class, 'listele'])->name('isemri-listele');
   Route::get('goster/{id}', [IsEmriController::class, 'goster'])->name('isemri-goster');
-
-
 });
+
+Route::group(['prefix' => 'ekspertiz'], function () {
+    Route::match(['get', 'post'],'ekle', [EkspertizController::class, 'ekle'])->name('ekspertiz-ekle');
+  });
+
+  
+
+
 // form elements
 Route::group(['prefix' => 'form'], function () {
     Route::get('inputs', [FormController::class, 'inputForm'])->name('form-inputs');

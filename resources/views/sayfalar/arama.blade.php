@@ -22,88 +22,80 @@
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-12 col-sm-12 col-md-4 ">
-              <div class="list-group" role="tablist">
-                <a class="list-group-item list-group-item-action active" id="list-musteri-list" data-toggle="list"
+            <div class="col-12 col-sm-12 col-md-12 ">
+              <div class="list-group list-group-horizontal-sm mb-1 text-center" role="tablist">
+                <a class="list-group-item list-group-item-action {{ \Request::is('arama') || \Request::is('arama/musteri') ? "active" : "" }} " id="list-musteri-list" data-toggle="list"
                   href="#list-musteri" role="tab">Müşteri</a>
-                <a class="list-group-item list-group-item-action" id="list-arac-list" data-toggle="list"
+                <a class="list-group-item list-group-item-action {{ \Request::is('arama/arac') ? "active" : "" }}" id="list-arac-list" data-toggle="list"
                   href="#list-arac" role="tab">Araç</a>
-                <a class="list-group-item list-group-item-action" id="list-isemri-list" data-toggle="list"
+                <a class="list-group-item list-group-item-action {{ \Request::is('arama/isemri') ? "active" : "" }}" id="list-isemri-list" data-toggle="list"
                   href="#list-isemri" role="tab">İş Emri</a>
-                <a class="list-group-item list-group-item-action" id="list-parca-list" data-toggle="list"
+                <a class="list-group-item list-group-item-action {{ \Request::is('arama/yedekparca') ? "active" : "" }}" id="list-parca-list" data-toggle="list"
                   href="#list-parca" role="tab">Yedek Parça</a>
-                <a class="list-group-item list-group-item-action" id="list-ekspertiz-list" data-toggle="list"
+                <a class="list-group-item list-group-item-action {{ \Request::is('arama/ekspertiz') ? "active" : "" }}" id="list-ekspertiz-list" data-toggle="list"
                   href="#list-ekspertiz" role="tab">Ekspertiz</a>
               </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-8 mt-1">
+          </div>
+            <div class="col-12 col-sm-12 col-md-12 mt-1">
               <div class="tab-content text-justify" id="nav-tabContent">
-                <div class="tab-pane show active" id="list-musteri" role="tabpanel" aria-labelledby="list-musteri-list">
-                  <form>
+                <div class="tab-pane show  {{ \Request::is('arama') || \Request::is('arama/musteri') ? "active" : "" }}" id="list-musteri" role="tabpanel" aria-labelledby="list-musteri-list">
+                  <form method="POST" action="{{ route('arama-musteri') }}">
+                    @csrf
                     <div class="form-group row">
                       <label for="adsoyad" class="col-sm-3 col-form-label">Ad Soyad</label>
                       <div class="col-sm-9">
-                      <input type="text" class="form-control" id="adsoyad" name="adsoyad" placeholder="">
+                      <input type="text" class="form-control" id="adsoyad" name="adsoyad" placeholder="" autocomplete="off">
                       </div>
                   </div>
                   <div class="form-group row">
                     <label for="tckimlikno" class="col-sm-3 col-form-label">TC Kimlik No</label>
                     <div class="col-sm-9">
-                    <input type="password" name="tckimlikno" class="form-control" id="tckimlikno" placeholder="">
+                    <input type="text" name="tckimlikno" class="form-control" id="tckimlikno" placeholder="" autocomplete="off">
                     </div>
                 </div>
                 <div class="clearfix">
-                    <button class="btn btn-md float-right btn-success" type="button">Getir </button>
+                    <button type="submit" class="btn btn-md float-right btn-success" type="button">Getir </button>
                 </div>
                   </form>
-                  <table class="table-responsive table-striped mt-4">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Adı Soyadı</th>
-                        <th scope="col">Telefon</th>
-                        <th scope="col">E-Mail</th>
-                        <th scope="col">Adres</th>
-                        <th scope="col">İşlemler</th>
 
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>123456</td>
-                        <td>35ABC35</td>
-                        <td>Rafet Durgut</td>
-                        <td>12.09.1989</td>
-                        <td><a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Müşteri düzenle.">
-                            <i class="fa fa-edit"></i> </a>
-                            <a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Müşteri detaylı bilgilerini gör.">
-                                <i class="fa fa-user"></i> </a>
+                      @isset($musteriler)
+                      <table class="table  table-striped mt-4">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Adı Soyadı</th>
+                            <th scope="col">Telefon</th>
+                            <th scope="col">E-Mail</th>
+                            <th scope="col">Adres</th>
+                            <th scope="col">İşlemler</th>
 
-                        </td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($musteriler as $musteri)
+                        <tr>
+                          <th scope="row">{{ $musteri->tc }}</th>
+                          <td>{{ $musteri->adsoyad }}</td>
+                          <td>{{ $musteri->telefon }}</td>
+                          <td>{{ $musteri->email }}</td>
+                          <td>{{ $musteri->adres }}</td>
+                          <td><a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Müşteri düzenle.">
+                              <i class="fa fa-edit"></i> </a>
+                              <a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Müşteri detaylı bilgilerini gör.">
+                                  <i class="fa fa-user"></i> </a>
+                          </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                      @endisset
 
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>123456</td>
-                        <td>35ABC35</td>
-                        <td>Rafet Durgut</td>
-                        <td>12.09.1989</td>
-                        <td><a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Müşteri düzenle.">
-                            <i class="fa fa-edit"></i> </a>
-                            <a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Müşteri detaylı bilgilerini gör.">
-                                <i class="fa fa-user"></i> </a>
-
-                        </td>
-
-                      </tr>
-
-                    </tbody>
-                  </table>
                 </div>
 
-                <div class="tab-pane" id="list-arac" role="tabpanel" aria-labelledby="list-arac-list">
-                  <form>
+                <div class="tab-pane  {{  \Request::is('arama/arac')  ? "active" : "" }}" id="list-arac" role="tabpanel" aria-labelledby="list-arac-list">
+                  <form method="POST" action="{{ route('arama-arac') }}">
+                    @csrf
                     <div class="form-group row">
                       <label for="plaka" class="col-sm-3 col-form-label">Plaka</label>
                       <div class="col-sm-9">
@@ -117,51 +109,47 @@
                     </div>
                 </div>
                 <div class="clearfix">
-                    <button class="btn btn-md float-right btn-success" type="button">Getir </button>
+                    <button type="submit" class="btn btn-md float-right btn-success" type="button">Getir </button>
                 </div>
                   </form>
-                  <table class="table-responsive table-striped mt-4">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Plaka</th>
-                        <th scope="col">Marka</th>
-                        <th scope="col">Model</th>
-                        <th scope="col">KM</th>
-                        <th scope="col">İşlemler</th>
 
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>123456</td>
-                        <td>35ABC35</td>
-                        <td>Rafet Durgut</td>
-                        <td>12.09.1989</td>
-                        <td><a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Araç düzenle.">
-                            <i class="fa fa-edit"></i> </a>
-                            <a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Araç kartını gör.">
-                                <i class="fa fa-car"></i> </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>123456</td>
-                        <td>35ABC35</td>
-                        <td>Rafet Durgut</td>
-                        <td>12.09.1989</td>
-                        <td><a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Müşteri düzenle.">
-                            <i class="fa fa-edit"></i> </a>
-                            <a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Müşteri detaylı bilgilerini gör.">
-                                <i class="fa fa-user"></i> </a>
-                        </td>
-                      </tr>
+                      @isset($araclar)
+                      <table class="table table-striped mt-4">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Plaka</th>
+                            <th scope="col">Marka</th>
+                            <th scope="col">Model</th>
+                            <th scope="col">Şase No</th>
+                            <th scope="col">İşlemler</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($araclar as $arac)
+                        <tr>
+                          <th scope="row">{{ $arac->id }}</th>
+                          <td>{{ $arac->plaka }}</td>
+                          <td>{{ $arac->marka }}</td>
+                          <td>{{ $arac->model }}</td>
+                          <td>{{ $arac->saseno }}</td>
+                          <td><a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Araç düzenle.">
+                              <i class="fa fa-edit"></i> </a>
+                              <a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Araç kartını gör.">
+                                  <i class="fa fa-car"></i> </a>
+                          </td>
+                        </tr>
+                        @endforeach
+
                     </tbody>
                   </table>
+                      @endisset
+
                 </div>
-                <div class="tab-pane" id="list-isemri" role="tabpanel" aria-labelledby="list-isemri-list">
-                  <form>
+                <div class="tab-pane  {{  \Request::is('arama/isemri')  ? "active" : "" }}" id="list-isemri" role="tabpanel" aria-labelledby="list-isemri-list">
+                  <form method="POST" action='{{ route('arama-isemri') }}'>
+                    @csrf
                     <div class="form-group row">
                       <label for="emirkodu" class="col-sm-3 col-form-label">Emir Kodu</label>
                       <div class="col-sm-9">
@@ -176,48 +164,42 @@
                 </div>
 
                 <div class="clearfix">
-                    <button class="btn btn-md float-right btn-success" type="button">Getir </button>
+                    <button type="submit" class="btn btn-md float-right btn-success" type="button">Getir </button>
                 </div>
                   </form>
-                  <table class="table-responsive table-striped mt-4">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Plaka</th>
-                        <th scope="col">Müşteri</th>
-                        <th scope="col">Giriş Tarihi</th>
-                        <th scope="col">Çıkış Tarihi</th>
-                        <th scope="col">İşlemler</th>
 
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>123456</td>
-                        <td>35ABC35</td>
-                        <td>Rafet Durgut</td>
-                        <td>12.09.1989</td>
-                        <td><a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Görüntüle.">
-                            <i class="fa fa-edit"></i> </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>123456</td>
-                        <td>35ABC35</td>
-                        <td>Rafet Durgut</td>
-                        <td>12.09.1989</td>
-                        <td><a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Müşteri düzenle.">
-                            <i class="fa fa-edit"></i> </a>
-                            <a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Müşteri detaylı bilgilerini gör.">
-                                <i class="fa fa-user"></i> </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                      @isset($emirler)
+                      <table class="table table-striped mt-4">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Araç Plaka</th>
+                            <th scope="col">Müşteri</th>
+                            <th scope="col">Giriş Tarihi</th>
+                            <th scope="col">Çıkış Tarihi</th>
+                            <th scope="col">İşlemler</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($emirler as $emir )
+                        <tr>
+                          <th scope="row">{{ $emir->id }}</th>
+                          <td>{{  $emir->plaka }}</td>
+                          <td>{{  $emir->adsoyad }}</td>
+                          <td>{{  $emir->aracgiristarihi }}</td>
+                          <td>{{  isset($emir->araccikistarihi) ? $emir->araccikistarihi : "İçeride"  }}</td>
+                          <td><a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Görüntüle.">
+                              <i class="fa fa-edit"></i> </a>
+                          </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                      @endisset
+
                 </div>
-                <div class="tab-pane" id="list-parca" role="tabpanel" aria-labelledby="list-parca-list"> <form>
+                <div class="tab-pane  {{  \Request::is('arama/parca')  ? "active" : "" }}" id="list-parca" role="tabpanel" aria-labelledby="list-parca-list"> <form>
                   <div class="form-group row">
                     <label for="stokkodu" class="col-sm-3 col-form-label">Stok Kodu</label>
                     <div class="col-sm-9">
@@ -237,10 +219,10 @@
                 </div>
             </div>
               <div class="clearfix">
-                  <button class="btn btn-md float-right btn-success" type="button">Getir </button>
+                  <button type="submit" class="btn btn-md float-right btn-success" type="button">Getir </button>
               </div>
                 </form>
-                <table class="table-responsive table-striped mt-4">
+                <table class="table table-striped mt-4">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
@@ -280,7 +262,7 @@
                   </tbody>
                 </table>
               </div>
-              <div class="tab-pane" id="list-ekspertiz" role="tabpanel" aria-labelledby="list-ekspertiz-list"><form>
+              <div class="tab-pane  {{  \Request::is('arama/ekspertiz')  ? "active" : "" }}" id="list-ekspertiz" role="tabpanel" aria-labelledby="list-ekspertiz-list"><form>
                 <div class="form-group row">
                   <label for="ekspertizkodu" class="col-sm-3 col-form-label">Ekspertiz Kodu</label>
                   <div class="col-sm-9">
@@ -295,10 +277,10 @@
             </div>
 
             <div class="clearfix">
-                <button class="btn btn-md float-right btn-success" type="button">Getir </button>
+                <button type="submit" class="btn btn-md float-right btn-success" type="button">Getir </button>
             </div>
               </form>
-              <table class="table-responsive table-striped mt-4">
+              <table class="table table-striped mt-4">
                 <thead>
                   <tr>
                     <th scope="col">#</th>

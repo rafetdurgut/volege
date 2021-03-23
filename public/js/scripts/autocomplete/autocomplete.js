@@ -20,12 +20,12 @@ $(document).ready(function(){
             },
             select: function (event, ui) {
                    $(this).val(ui.item.value.stokkodu);
-                   $(this).closest('div').next().find('.ypstokadi').val(ui.item.value.stokadi);  
-                   $(this).closest('div').nextAll(':has(.ypsatisfiyati):first').find('.ypsatisfiyati').val(ui.item.value.satisfiyati);  
-                   $(this).parent().parent().find('.parcaid').val(ui.item.value.id);  
+                   $(this).closest('div').next().find('.ypstokadi').val(ui.item.value.stokadi);
+                   $(this).closest('div').nextAll(':has(.ypsatisfiyati):first').find('.ypsatisfiyati').val(ui.item.value.satisfiyati);
+                   $(this).parent().parent().find('.parcaid').val(ui.item.value.id);
                    return false;
                 }
-            });            
+            });
 
     });
     $(document).on("click", "input.ypstokadi", function(){
@@ -47,15 +47,15 @@ $(document).ready(function(){
             },
             select: function (event, ui) {
                    $(this).val(ui.item.value.stokadi);
-                   $(this).closest('div').prev().find('.ypstoknotxt').val(ui.item.value.stokkodu);  
-                   $(this).closest('div').nextAll(':has(.ypsatisfiyati):first').find('.ypsatisfiyati').val(ui.item.value.satisfiyati);  
-                   $(this).parent().parent().find('.parcaid').val(ui.item.value.id);  
+                   $(this).closest('div').prev().find('.ypstoknotxt').val(ui.item.value.stokkodu);
+                   $(this).closest('div').nextAll(':has(.ypsatisfiyati):first').find('.ypsatisfiyati').val(ui.item.value.satisfiyati);
+                   $(this).parent().parent().find('.parcaid').val(ui.item.value.id);
                    return false;
                 }
-            });            
+            });
 
     });
-    
+
 
 
 $( "#tckimlik_ac" ).autocomplete({
@@ -75,13 +75,13 @@ $.ajax({
 });
 },
 select: function (event, ui) {
-       $('#tckimlik_ac').val(ui.item.label); 
-       $('#adsoyad').val(ui.item.value.ad);  
-       $('#telefon').val(ui.item.value.telefon); 
-       $('#vergino').val(ui.item.value.vergino); 
-       $('#vergidairesi').val(ui.item.value.vergidairesi);  
-       $('#eposta').val(ui.item.value.email); 
-       $('#adres').val(ui.item.value.adres); 
+       $('#tckimlik_ac').val(ui.item.label);
+       $('#adsoyad').val(ui.item.value.ad);
+       $('#telefon').val(ui.item.value.telefon);
+       $('#vergino').val(ui.item.value.vergino);
+       $('#vergidairesi').val(ui.item.value.vergidairesi);
+       $('#eposta').val(ui.item.value.email);
+       $('#adres').val(ui.item.value.adres);
        if(ui.item.value.ticaridurum == 1)
            $("#ticaridurum1").prop("checked", true);
         else
@@ -112,13 +112,13 @@ $.ajax({
 });
 },
 select: function (event, ui) {
-       $('#tckimlik_ac').val(ui.item.label); 
-       $('#adsoyad').val(ui.item.value.adsoyad);  
-       $('#telefon').val(ui.item.value.telefon); 
-       $('#vergino').val(ui.item.value.vergino); 
-       $('#vergidairesi').val(ui.item.value.vergidairesi);  
-       $('#eposta').val(ui.item.value.email); 
-       $('#adres').val(ui.item.value.adres); 
+       $('#tckimlik_ac').val(ui.item.label);
+       $('#adsoyad').val(ui.item.value.adsoyad);
+       $('#telefon').val(ui.item.value.telefon);
+       $('#vergino').val(ui.item.value.vergino);
+       $('#vergidairesi').val(ui.item.value.vergidairesi);
+       $('#eposta').val(ui.item.value.email);
+       $('#adres').val(ui.item.value.adres);
        if(ui.item.value.ticaridurum == 1)
            $("#ticaridurum1").prop("checked", true);
         else
@@ -146,13 +146,12 @@ $( "#plaka_ac" ).autocomplete({
     });
     },
     select: function (event, ui) {
-           $('#plaka_ac').val(ui.item.label); 
-           $('#marka').val(ui.item.value.marka);  
-           $('#motorno').val(ui.item.value.motorno); 
-           $('#saseno').val(ui.item.value.saseno);  
-           $('#model').val(ui.item.value.model); 
+           $('#plaka_ac').val(ui.item.label);
+           $('#marka').val(ui.item.value.marka);
+           $('#motorno').val(ui.item.value.motorno);
+           $('#saseno').val(ui.item.value.saseno);
+           $('#model').val(ui.item.value.model);
            return false;
         }
     });
-
 });
