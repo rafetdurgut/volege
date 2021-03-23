@@ -42,10 +42,6 @@ Auth::routes(['verify' => true]);
 // Route::get('/', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('verified');
 Route::get('/', [DashboardController::class, 'dashboardAnalytics'])->name('anasayfa');
 
-Route::group(['prefix' => 'ekspertiz'], function () {
-  Route::get('ekle', [EkspertizController::class, 'ekle'])->name('ekspertiz-ekle');
-  Route::get('resimli-ekspertiz', [EkspertizController::class, 'resimliEkspertiz'])->name('resimli-ekspertiz');
-});
 
 Route::group(['prefix' => 'yedekparca'], function () {
   Route::get('ekle', [YedekParcaController::class, 'ekle'])->name('yedekparca-ekle');
@@ -161,9 +157,15 @@ Route::group(['prefix' => 'isemri'], function () {
     Route::post('isemrikapatmagetir', [IsEmriController::class, 'isemrikapatmagetir'])->name('isemrikapatmagetir');
   Route::get('listele', [IsEmriController::class, 'listele'])->name('isemri-listele');
   Route::get('goster/{id}', [IsEmriController::class, 'goster'])->name('isemri-goster');
-
-
 });
+
+Route::group(['prefix' => 'ekspertiz'], function () {
+    Route::match(['get', 'post'],'ekle', [EkspertizController::class, 'ekle'])->name('ekspertiz-ekle');
+  });
+
+  
+
+
 // form elements
 Route::group(['prefix' => 'form'], function () {
     Route::get('inputs', [FormController::class, 'inputForm'])->name('form-inputs');

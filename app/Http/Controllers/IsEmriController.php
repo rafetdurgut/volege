@@ -121,7 +121,7 @@ class IsEmriController extends Controller
           $breadcrumbs = [
             ["link" => "/", "name" => "Home"],["link" => "#", "name" => "İş Emri"],["name" => "Yeni Ekle"]
           ];
-          return view('isemri.isemri-ekle',);
+          return view('isemri.isemri-ekle',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
       }
 
       if ($request->isMethod('POST')) {
@@ -257,7 +257,7 @@ class IsEmriController extends Controller
         [
           'emirid'=>$isemri->id,
           'yedekparcaid'=> intval($parca["parcaid"]),
-          'satisfiyati'=> intval($parca["birimfiyat"]),
+          'satisfiyati'=> floatval($parca["birimfiyat"]),
           'iskonto'=> $parca["iskonto"],
           'toplamfiyat'=> $parca["toplamtutar"],
           'adet'=> $parca["adet"],

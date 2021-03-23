@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-<form class="repeater-default" method="POST" action={{route('isemri-kapat')}}>
+<form class="repeater-default" method="POST" action={{route('isemri-kapat')}} enctype="multipart/form-data">
   @csrf
   @if(Session::get('success'))
         <div class="alert alert-success">
@@ -86,13 +86,13 @@
                           <input type="text" name="stokno" class="form-control ypstoknotxt ui-autocomplete-input" autocomplete="off" />
                       </div>
                       <div class="col-sm-2">
-                          <input name="stokadi"  type="text" class="form-control ypstokadi" />
+                          <input name="stokadi"  type="text" class="form-control ypstokadi" autocomplete="off"  />
                       </div>
                       <div class="col-sm-1">
-                          <input name="adet" type="text" class="form-control ypadet"  />
+                          <input name="adet" type="text" class="form-control ypadet" autocomplete="off"   />
                       </div>
                       <div class="col-sm-2">
-                          <input name="birimfiyat"  type="text" class="form-control ypsatisfiyati"  />
+                          <input name="birimfiyat"  type="text" class="form-control ypsatisfiyati" autocomplete="off"   />
                       </div>
                       <div class="col-sm-2">
                         <input name="iskonto" type="text" class="form-control ypiskonto" />
@@ -215,6 +215,7 @@ $(document).ready( function() {
 </script>
 
 
+@endsection
 
 {{-- vendor scripts --}}
 @section('vendor-scripts')
@@ -223,4 +224,3 @@ $(document).ready( function() {
 @endsection
 
 
-@endsection
