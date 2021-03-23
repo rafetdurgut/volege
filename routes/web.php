@@ -25,6 +25,8 @@ use App\Http\Controllers\YedekParcaController;
 use App\Http\Controllers\FaturaController;
 use App\Http\Controllers\MusteriController;
 use App\Http\Controllers\AracController;
+use App\Models\YedekParca;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,7 +50,8 @@ Route::group(['prefix' => 'ekspertiz'], function () {
 });
 
 Route::group(['prefix' => 'yedekparca'], function () {
-  Route::get('ekle', [YedekParcaController::class, 'ekle'])->name('yedekparca-ekle');
+    Route::match(['get', 'post'], 'ekle',  [YedekParcaController::class, 'ekle'])->name('yedekparca-ekle');
+  //Route::get('ekle', [YedekParcaController::class, 'ekle'])->name('yedekparca-ekle');
   Route::get('listele', [YedekParcaController::class, 'listele'])->name('yedekparca-listele');
 });
 
