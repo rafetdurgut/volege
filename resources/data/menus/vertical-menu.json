@@ -45,24 +45,10 @@
     },
 
     {
-      "url": "#",
-      "name": "Ekspertiz",
-      "slug": "ekspertiz",
-      "icon": "car",
-      "submenu": [
-        {
-          "url": "ekspertiz/ekle",
-          "name": "Ekspertiz Oluştur",
-          "slug": "app-isemri-ekle",
-          "icon": "bx bx-add-to-queue"
-        },
-        {
-          "url": "ekspertiz/resimli-ekspertiz",
-          "name": "Resimli Ekspertiz Oluştur",
-          "slug": "resimli-ekspertiz-ekle",
-          "icon": "bx bx-right-arrow-alt"
-        }
-      ]
+      "url": "ekspertiz/ekle",
+      "name": "Ekspertiz Oluştur",
+      "slug": "app-isemri-ekle",
+      "icon": "car"
     },
     {
       "navheader": "Yedek Parça"

@@ -150,7 +150,7 @@ Route::post('arama/musteri', [SayfaController::class, 'aramaMusteri'])->name('ar
 Route::post('arama/arac', [SayfaController::class, 'aramaArac'])->name('arama-arac');
 Route::post('arama/isemri', [SayfaController::class, 'aramaEmir'])->name('arama-isemri');
 Route::post('arama/parca', [SayfaController::class, 'aramaParca'])->name('arama-parca');
-Route::post('arama/ekspertiz', [SayfaController::class, 'aramaArac'])->name('arama-ekspertiz');
+Route::post('arama/ekspertiz', [SayfaController::class, 'aramaEkspertiz'])->name('arama-ekspertiz');
 
 Route::group(['prefix' => 'isemri'], function () {
     Route::match(['get', 'post'], 'ekle',  [IsEmriController::class, 'isemriEkle'])->name('isemri-ekle');
@@ -164,6 +164,7 @@ Route::group(['prefix' => 'isemri'], function () {
 
 Route::group(['prefix' => 'ekspertiz'], function () {
     Route::match(['get', 'post'],'ekle', [EkspertizController::class, 'ekle'])->name('ekspertiz-ekle');
+    Route::get('goster/{id}', [EkspertizController::class, 'goster'])->name('ekspertiz-goster');
   });
 
   

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Musteri;
 use App\Models\Arac;
 use App\Models\IsEmri;
+use App\Models\Ekspertiz;
 use Carbon\Carbon;
 
 class SayfaController extends Controller
@@ -69,5 +70,30 @@ class SayfaController extends Controller
       $emirler = $emirler->get();
       return view('sayfalar.arama',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'emirler' => $emirler]);
     }
+
+    public function aramaEkspertiz(Request $request){
+      $pageConfigs = ['pageHeader' => true];
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["name" => "Arama"]
+      ];
+
+
+      $eksperler = Ekspertiz::select('*');
+      if($request->input('ekspertizkodu'))
+        $eksperler->where('ekspertiz.id','LIKE','%'.$request->input('ekspertizkodu').'%');
+      
+
+      if($request->input('ekspertiztarihi'))
+      {
+        $tarih = Carbon::parse($request->input('ekspertiztarihi'))->format('Y-m-d');
+        $eksperler->whereDate('ekspertiz.aracgiristarihi','=',$tarih);
+      }
+        
+      $eksperler->join('araclar','ekspertiz.saseno','=','araclar.saseno')->join('musteriler','ekspertiz.tc','=','musteriler.tc');
+
+      $eksperler = $eksperler->select('ekspertiz.id','araclar.plaka','musteriler.adsoyad','ekspertiz.aracgiristarihi','ekspertiz.resimurl')->get();
+      return view('sayfalar.arama',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'eksperler' => $eksperler]);
+    }
+
 
 }

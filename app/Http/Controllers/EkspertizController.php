@@ -11,6 +11,22 @@ use Carbon;
 
 class EkspertizController extends Controller
 {
+    public function goster($id)
+    {
+      $pageConfigs = ['pageHeader' => true];
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Ekspertiz"],["name" => "Göster"]
+      ];
+      $emir =  Ekspertiz::find($id);
+      $musteri =  Musteri::where("tc", "=",$emir->tc)->first();
+      $arac = Arac::where("saseno","=",$emir->saseno)->first();
+      $parcalar = DB::table('parcaekspertiz')->join('yedekparca','parcaekspertiz.yedekparcaid','=','yedekparca.id')
+      ->where('parcaekspertiz.ekspertizid', '=', $id)
+      ->orderby('parcaekspertiz.id')
+      ->select('yedekparca.stokkodu','yedekparca.stokadi','parcaekspertiz.adet','parcaekspertiz.satisfiyati','parcaekspertiz.toplamfiyat','yedekparca.id')
+      ->get();
+      return view('ekspertiz.goster',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'ekspertiz'=>$emir, 'musteri'=>$musteri, 'arac'=>$arac, 'parcalar'=>$parcalar]);
+    }
     //
     public function ekle(Request $request){
 
@@ -69,18 +85,12 @@ class EkspertizController extends Controller
       
       if(($request->has('resim')))
       {
-        $file = $request->file('resim');
-        $extension = $file->getClientOriginalExtension();
-        $filename = time().'-'.$extension;
-        $file->move('uploads/ekspertiz/'.$filename);
-        $ekspertiz->resimurl = 'uploads/ekspertiz/'.$filename;
+        $ekspertiz->resimurl = $request->file('resim')->store('ekspertiz');
       }
 
 
       //Parçalar.
       $ekspertiz->save();
-
-
      
       //Parçalar.
       foreach($request->parcalar as $parca)
