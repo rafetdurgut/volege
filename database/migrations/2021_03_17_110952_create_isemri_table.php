@@ -18,7 +18,7 @@ class CreateIsemriTable extends Migration
             $table->dateTime('aracgiristarihi'); //belki sadece tarih olabilir?
             $table->unsignedInteger('arackm')->nullable();
             $table->decimal('yakitdurumu')->nullable();
-            $table->decimal('tahminitutar')->nullable();
+            $table->double('tahminitutar')->nullable();
             $table->string('teknisyen')->nullable();
             $table->string('saseno');
             $table->string('tc');
