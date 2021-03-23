@@ -16,7 +16,7 @@ class CreateOdeme extends Migration
         Schema::create('odeme', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('faturano')->nullable(); 
-            $table->decimal('odenenmiktar');
+            $table->double('odenenmiktar');
             $table->string('odemekanali')->nullable();  
             $table->string('odemetipi')->nullable(); 
             $table->string('carikodu')->nullable(); 

@@ -17,7 +17,7 @@ class CreateBillDetail extends Migration
             $table->bigIncrements('id');
             $table->string('cinsi');
             $table->smallInteger('Miktar');
-            $table->decimal('fiyat');
+            $table->double('fiyat');
             $table->string('iskonto')->nullable();
             $table->unsignedBigInteger('faturaid')->nullable();
             $table->unsignedBigInteger('yedekparcaid')->nullable();
