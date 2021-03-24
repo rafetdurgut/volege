@@ -55,13 +55,16 @@ Route::group(['prefix' => 'yedekparca'], function () {
 
 Route::group(['prefix' => 'cari'], function () {
   Route::match(['get', 'post'], 'ekle', [cariController::class, 'cariEkle'])->name('cari-ekle');
-  Route::get('cari-listele', [cariController::class, 'cariListele'])->name('cari-listele');
+  Route::get('listele', [cariController::class, 'cariListele'])->name('cari-listele');
+  Route::get('kontrol', [cariController::class, 'cariKontrol'])->name('cari-kontrol');
+  Route::match(['get', 'post'], 'duzenle/{id}', [cariController::class, 'cariDuzenle'])->name('cari-duzenle');
 });
 
 
 Route::group(['prefix' => 'fatura'], function () {
     Route::match(['get', 'post'], 'ekle',  [FaturaController::class, 'ekle'])->name('fatura-ekle');
     Route::match(['get', 'post'], 'odeme',  [FaturaController::class, 'odeme'])->name('fatura-odeme');
+    Route::match(['get', 'post'], 'satis-ekle',  [FaturaController::class, 'ekle'])->name('fatura-satis-ekle');
     Route::get('hareket', [FaturaController::class, 'hareket'])->name('fatura-hareket');
     Route::get('goster', [FaturaController::class, 'goster'])->name('fatura-goster');
     Route::get('listele', [FaturaController::class, 'listele'])->name('fatura-listele');

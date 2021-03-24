@@ -23,6 +23,8 @@ return [
   "Muhasebe Parça" => "Muhasebe Parça",
   "Satış Fatura" => "Satış Fatura",
   "Cari Kontrol" => "Cari Kontrol",
+  "Cari" => "Cari",
+  "Cari Kayıt" => "Cari Kayıt",
   "Ödeme Girişi" => "Ödeme Girişi",
   "Dashboard" => "Panel",
   "eCommerce" => "eCommerce",

@@ -43,8 +43,7 @@ class FaturaController extends Controller
       if ($musteri_sayisi<1){
         return redirect()->route('fatura-odeme')->with('error', 'Cari kodu (Müşteri) kayıtlarda bulunamadı!');
       }
-      
-
+    
       //kayıt ekle
       $odeme = new Odeme();
       $odeme->faturakodu = $request->faturakodu;

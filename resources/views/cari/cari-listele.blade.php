@@ -1,6 +1,6 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
-@section('title','Fatura Listele')
+@section('title','Cari Listele')
 
 @section('vendor-styles')
 <link rel="stylesheet" href="{{asset('vendors/css/tables/datatable/dataTables.bootstrap4.min.css')}}">
@@ -21,64 +21,43 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Fatura Listele</h4>
+          <h4 class="card-title">Cari Listele</h4>
         </div>
         <div class="card-body card-dashboard">
           <p class="card-text">
-            Bu listeden ödenmeyen faturaların listesini görüntüleyebilirsiniz.
+            Bu listeden tüm cari kayıtların listesini görüntüleyebilirsiniz.
           </p>
           <div class="table-responsive">
-            <table class="table zero-configuration dataTable ">
-              <thead>
-                <tr>
-                  <th>Fatura Kodu</th>
-                  <th>İsim Soyisim</th>
-                  <th>Vade Tarihi</th>
-                  <th>Tutar</th>
-                  <th>Durumu</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>F00001</td>
-                  <td>Rafet Durgut</td>
-                  <td>18/05/2020 13:00</td>
-                  <td>195.00 TL</td>
-                  <td><span class="badge badge-light-warning badge-pill">Kısmen Ödendi</span></td>
-                </tr>
-                <tr>
-                  <td>F00001</td>
-                  <td>Rafet Durgut</td>
-                  <td>18/05/2020 13:00</td>
-                  <td>195.00 TL</td>
-                  <td><span class="badge badge-light-danger badge-pill">Ödenmedi</span></td>
-                </tr>
-                <tr>
-                  <td>F00001</td>
-                  <td>Rafet Durgut</td>
-                  <td>18/05/2020 13:00</td>
-                  <td>195.00 TL</td>
-                  <td><span class="badge badge-light-danger badge-pill">Ödenmedi</span></td>
-                </tr>
+           @isset($musteriler)
+           <table class="table zero-configuration dataTable ">
+            <thead>
+              <tr>
+                <th>Cari Kodu</th>
+                <th>İsim Soyisim</th>
+                <th>Telefon</th>
+                <th>Adres</th>
+                <th>İşlem</th>
+              </tr>
+            </thead>
+            <tbody>
+             @foreach ($musteriler as $musteri )
+             <tr>
+              <td>{{ $musteri->tc }}</td>
+              <td>{{ $musteri->adsoyad }}</td>
+              <td>{{ $musteri->telefon }}</td>
+              <td>{{ $musteri->adres }}</td>
+              <td>
+                <a class="btn btn-info btn-sm" href="{{ route('cari-kontrol',$musteri->tc) }}" data-toggle="tooltip" data-placement="top" title="Cari hareketlerini gör.">
+                  <i class="fa fa-lira-sign"></i> </a>
 
-                <tr>
-                  <td>F00001</td>
-                  <td>Rafet Durgut</td>
-                  <td>18/05/2020 13:00</td>
-                  <td>195.00 TL</td>
-                  <td><span class="badge badge-light-warning badge-pill">Kısmen Ödendi</span></td>
-                </tr>
-
-                <tr>
-                  <td>F00001</td>
-                  <td>Rafet Durgut</td>
-                  <td>18/05/2020 13:00</td>
-                  <td>195.00 TL</td>
-                  <td><span class="badge badge-light-danger badge-pill">Ödenmedi</span></td>
-                </tr>
-              </tbody>
-
-            </table>
+                <a class="btn btn-info btn-sm" href="{{ route('cari-duzenle',$musteri->tc) }}" data-toggle="tooltip" data-placement="top" title="Cari kaydını güncelle.">
+                    <i class="fa fa-edit"></i> </a>
+              </td>
+            </tr>
+             @endforeach
+            </tbody>
+          </table>
+           @endisset
           </div>
         </div>
       </div>

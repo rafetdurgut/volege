@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-<form method="POST" action="{{ route('isemri-duzenle',$isemri->id)}}">
+<form method="POST" action="{{ route('isemri-duzenle',$isemri->tc)}}">
     @csrf
   <div class="bg-white p-3 shadow">
       @isset($success)
@@ -78,8 +78,8 @@
               <div class="form-group row">
                   <label for="hesapturu" class="col-sm-3 col-form-label">Hesap Türü</label>
                   <div class="col-sm-9">
-                      <input type="radio" name="ticaridurum" id="ticaridurum0" value="0"  {{ $musteri->hesapturu != 1 ? "checked" : ""}}  /> Şahış
-                      <input type="radio" name="ticaridurum" id="ticaridurum1"  value="1" {{ $musteri->hesapturu  == 1 ? "checked" : ""}}  /> Kurumsal
+                      <input type="radio" name="ticaridurum" id="ticaridurum0" value="0"  {{ $musteri->ticaridurum != "1" ? "checked" : ""}}  /> Şahış
+                      <input type="radio" name="ticaridurum" id="ticaridurum1"  value="1" {{ $musteri->ticaridurum  == "1" ? "checked" : ""}}  /> Kurumsal
                   </div>
               </div>
           </div>
@@ -173,8 +173,8 @@
                 <label for="tahminitutar" class="col-sm-3 col-form-label">Teslim Alan:</label>
                 <div class="col-sm-9">
                     <label for="idtkns">Teknisyen ile Aynı</label>
-                    <input type="checkbox" id="idtkns" name="teslimalanayni" oninput="this.nextElementSibling.value = document.getElementById('teknisyen').options[document.getElementById('teknisyen').selectedIndex].text"> 
-                    
+                    <input type="checkbox" id="idtkns" name="teslimalanayni" oninput="this.nextElementSibling.value = document.getElementById('teknisyen').options[document.getElementById('teknisyen').selectedIndex].text">
+
                    <input type="text" value="{{$isemri->teslimalan}}" name="teslimalan" id="teslimalan" class="form-control" />
                 </div>
             </div>
@@ -183,7 +183,7 @@
                 <div class="  col-sm-9">
                     <label for="idchck">Araç Sahibi ile Aynı</label>
 
-                    <input type="checkbox" id="idchck" name="teslimedenayni" oninput="this.nextElementSibling.value = document.getElementById('adsoyad').value" /> 
+                    <input type="checkbox" id="idchck" name="teslimedenayni" oninput="this.nextElementSibling.value = document.getElementById('adsoyad').value" />
                    <input type="text" value="{{$isemri->teslimeden}}" name="teslimeden" id="teslimeden" class="form-control" />
                 </div>
             </div>

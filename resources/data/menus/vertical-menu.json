@@ -75,16 +75,37 @@
       "navheader": "Muhasebe"
     },
     {
-      "url": "fatura/ekle",
-      "name": "Satış Fatura",
-      "slug": "fatura-ekle",
-      "icon": "file-export"
+      "url": "#",
+      "name": "Cari",
+      "slug": "cari",
+      "icon": "notebook",
+      "tagcustom": "badge badge-light-danger badge-pill badge-round float-right mr-50",
+      "submenu": [
+        {
+          "url": "cari/ekle",
+          "name": "Cari Kayıt",
+          "slug": "cari-ekle",
+          "icon": "bx bx-add-to-queue"
+        },
+        {
+          "url": "cari/listele",
+          "name": "Cari Listele",
+          "slug": "cari-listele",
+          "icon": "bx bx-right-arrow-alt"
+        },
+        {
+          "url": "cari/kontrol",
+          "name": "Cari Kontrol",
+          "slug": "cari-kontrol",
+          "icon": "bx bx-right-arrow-alt"
+        }
+      ]
     },
     {
-      "url": "fatura/hareket",
-      "name": "Cari Kontrol",
-      "slug": "fatura-hareket",
-      "icon": "bar-chart"
+      "url": "fatura/satis-ekle",
+      "name": "Satış Fatura",
+      "slug": "fatura-satis-ekle",
+      "icon": "file-export"
     },
     {
       "url": "fatura/odeme",
@@ -100,12 +121,6 @@
       "name": "Fatura Listele",
       "slug": "fatura-listele",
       "icon": "file-import"
-    },
-    {
-      "url": "fatura/cari-listele",
-      "name": "Cari Listele",
-      "slug": "fatura-cari-listele",
-      "icon": "bar-chart"
     }
   ]
 }
