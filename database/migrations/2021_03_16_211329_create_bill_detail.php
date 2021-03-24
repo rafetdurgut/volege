@@ -15,12 +15,11 @@ class CreateBillDetail extends Migration
     {
         Schema::create('faturadetay', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('cinsi');
-            $table->smallInteger('Miktar');
-            $table->double('fiyat');
-            $table->string('iskonto')->nullable();
             $table->unsignedBigInteger('faturaid')->nullable();
             $table->unsignedBigInteger('yedekparcaid')->nullable();
+            $table->integer('miktar');
+            $table->double('fiyat');
+            $table->string('iskonto')->nullable(); 
             $table->boolean('stoktandusme')->nullable();
             $table->timestamps();
         });

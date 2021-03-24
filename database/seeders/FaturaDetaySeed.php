@@ -19,12 +19,13 @@ class FaturaDetaySeed extends Seeder
         for ($i = 0; $i < 5; $i++) {
             DB::table('faturadetay')->insert(
                 [
-                    'cinsi' => 'Yedek Parça',
-                    'Miktar' => rand(1,500),
+                    'faturaid' => rand(1,5),
+                    'yedekparcaid' => rand(1, 5),
+                    'miktar' => rand(1,500),
                     'fiyat' => rand(5000,100000)/100,
                     'iskonto' => sprintf("%d-%d", rand(0,50), rand(0,25)),
                     'created_at' => date("Y-m-d H:i:s"),
-                    'faturaid' => rand(1,5),
+                    
                 ]
             );
         }

@@ -15,12 +15,14 @@ class CreateBillTable extends Migration
     {
         Schema::create('faturalar', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('adsoyad');
-            $table->string('adres')->nullable();
-            $table->string('vergidairesi')->nullable();
-            $table->string('vergino')->nullable();
-            $table->string('gibno')->comment('Gelir idaresi kodu');
-            $table->timestamp('faturatarih');
+            $table->string('faturakodu');
+            $table->string('carikodu');
+            $table->dateTime('faturatarih')->nullable();
+            //$table->string('cariadi')->nullable(); // burası zaten cari kodda var. Tüm müsterileri kaydetcez.
+            $table->dateTime('vade')->comment('Vade tarihi')->nullable();
+            $table->enum('faturatipi', ['Alış', 'Satış']);
+            $table->enum('faturadurum', ['Açık', 'Kapalı']);
+            $table->string('gibno')->comment('Gelir idaresi kodu')->nullable();
             $table->timestamps();
         });
     }

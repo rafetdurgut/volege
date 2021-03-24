@@ -16,8 +16,7 @@ class YedekParcaSeed extends Seeder
     public function run()
     {
         $faker = Faker::create('tr_TR');
-        $birim = ['Yok','Adet','Litre','Takım','Paket'];
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $alis_fiyat =  rand(1000,50000)/100;
             DB::table('yedekparca')->insert(
                 [
@@ -26,8 +25,8 @@ class YedekParcaSeed extends Seeder
                     'stokadi' => $faker->name,
                     'urungrup' => $faker->name,
                     'stokadet' => rand(1,500),
-                    'uyariadet' => rand(1,50),
-                    'birim' => $birim[rand(1,5)],
+                    'uyarimiktari' => rand(1,50),
+                    'birim' => rand(1,5),
                     'alisfiyati' =>$alis_fiyat,
                     'satisfiyati' => $alis_fiyat*1.1,
                     'created_at' => date("Y-m-d H:i:s"),

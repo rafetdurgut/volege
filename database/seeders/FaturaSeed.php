@@ -22,10 +22,12 @@ class FaturaSeed extends Seeder
         for ($i = 0; $i < 5; $i++) {
             DB::table('faturalar')->insert(
                 [
-                    'adsoyad' => $faker->name,
-                    'adres' => $faker->address,
+                    'faturakodu' => sprintf("FA%d", rand(1000, 5000)),
+                    'carikodu' => sprintf("testcari%d", rand(100,500)),
                     'faturatarih' => date("Y-m-d H:i:s"),
-                    'gibno' => sprintf("%c%d", rand(65, 90), rand(1000, 50000)),
+                    'faturatipi' => rand(1, 2),
+                    'faturadurum' => rand(1, 2),
+                    'gibno' => sprintf("G%c%d", rand(65, 90), rand(1000, 50000)),
                     'created_at' => date("Y-m-d H:i:s"),
                 ]
             );
