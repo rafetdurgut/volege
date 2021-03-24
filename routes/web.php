@@ -47,18 +47,17 @@ Route::get('/', [DashboardController::class, 'dashboardAnalytics'])->name('anasa
 
 Route::group(['prefix' => 'yedekparca'], function () {
     Route::match(['get', 'post'], 'ekle',  [YedekParcaController::class, 'ekle'])->name('yedekparca-ekle');
-  //Route::get('ekle', [YedekParcaController::class, 'ekle'])->name('yedekparca-ekle');
-  Route::get('listele', [YedekParcaController::class, 'listele'])->name('yedekparca-listele');
+    //Route::get('ekle', [YedekParcaController::class, 'ekle'])->name('yedekparca-ekle');
+    Route::get('listele', [YedekParcaController::class, 'listele'])->name('yedekparca-listele');
 });
 
 Route::group(['prefix' => 'fatura'], function () {
-  Route::get('ekle', [FaturaController::class, 'ekle'])->name('fatura-ekle');
-  Route::get('odeme', [FaturaController::class, 'odeme'])->name('fatura-odeme');
-  Route::get('hareket', [FaturaController::class, 'hareket'])->name('fatura-hareket');
-  Route::get('goster', [FaturaController::class, 'goster'])->name('fatura-goster');
-  Route::get('listele', [FaturaController::class, 'listele'])->name('fatura-listele');
-  Route::get('cari-listele', [FaturaController::class, 'cariListele'])->name('fatura-cari-listele');
-
+    Route::match(['get', 'post'], 'ekle',  [FaturaController::class, 'ekle'])->name('fatura-ekle');
+    Route::get('odeme', [FaturaController::class, 'odeme'])->name('fatura-odeme');
+    Route::get('hareket', [FaturaController::class, 'hareket'])->name('fatura-hareket');
+    Route::get('goster', [FaturaController::class, 'goster'])->name('fatura-goster');
+    Route::get('listele', [FaturaController::class, 'listele'])->name('fatura-listele');
+    Route::get('cari-listele', [FaturaController::class, 'cariListele'])->name('fatura-cari-listele');
 });
 
 
@@ -158,15 +157,15 @@ Route::group(['prefix' => 'isemri'], function () {
     Route::match(['get', 'post'], 'kapat',  [IsEmriController::class, 'isemriKapat'])->name('isemri-kapat');
     Route::match(['get', 'post'], 'arama',  [IsEmriController::class, 'isemriArama'])->name('isemri-arama');
     Route::post('isemrikapatmagetir', [IsEmriController::class, 'isemrikapatmagetir'])->name('isemrikapatmagetir');
-  Route::get('listele', [IsEmriController::class, 'listele'])->name('isemri-listele');
-  Route::get('goster/{id}', [IsEmriController::class, 'goster'])->name('isemri-goster');
+    Route::get('listele', [IsEmriController::class, 'listele'])->name('isemri-listele');
+    Route::get('goster/{id}', [IsEmriController::class, 'goster'])->name('isemri-goster');
 });
 
 Route::group(['prefix' => 'ekspertiz'], function () {
-    Route::match(['get', 'post'],'ekle', [EkspertizController::class, 'ekle'])->name('ekspertiz-ekle');
-  });
+    Route::match(['get', 'post'], 'ekle', [EkspertizController::class, 'ekle'])->name('ekspertiz-ekle');
+});
 
-  
+
 
 
 // form elements
@@ -218,11 +217,11 @@ Route::group(['prefix' => 'auth'], function () {
 
 // Authentication  Route
 Route::group(['prefix' => 'kullanici'], function () {
-  Route::get('giris', [AuthenticationController::class, 'loginPage'])->name('kullanici-giris');
-  //Route::get('register', [AuthenticationController::class, 'registerPage'])->name('kullanici-kayit');
-  Route::get('sifre-unuttum', [AuthenticationController::class, 'forgetPasswordPage'])->name('kullanici-sifre-unuttum');
-  Route::get('sifre-resetle', [AuthenticationController::class, 'resetPasswordPage'])->name('auth-sifre-resetle');
-  Route::get('hesap-kilit', [AuthenticationController::class, 'authLockPage'])->name('auth-hesap-kilit');
+    Route::get('giris', [AuthenticationController::class, 'loginPage'])->name('kullanici-giris');
+    //Route::get('register', [AuthenticationController::class, 'registerPage'])->name('kullanici-kayit');
+    Route::get('sifre-unuttum', [AuthenticationController::class, 'forgetPasswordPage'])->name('kullanici-sifre-unuttum');
+    Route::get('sifre-resetle', [AuthenticationController::class, 'resetPasswordPage'])->name('auth-sifre-resetle');
+    Route::get('hesap-kilit', [AuthenticationController::class, 'authLockPage'])->name('auth-hesap-kilit');
 });
 
 // Miscellaneous
@@ -264,7 +263,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap'])->name('lang-loc
 
 
 //Autocompletes
-Route::post('/tcmusterigetir',[MusteriController::class, 'tcmusterigetir' ])->name('tcmusterigetir');
-Route::post('/plakaaracgetir',[AracController::class, 'plakaaracgetir' ])->name('plakaaracgetir');
-Route::post('/stoknoparcagetir',[YedekParcaController::class, 'stoknoyedekparca' ])->name('stoknoyedekparca');
-Route::post('/stokadparcagetir',[YedekParcaController::class, 'stokadyedekparca' ])->name('stokadyedekparca');
+Route::post('/tcmusterigetir', [MusteriController::class, 'tcmusterigetir'])->name('tcmusterigetir');
+Route::post('/plakaaracgetir', [AracController::class, 'plakaaracgetir'])->name('plakaaracgetir');
+Route::post('/stoknoparcagetir', [YedekParcaController::class, 'stoknoyedekparca'])->name('stoknoyedekparca');
+Route::post('/stokadparcagetir', [YedekParcaController::class, 'stokadyedekparca'])->name('stokadyedekparca');

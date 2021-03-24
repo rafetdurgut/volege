@@ -1,8 +1,30 @@
 @extends('layouts.contentLayoutMaster')
+
 {{-- title --}}
 @section('title','Yeni Fatura Ekle')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+{{-- page style --}}
+@section('page-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('css/plugins/forms/wizard.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.css" integrity="sha512-uq8QcHBpT8VQcWfwrVcH/n/B6ELDwKAdX4S/I3rYSwYldLVTs7iII2p6ieGCM13QTPEKZvItaNKBin9/3cjPAg==" crossorigin="anonymous" />
+@endsection
+
 @section('content')
+<form method="POST" action="{{ route('fatura-ekle')}}">
+@csrf
 <div class="bg-white p-3 shadow">
+  @if(Session::get('success'))
+        <div class="alert alert-success">
+            {{ Session('success')}}
+        </div>
+        @endif
+        @if(Session::get('error'))
+        <div class="alert alert-dange">
+            {{ Session('error')}}
+        </div>
+    @endif
   <form class="repeater-default">
   <legend> Fatura Bilgileri </legend>
   <div class="form-group row">
@@ -76,11 +98,11 @@
                   <div class="col-sm-2">
                       Stok Adı
                   </div>
-                  <div class="col-sm-2">
+                  <div class="col-sm-1">
                       Birim
                   </div>
                   <div class="col-sm-2">
-                    Birim Stok
+                      Miktar
                 </div>
                   <div class="col-sm-2">
                       Birim Fiyat
@@ -88,7 +110,7 @@
                   <div class="col-sm-2">
                       İskonto
                   </div>
-                  <div class="col-sm-1">
+                  <div class="col-sm-2">
                       Toplam Tutar
                   </div>
               </div>
@@ -100,14 +122,8 @@
                       <div class="col-sm-2">
                           <input name="stokadi" type="text" class="form-control" />
                       </div>
-                      <div class="col-sm-2">
-                        <select name="stokbirim" class="form-control" aria-label="Default select example">
-                          <option value="1" selected>Birim Yok</option>
-                          <option value="2">Adet</option>
-                          <option value="3">Litre</option>
-                          <option value="4">Takım</option>
-                          <option value="5">Paket</option>
-                        </select>
+                      <div class="col-sm-1">
+                        <input name="stokbirim" type="text" readonly class="form-control" />
                       </div>
                       <div class="col-sm-2">
                           <input name="birimstok" type="text" class="form-control" />
@@ -118,7 +134,7 @@
                       <div class="col-sm-2">
                         <input name="iskonto" type="text" class="form-control" />
                     </div>
-                      <div class="col-sm-1">
+                      <div class="col-sm-2">
                           <input name="toplamtutar" type="text" readonly class="form-control" />
                       </div>
                   </div>
@@ -142,7 +158,7 @@
           <span class="invoice-value">76.00 TL</span>
         </div>
         <div class="invoice-calc d-flex justify-content-between">
-          <span class="invoice-title">Discount</span>
+          <span class="invoice-title">İndirim</span>
           <span class="invoice-value"> -10.00 TL</span>
         </div>
         <div class="invoice-calc d-flex justify-content-between">
@@ -151,7 +167,7 @@
         </div>
         <hr>
         <div class="invoice-calc d-flex justify-content-between">
-          <span class="invoice-title">Fatura Toplamı: </span>
+          <span class="invoice-title">Fatura Toplam: </span>
           <span class="invoice-value">98.25 TL</span>
         </div>
     </div>
@@ -167,9 +183,15 @@
 {{-- vendor scripts --}}
 @section('vendor-scripts')
 <script src="{{asset('vendors/js/forms/repeater/jquery.repeater.min.js')}}"></script>
+<script src="{{asset('vendors/js/extensions/jquery.steps.min.js')}}"></script>
+<script src="{{asset('vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
 @endsection
 
 {{-- page scripts --}}
 @section('page-scripts')
 <script src="{{asset('js/scripts/forms/form-repeater.js')}}"></script>
+<script src="{{asset('js/scripts/forms/wizard-steps.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.js" integrity="sha512-TToQDr91fBeG4RE5RjMl/tqNAo35hSRR4cbIFasiV2AAMQ6yKXXYhdSdEpUcRE6bqsTiB+FPLPls4ZAFMoK5WA==" crossorigin="anonymous"></script>
+<script src="{{asset('js/scripts/autocomplete/autocomplete.js')}}"></script>
 @endsection
