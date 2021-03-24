@@ -88,9 +88,3 @@
 </form>
 
 @endsection
-
-{{-- vendor scripts --}}
-@section('vendor-scripts')
-<script src="{{asset('vendors/js/extensions/jquery.steps.min.js')}}"></script>
-<script src="{{asset('vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
-@endsection
