@@ -61,7 +61,7 @@ Route::group(['prefix' => 'cari'], function () {
 
 Route::group(['prefix' => 'fatura'], function () {
     Route::match(['get', 'post'], 'ekle',  [FaturaController::class, 'ekle'])->name('fatura-ekle');
-    Route::get('odeme', [FaturaController::class, 'odeme'])->name('fatura-odeme');
+    Route::match(['get', 'post'], 'odeme',  [FaturaController::class, 'odeme'])->name('fatura-odeme');
     Route::get('hareket', [FaturaController::class, 'hareket'])->name('fatura-hareket');
     Route::get('goster', [FaturaController::class, 'goster'])->name('fatura-goster');
     Route::get('listele', [FaturaController::class, 'listele'])->name('fatura-listele');
