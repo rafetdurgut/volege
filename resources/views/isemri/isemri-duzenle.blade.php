@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-<form method="POST" action="{{ route('isemri-duzenle',$isemri->tc)}}">
+<form method="POST" action="{{ route('isemri-duzenle',$isemri->id)}}">
     @csrf
   <div class="bg-white p-3 shadow">
       @isset($success)

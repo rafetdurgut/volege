@@ -80,10 +80,9 @@
                           <td>{{ $musteri->telefon }}</td>
                           <td>{{ $musteri->email }}</td>
                           <td>{{ $musteri->adres }}</td>
-                          <td><a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Müşteri düzenle.">
+                          <td><a class="btn btn-info btn-sm" href="{{ route('cari-duzenle', $musteri->tc) }}" data-toggle="tooltip" data-placement="top" title="Müşteri düzenle.">
                               <i class="fa fa-edit"></i> </a>
-                              <a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Müşteri detaylı bilgilerini gör.">
-                                  <i class="fa fa-user"></i> </a>
+
                           </td>
                         </tr>
                         @endforeach
@@ -189,7 +188,7 @@
                           <td>{{  $emir->adsoyad }}</td>
                           <td>{{  $emir->aracgiristarihi }}</td>
                           <td>{{  isset($emir->araccikistarihi) ? $emir->araccikistarihi : "İçeride"  }}</td>
-                          <td><a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Görüntüle.">
+                          <td><a class="btn btn-info btn-sm" href="{{ route('isemri-goster',$emir->id) }}" data-toggle="tooltip" data-placement="top" title="Görüntüle.">
                               <i class="fa fa-edit"></i> </a>
                           </td>
                         </tr>
@@ -199,7 +198,7 @@
                       @endisset
 
                 </div>
-                <div class="tab-pane  {{  \Request::is('arama/parca')  ? "active" : "" }}" id="list-parca" role="tabpanel" aria-labelledby="list-parca-list"> 
+                <div class="tab-pane  {{  \Request::is('arama/parca')  ? "active" : "" }}" id="list-parca" role="tabpanel" aria-labelledby="list-parca-list">
                   <form method="POST" action='{{ route('arama-ekspertiz') }}'>
                     @csrf
                   <div class="form-group row">
@@ -304,8 +303,8 @@
                         <td>{{  $emir->plaka }}</td>
                         <td>{{  $emir->adsoyad }}</td>
                         <td>{{  $emir->aracgiristarihi }}</td>
-                        <td> 
-                          @isset($emir->resimurl) 
+                        <td>
+                          @isset($emir->resimurl)
                           <a href="{{asset('storage/'.$emir->resimurl)}}" target="_blank"> Aç </a>
                           @endisset
                         </td>

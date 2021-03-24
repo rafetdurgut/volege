@@ -67,7 +67,7 @@ class SayfaController extends Controller
         $emirler->whereDate('isemirleri.aracgiristarihi','=',$tarih);
       $emirler->join('araclar','isemirleri.saseno','=','araclar.saseno')->join('musteriler','isemirleri.tc','=','musteriler.tc');
 
-      $emirler = $emirler->get();
+      $emirler = $emirler->select('isemirleri.id','araclar.plaka','musteriler.adsoyad','isemirleri.aracgiristarihi','isemirleri.araccikistarihi')->get();
       return view('sayfalar.arama',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'emirler' => $emirler]);
     }
 
@@ -81,14 +81,14 @@ class SayfaController extends Controller
       $eksperler = Ekspertiz::select('*');
       if($request->input('ekspertizkodu'))
         $eksperler->where('ekspertiz.id','LIKE','%'.$request->input('ekspertizkodu').'%');
-      
+
 
       if($request->input('ekspertiztarihi'))
       {
         $tarih = Carbon::parse($request->input('ekspertiztarihi'))->format('Y-m-d');
         $eksperler->whereDate('ekspertiz.aracgiristarihi','=',$tarih);
       }
-        
+
       $eksperler->join('araclar','ekspertiz.saseno','=','araclar.saseno')->join('musteriler','ekspertiz.tc','=','musteriler.tc');
 
       $eksperler = $eksperler->select('ekspertiz.id','araclar.plaka','musteriler.adsoyad','ekspertiz.aracgiristarihi','ekspertiz.resimurl')->get();

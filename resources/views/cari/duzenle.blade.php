@@ -88,3 +88,12 @@
 </form>
 
 @endsection
+@section('page-scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+$( "#rastgeletc" ).on( "click", function() {
+    $("#tckimlik_ac").val(Date.now())
+  });
+</script>
+@endsection

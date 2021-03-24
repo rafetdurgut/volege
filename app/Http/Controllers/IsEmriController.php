@@ -28,6 +28,8 @@ class IsEmriController extends Controller
       ["link" => "/", "name" => "Home"],["link" => "#", "name" => "İş Emri"],["name" => "Göster"]
     ];
     $emir =  IsEmri::find($id);
+    if(!isset($emir))
+      abort(404);
     $musteri =  Musteri::where("tc", "=",$emir->tc)->first();
     $arac = Arac::where("saseno","=",$emir->saseno)->first();
     $parcalar = DB::table('parcaisemri')->join('yedekparca','parcaisemri.yedekparcaid','=','yedekparca.id')
@@ -55,7 +57,7 @@ class IsEmriController extends Controller
       $breadcrumbs = [
         ["link" => "/", "name" => "Home"],["link" => "#", "name" => "İş Emri"],["name" => "Düzenle."]
       ];
-      
+
       $request->validate([
         'tckimlik' => 'required',
         'adsoyad' => 'required',
@@ -129,7 +131,7 @@ class IsEmriController extends Controller
         $breadcrumbs = [
           ["link" => "/", "name" => "Home"],["link" => "#", "name" => "İş Emri"],["name" => "Yeni Ekle."]
         ];
-        
+
         $request->validate([
           'tckimlik' => 'required',
           'adsoyad' => 'required',
@@ -186,7 +188,7 @@ class IsEmriController extends Controller
   }
   public function isemriArama(Request $request){
 
-    
+
     $pageConfigs = ['pageHeader' => true];
 
     $breadcrumbs = [
@@ -194,6 +196,8 @@ class IsEmriController extends Controller
     ];
     if($request->ismethod('GET'))
       return view('isemri.isemri-arama',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
+
+
     $query = IsEmri::join('araclar','isemirleri.saseno','=','araclar.saseno')
     ->join('musteriler','isemirleri.tc','=','musteriler.tc');
     if($request->input('isemrikodu'))
@@ -231,7 +235,7 @@ class IsEmriController extends Controller
       ];
     if($req->isMethod('GET'))
       {
-      
+
       $araclar = DB::table('isemirleri')->join('araclar','isemirleri.saseno','=','araclar.saseno')->where('isemirleri.emiraktif',1)->select('isemirleri.id','araclar.saseno','araclar.plaka')->get();
 
       return view('isemri.isemri-kapat',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'araclar' => $araclar]);
@@ -248,23 +252,26 @@ class IsEmriController extends Controller
     //Varolanlari sil.
     DB::table('parcaisemri')->where('emirid', '=', $isemri->id)->delete();
 
-    foreach($req->parcalar as $parca)
+    if(isset($req->parcalar))
     {
-      if( isset($parca["parcaid"]))
+      foreach($req->parcalar as $parca)
       {
-      //Yenileri Ekle.
-      DB::table('parcaisemri')->insert(
-        [
-          'emirid'=>$isemri->id,
-          'yedekparcaid'=> intval($parca["parcaid"]),
-          'satisfiyati'=> floatval($parca["birimfiyat"]),
-          'iskonto'=> $parca["iskonto"],
-          'toplamfiyat'=> $parca["toplamtutar"],
-          'adet'=> $parca["adet"],
-        ]
-      );
+        if( isset($parca["parcaid"]))
+        {
+        //Yenileri Ekle.
+        DB::table('parcaisemri')->insert(
+          [
+            'emirid'=>$isemri->id,
+            'yedekparcaid'=> intval($parca["parcaid"]),
+            'satisfiyati'=> floatval($parca["birimfiyat"]),
+            'iskonto'=> $parca["iskonto"],
+            'toplamfiyat'=> $parca["toplamtutar"],
+            'adet'=> $parca["adet"],
+          ]
+        );
+        }
       }
-    }  
+    }
     if($req->input('action') == 'kayit')
       {
         $isemri->save();
@@ -275,9 +282,9 @@ class IsEmriController extends Controller
         $isemri->emiraktif = 0;
         $isemri->araccikistarihi = Carbon\Carbon::now()->format('Y-m-d')."T".Carbon\Carbon::now()->format('H:i');
         $isemri->save();
-        return back()->with('success',"Araç çıkışı başarıyla tamamlandı.");  
+        return back()->with('success',"Araç çıkışı başarıyla tamamlandı.");
       }
-     
+
   }
   public function isemrikapatmagetir(Request $request)
   {
@@ -294,6 +301,6 @@ class IsEmriController extends Controller
     $response[] = array("isemirleri"=>$isemirleri, "parcalar"=>$parcalar);
     return $response;
   }
-  
-  
+
+
 }
