@@ -88,6 +88,7 @@ class IsEmriController extends Controller
       $arac->marka = $request->input('marka');
       $arac->motorno = $request->input('motorno');
       $arac->saseno = $request->input('saseno');
+      $arac->yil = $request->input('sasyileno');
       $arac->model = $request->input('model');
       $arac->save();
 
@@ -162,6 +163,7 @@ class IsEmriController extends Controller
         $arac->marka = $request->input('marka');
         $arac->motorno = $request->input('motorno');
         $arac->saseno = $request->input('saseno');
+        $arac->yil = $request->input('yil');
         $arac->model = $request->input('model');
         $arac->save();
 

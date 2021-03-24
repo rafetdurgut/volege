@@ -102,10 +102,16 @@
               <div class="form-group row">
                   <label for="marka" class="col-sm-3 col-form-label">Marka:</label>
                   <div class="col-sm-9">
-                  <input type="text" class="form-control" id="marka" name="marka" placeholder="">
+                    <input type="text" class="form-control" id="marka" name="marka" placeholder="">
                   </div>
               </div>
-
+              <div class="form-group row">
+                <label for="yakit" class="col-sm-3 col-form-label">Yıl:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="yil" name="yil" placeholder="">
+                 
+                </div>
+            </div>
               <div class="form-group row">
                   <label for="yakit" class="col-sm-3 col-form-label">Yakıt Durumu:</label>
                   <div class="col-sm-9">
