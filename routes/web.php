@@ -25,6 +25,7 @@ use App\Http\Controllers\YedekParcaController;
 use App\Http\Controllers\FaturaController;
 use App\Http\Controllers\MusteriController;
 use App\Http\Controllers\AracController;
+use App\Http\Controllers\cariController;
 use App\Models\YedekParca;
 
 /*
@@ -51,6 +52,13 @@ Route::group(['prefix' => 'yedekparca'], function () {
     Route::get('listele', [YedekParcaController::class, 'listele'])->name('yedekparca-listele');
 });
 
+
+Route::group(['prefix' => 'cari'], function () {
+  Route::match(['get', 'post'], 'ekle', [cariController::class, 'cariEkle'])->name('cari-ekle');
+  Route::get('cari-listele', [cariController::class, 'cariListele'])->name('cari-listele');
+});
+
+
 Route::group(['prefix' => 'fatura'], function () {
     Route::match(['get', 'post'], 'ekle',  [FaturaController::class, 'ekle'])->name('fatura-ekle');
     Route::get('odeme', [FaturaController::class, 'odeme'])->name('fatura-odeme');
@@ -58,6 +66,7 @@ Route::group(['prefix' => 'fatura'], function () {
     Route::get('goster', [FaturaController::class, 'goster'])->name('fatura-goster');
     Route::get('listele', [FaturaController::class, 'listele'])->name('fatura-listele');
     Route::get('cari-listele', [FaturaController::class, 'cariListele'])->name('fatura-cari-listele');
+
 });
 
 
@@ -149,7 +158,7 @@ Route::post('arama/musteri', [SayfaController::class, 'aramaMusteri'])->name('ar
 Route::post('arama/arac', [SayfaController::class, 'aramaArac'])->name('arama-arac');
 Route::post('arama/isemri', [SayfaController::class, 'aramaEmir'])->name('arama-isemri');
 Route::post('arama/parca', [SayfaController::class, 'aramaParca'])->name('arama-parca');
-Route::post('arama/ekspertiz', [SayfaController::class, 'aramaArac'])->name('arama-ekspertiz');
+Route::post('arama/ekspertiz', [SayfaController::class, 'aramaEkspertiz'])->name('arama-ekspertiz');
 
 Route::group(['prefix' => 'isemri'], function () {
     Route::match(['get', 'post'], 'ekle',  [IsEmriController::class, 'isemriEkle'])->name('isemri-ekle');
@@ -162,10 +171,10 @@ Route::group(['prefix' => 'isemri'], function () {
 });
 
 Route::group(['prefix' => 'ekspertiz'], function () {
-    Route::match(['get', 'post'], 'ekle', [EkspertizController::class, 'ekle'])->name('ekspertiz-ekle');
-});
 
-
+    Route::match(['get', 'post'],'ekle', [EkspertizController::class, 'ekle'])->name('ekspertiz-ekle');
+    Route::get('goster/{id}', [EkspertizController::class, 'goster'])->name('ekspertiz-goster');
+  });
 
 
 // form elements
