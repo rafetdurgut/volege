@@ -46,13 +46,6 @@ class FaturaController extends Controller
       ];
       return view('fatura.listele',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
     }
-    public function cariListele(){
-      $pageConfigs = ['pageHeader' => true];
-      $breadcrumbs = [
-        ["link" => "/", "name" => "Home"],["link" => "#", "name" => "Cari"],["name" => "Listele"]
-      ];
-      return view('fatura.cari-listele',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
-    }
     public function kasaListele(){
       $pageConfigs = ['pageHeader' => true];
       $breadcrumbs = [
