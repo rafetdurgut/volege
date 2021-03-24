@@ -25,6 +25,7 @@ use App\Http\Controllers\YedekParcaController;
 use App\Http\Controllers\FaturaController;
 use App\Http\Controllers\MusteriController;
 use App\Http\Controllers\AracController;
+use App\Http\Controllers\cariController;
 use App\Models\YedekParca;
 
 /*
@@ -51,6 +52,13 @@ Route::group(['prefix' => 'yedekparca'], function () {
   Route::get('listele', [YedekParcaController::class, 'listele'])->name('yedekparca-listele');
 });
 
+
+Route::group(['prefix' => 'cari'], function () {
+  Route::match(['get', 'post'], 'ekle', [cariController::class, 'cariEkle'])->name('cari-ekle');
+  Route::get('cari-listele', [cariController::class, 'cariListele'])->name('cari-listele');
+});
+
+
 Route::group(['prefix' => 'fatura'], function () {
   Route::get('ekle', [FaturaController::class, 'ekle'])->name('fatura-ekle');
   Route::get('odeme', [FaturaController::class, 'odeme'])->name('fatura-odeme');
@@ -58,7 +66,6 @@ Route::group(['prefix' => 'fatura'], function () {
   Route::get('goster', [FaturaController::class, 'goster'])->name('fatura-goster');
   Route::get('listele', [FaturaController::class, 'listele'])->name('fatura-listele');
   Route::get('cari-listele', [FaturaController::class, 'cariListele'])->name('fatura-cari-listele');
-
 });
 
 
@@ -167,7 +174,7 @@ Route::group(['prefix' => 'ekspertiz'], function () {
     Route::get('goster/{id}', [EkspertizController::class, 'goster'])->name('ekspertiz-goster');
   });
 
-  
+
 
 
 // form elements
