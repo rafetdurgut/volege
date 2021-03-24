@@ -9,10 +9,7 @@ class MusteriController extends Controller
     //
 public function tcmusterigetir(Request $request)
   {
-    
-
       $search = $request->search;
-
       if($search == ''){
          $musteriler = Musteri::orderby('tc','asc')->limit(5)->get();
       }else{
