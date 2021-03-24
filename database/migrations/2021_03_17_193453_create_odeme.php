@@ -15,14 +15,14 @@ class CreateOdeme extends Migration
     {
         Schema::create('odeme', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('faturano')->nullable(); 
-            $table->double('odenenmiktar');
-            $table->string('odemekanali')->nullable();  
-            $table->string('odemetipi')->nullable(); 
-            $table->string('carikodu')->nullable(); 
-            $table->string('aciklama')->nullable(); 
+            $table->string('faturakodu');
+            $table->string('carikodu');
             $table->dateTime('odemetarihi')->nullable();
-            $table->timestamps(); //insert ve update'i gormek icin kalsin
+            $table->enum('odemetipi', ['Borç', 'Alacak']);
+            $table->double('odenenmiktar');
+            $table->longText('Açıklama')->nullable();
+            $table->enum('odemekanali', ['Havale', 'Kredi Kartı', 'Nakit']);
+            $table->timestamps();
         });
     }
 

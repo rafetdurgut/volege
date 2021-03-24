@@ -14,18 +14,18 @@ class OdemeSeed extends Seeder
      */
     public function run()
     {
-        // for ($i = 0; $i < 5; $i++) {
-        //     DB::table('odeme')->insert(
-        //         [
-        //             'faturano' =>sprintf("%c%d", rand(65,90), rand(10000,99999)),
-        //             'odenenmiktar' => strval(rand(10000, 500000)/100),
-        //             'odemekanali' => 'Banka',
-        //             'odemetipi' => 'Nakit',
-        //             //'aciklama' => '',
-        //             'odemetarihi' => date("Y-m-d H:i:s"),
-                    
-        //         ]
-        //     );
-        // }
+        for ($i = 0; $i < 5; $i++) {
+            DB::table('odeme')->insert(
+                [
+                    'faturakodu' => sprintf("FA%d", rand(1000, 5000)),
+                    'carikodu' => sprintf("testcari%d", rand(100,500)),
+                    'odemetarihi' => date("Y-m-d H:i:s"),
+                    'odemetipi' => rand(1, 2),
+                    'odenenmiktar' => rand(1000,5000) / 10,
+                    'odemekanali' => rand(1, 3),
+                    'created_at' => date("Y-m-d H:i:s"),
+                ]
+            );
+        }
     }
 }
