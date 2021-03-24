@@ -30,7 +30,7 @@
                   href="#list-arac" role="tab">Araç</a>
                 <a class="list-group-item list-group-item-action {{ \Request::is('arama/isemri') ? "active" : "" }}" id="list-isemri-list" data-toggle="list"
                   href="#list-isemri" role="tab">İş Emri</a>
-                <a class="list-group-item list-group-item-action {{ \Request::is('arama/yedekparca') ? "active" : "" }}" id="list-parca-list" data-toggle="list"
+                <a class="list-group-item list-group-item-action {{ \Request::is('arama/parca') ? "active" : "" }}" id="list-parca-list" data-toggle="list"
                   href="#list-parca" role="tab">Yedek Parça</a>
                 <a class="list-group-item list-group-item-action {{ \Request::is('arama/ekspertiz') ? "active" : "" }}" id="list-ekspertiz-list" data-toggle="list"
                   href="#list-ekspertiz" role="tab">Ekspertiz</a>
@@ -133,10 +133,8 @@
                           <td>{{ $arac->marka }}</td>
                           <td>{{ $arac->model }}</td>
                           <td>{{ $arac->saseno }}</td>
-                          <td><a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Araç düzenle.">
+                          <td><a class="btn btn-info btn-sm" href="{{route('arac-duzenle',$arac->id)}}" data-toggle="tooltip" data-placement="top" title="Araç düzenle.">
                               <i class="fa fa-edit"></i> </a>
-                              <a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Araç kartını gör.">
-                                  <i class="fa fa-car"></i> </a>
                           </td>
                         </tr>
                         @endforeach
@@ -199,7 +197,7 @@
 
                 </div>
                 <div class="tab-pane  {{  \Request::is('arama/parca')  ? "active" : "" }}" id="list-parca" role="tabpanel" aria-labelledby="list-parca-list">
-                  <form method="POST" action='{{ route('arama-ekspertiz') }}'>
+                  <form method="POST" action='{{ route('arama-parca') }}'>
                     @csrf
                   <div class="form-group row">
                     <label for="stokkodu" class="col-sm-3 col-form-label">Stok Kodu</label>
@@ -223,45 +221,36 @@
                   <button type="submit" class="btn btn-md float-right btn-success" type="button">Getir </button>
               </div>
                 </form>
-                <table class="table table-striped mt-4">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Stok Kodu</th>
-                      <th scope="col">Adı</th>
-                      <th scope="col">Grup Kodu</th>
-                      <th scope="col">Alış Fiyatı</th>
-                      <th scope="col">İşlemler</th>
-
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>123456</td>
-                      <td>35ABC35</td>
-                      <td>Rafet Durgut</td>
-                      <td>12.09.1989</td>
-                      <td><a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Parça düzenle.">
-                          <i class="fa fa-edit"></i> </a>
-                          <a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Parça hareketlerini gör.">
-                              <i class="fa fa-car"></i> </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>123456</td>
-                      <td>35ABC35</td>
-                      <td>Rafet Durgut</td>
-                      <td>12.09.1989</td>
-                      <td><a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Müşteri düzenle.">
-                          <i class="fa fa-edit"></i> </a>
-                          <a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Müşteri detaylı bilgilerini gör.">
-                              <i class="fa fa-user"></i> </a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                  @isset($parcalar)
+                  <table class="table table-striped mt-4">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Stok Kodu</th>
+                        <th scope="col">Adı</th>
+                        <th scope="col">Grup</th>
+                        <th scope="col">Satış Fiyatı</th>
+                        <th scope="col">İşlemler</th>
+  
+                      </tr>
+                    </thead>
+                    <tbody>
+                     @foreach($parcalar as $parca)
+                      <tr>
+                        <th scope="row">{{$parca->id}}</th>
+                        <td>{{$parca->stokkodu}}</td>
+                        <td>{{$parca->stokadi}}</td>
+                        <td>{{$parca->urungrup}}</td>
+                        <td>{{$parca->satisfiyati}}</td>
+                        <td><a class="btn btn-info btn-sm" href="{{route('yedekparca-duzenle',$parca->idg)}}" data-toggle="tooltip" data-placement="top" title="Parça düzenle.">
+                            <i class="fa fa-edit"></i> </a>
+                        </td>
+                      </tr>
+                     @endforeach
+               
+                    </tbody>
+                  </table>
+                  @endisset
               </div>
               <div class="tab-pane  {{  \Request::is('arama/ekspertiz')  ? "active" : "" }}" id="list-ekspertiz" role="tabpanel" aria-labelledby="list-ekspertiz-list">
                 <form method="POST" action='{{ route('arama-ekspertiz') }}'>
@@ -272,6 +261,13 @@
                   <input type="text" class="form-control" id="ekspertizkodu" name="ekspertizkodu" placeholder="">
                   </div>
               </div>
+
+              <div class="form-group row">
+                <label for="plaka" class="col-sm-3 col-form-label">Araç Plaka</label>
+                <div class="col-sm-9">
+                <input type="text" class="form-control" id="plaka" name="plaka" placeholder="">
+                </div>
+            </div>
               <div class="form-group row">
                 <label for="ekspertiztarihi" class="col-sm-3 col-form-label">Ekspertiz Tarihi</label>
                 <div class="col-sm-9">
@@ -308,7 +304,7 @@
                           <a href="{{asset('storage/'.$emir->resimurl)}}" target="_blank"> Aç </a>
                           @endisset
                         </td>
-                        <td><a class="btn btn-info btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Görüntüle.">
+                        <td><a class="btn btn-info btn-sm" href="{{route('ekspertiz-goster',$emir->id)}}" data-toggle="tooltip" data-placement="top" title="Görüntüle.">
                             <i class="fa fa-eye"></i> </a>
                         </td>
                       </tr>
