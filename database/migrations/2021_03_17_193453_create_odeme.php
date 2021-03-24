@@ -20,7 +20,7 @@ class CreateOdeme extends Migration
             $table->dateTime('odemetarihi')->nullable();
             $table->enum('odemetipi', ['Borç', 'Alacak']);
             $table->double('odenenmiktar');
-            $table->longText('Açıklama')->nullable();
+            $table->longText('aciklama')->nullable();
             $table->enum('odemekanali', ['Havale', 'Kredi Kartı', 'Nakit']);
             $table->timestamps();
         });
