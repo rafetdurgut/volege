@@ -50,14 +50,17 @@ class YedekParcaController extends Controller
     }
   }
 
-  public function listele()
+  public function listele(Request $request)
   {
+
     $pageConfigs = ['pageHeader' => true];
 
     $breadcrumbs = [
       ["link" => "/", "name" => "Home"], ["link" => "#", "name" => "Yedek Parça"], ["name" => "Listele"]
     ];
-    return view('yedekparca.listele', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs]);
+    $parcalar = YedekParca::select('*');
+    $parcalar = $parcalar->get();
+    return view('yedekparca.listele', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs, 'yedekparcalar' => $parcalar]);
   }
 
   public function stoknoyedekparca(Request $request)

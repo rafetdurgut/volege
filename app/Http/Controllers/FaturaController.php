@@ -60,7 +60,6 @@ class FaturaController extends Controller
           $detay->stoktandusme = boolval(0); // Sonradan eklensin 
 
           $detay->save();
-
         }
       }
 
@@ -129,14 +128,27 @@ class FaturaController extends Controller
     ];
     return view('fatura.goster', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs]);
   }
-  public function listele()
+
+
+
+
+  public function listele(Request $request)
   {
     $pageConfigs = ['pageHeader' => true];
     $breadcrumbs = [
       ["link" => "/", "name" => "Home"], ["link" => "#", "name" => "Fatura"], ["name" => "Listele"]
     ];
-    return view('fatura.listele', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs]);
+    if ($request->isMethod('GET')) {
+      return view('fatura.listele', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs]);
+    }
+    if ($request->isMethod('POST')) {
+
+    }
+
   }
+
+
+
   public function cariListele()
   {
     $pageConfigs = ['pageHeader' => true];

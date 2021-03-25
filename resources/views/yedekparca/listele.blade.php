@@ -32,118 +32,28 @@
               <thead>
                 <tr>
                   <th>Stok Kodu</th>
-                  <th>Adı</th>
+                  <th>Stok Adı</th>
                   <th>Grup</th>
                   <th>Stok</th>
-                  <th>Alıs Fiyatı</th>
+                  <th>Alış Fiyatı</th>
                   <th>Satış Fiyatı</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>YP000212</td>
-                  <td>Ön sağ far</td>
-                  <td>Far</td>
-                  <td>61</td>
-                  <td>123.00 TL</td>
-                  <td>123.00 TL</td>
-                </tr>
-                <tr class="table-warning">
-                  <td>YP000212</td>
-                  <td>Ön sağ far</td>
-                  <td>Far</td>
-                  <td>61</td>
-                  <td>123.00 TL</td>
-                  <td>123.00 TL</td>
-                </tr>
-                <tr class="table-danger">
-                  <td>YP000212</td>
-                  <td>Ön sağ far</td>
-                  <td>Far</td>
-                  <td>61</td>
-                  <td>123.00 TL</td>
-                  <td>123.00 TL</td>
-                </tr>
-                <tr>
-                  <td>YP000212</td>
-                  <td>Ön sağ far</td>
-                  <td>Far</td>
-                  <td>61</td>
-                  <td>123.00 TL</td>
-                  <td>123.00 TL</td>
-                </tr>
-                <tr>
-                  <td>YP000212</td>
-                  <td>Ön sağ far</td>
-                  <td>Far</td>
-                  <td>61</td>
-                  <td>123.00 TL</td>
-                  <td>123.00 TL</td>
-                </tr>
-                <tr>
-                  <td>YP000212</td>
-                  <td>Ön sağ far</td>
-                  <td>Far</td>
-                  <td>61</td>
-                  <td>123.00 TL</td>
-                  <td>123.00 TL</td>
-                </tr>
-                <tr class="table-warning">
-                  <td>FT0012</td>
-                  <td>Tampon</td>
-                  <td>Test</td>
-                  <td>63</td>
-                  <td>1232.00 TL</td>
-                  <td>1232.00 TL</td>
-                </tr>
-                <tr class="table-danger">
-                  <td>FT0012</td>
-                  <td>Tampon</td>
-                  <td>Test</td>
-                  <td>66</td>
-                  <td>1232.00 TL</td>
-                  <td>1232.00 TL</td>
-                </tr>
-                <tr>
-                  <td>YP000212</td>
-                  <td>Ön sağ far</td>
-                  <td>Far</td>
-                  <td>61</td>
-                  <td>123.00 TL</td>
-                  <td>123.00 TL</td>
-                </tr>
-                <tr>
-                  <td>YP000212</td>
-                  <td>Ön sağ far</td>
-                  <td>Far</td>
-                  <td>61</td>
-                  <td>123.00 TL</td>
-                  <td>123.00 TL</td>
-                </tr>
-                <tr>
-                  <td>YP000212</td>
-                  <td>Ön sağ far</td>
-                  <td>Far</td>
-                  <td>61</td>
-                  <td>123.00 TL</td>
-                  <td>123.00 TL</td>
-                </tr>
-                <tr>
-                  <td>YP000212</td>
-                  <td>Ön sağ far</td>
-                  <td>Far</td>
-                  <td>61</td>
-                  <td>123.00 TL</td>
-                  <td>123.00 TL</td>
-                </tr>
-                <tr>
-                  <td>YP000212</td>
-                  <td>Ön sağ far</td>
-                  <td>Far</td>
-                  <td>61</td>
-                  <td>123.00 TL</td>
-                  <td>123.00 TL</td>
-                </tr>
+                @foreach ($yedekparcalar as $yedekparca)
+                        <tr>
+                          <th scope="row">{{ $yedekparca->stokkodu }}</th>
+                          <td>{{ $yedekparca->stokadi }}</td>
+                          <td>{{ $yedekparca->urungrup }}</td>
+                          <td>{{ $yedekparca->stokadet }}</td>
+                          <td>{{ $yedekparca->alisfiyati }}</td>
+                          <td>{{ $yedekparca->satisfiyati }}</td>
+                          <td><a class="btn btn-info btn-sm" href="" data-toggle="tooltip" data-placement="top" title="Sil?">
+                              <i class="fa fa-edit"></i> </a>
+
+                          </td>
+                        </tr>
+                @endforeach
               </tbody>
 
             </table>

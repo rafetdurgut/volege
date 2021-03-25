@@ -49,8 +49,8 @@ Route::get('/', [DashboardController::class, 'dashboardAnalytics'])->name('anasa
 Route::group(['prefix' => 'yedekparca'], function () {
     Route::match(['get', 'post'], 'ekle',  [YedekParcaController::class, 'ekle'])->name('yedekparca-ekle');
     Route::match(['get', 'post'], 'duzenle/{$id}',  [YedekParcaController::class, 'duzenle'])->name('yedekparca-duzenle');
-    //Route::get('ekle', [YedekParcaController::class, 'ekle'])->name('yedekparca-ekle');
-    Route::get('listele', [YedekParcaController::class, 'listele'])->name('yedekparca-listele');
+    Route::match(['get', 'post'], 'listele',  [YedekParcaController::class, 'listele'])->name('yedekparca-listele');
+    
 });
 
 
@@ -66,9 +66,9 @@ Route::group(['prefix' => 'fatura'], function () {
     Route::match(['get', 'post'], 'ekle',  [FaturaController::class, 'ekle'])->name('fatura-ekle');
     Route::match(['get', 'post'], 'odeme',  [FaturaController::class, 'odeme'])->name('fatura-odeme');
     Route::match(['get', 'post'], 'satis-ekle',  [FaturaController::class, 'ekle'])->name('fatura-satis-ekle');
+    Route::match(['get', 'post'], 'listele',  [FaturaController::class, 'listele'])->name('fatura-listele');
     Route::get('hareket', [FaturaController::class, 'hareket'])->name('fatura-hareket');
     Route::get('goster', [FaturaController::class, 'goster'])->name('fatura-goster');
-    Route::get('listele', [FaturaController::class, 'listele'])->name('fatura-listele');
     Route::get('cari-listele', [FaturaController::class, 'cariListele'])->name('fatura-cari-listele');
 
 });
