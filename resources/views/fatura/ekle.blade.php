@@ -21,7 +21,7 @@
         </div>
         @endif
         @if(Session::get('error'))
-        <div class="alert alert-dange">
+        <div class="alert alert-danger">
             {{ Session('error')}}
         </div>
     @endif
@@ -51,7 +51,7 @@
           <div class="form-group row">
               <label for="faturadurum" class="col-sm-3 col-form-label">Fatura Durumu</label>
               <div class="col-sm-9">
-                  <select class="form-control" id="faturadurum" name="faturadurum" aria-label="Default select example">
+                  <select class="form-control" id="faturadurum" name="faturadurum">
                       <option value="1" selected>Açık</option>
                       <option value="2">Kapalı</option>
                     </select>

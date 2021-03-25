@@ -15,7 +15,7 @@ class CreateBillDetail extends Migration
     {
         Schema::create('faturadetay', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('faturaid')->nullable();
+            $table->string('faturaid')->nullable();
             $table->unsignedBigInteger('yedekparcaid')->nullable();
             $table->integer('miktar');
             $table->double('fiyat');
