@@ -77,9 +77,23 @@
             </div>
           </div>
           <hr>
+
+        <div class="row invoice-info">
+          <div class="col-sm-6 col-12 mt-1">
+            <h6 class="invoice-from">Müşteri Talepleri</h6>
+              {!! nl2br(e($emir->talep)) !!}
+
+          </div>
+          <div class="col-sm-6 col-12 mt-1">
+            <h6 class="invoice-from">Yapılan İşlemler / Açıklamalar</h6>
+            {!! nl2br(e($emir->yapilanlar)) !!}
+          </div>
         </div>
+        <hr>
+      </div>
         <!-- product details table-->
         <div class="invoice-product-details table-responsive">
+          <h5 class="text-center ml-2"> Fatura Yedek Parça Listesi </h5>
           <table class="table table-borderless mb-0">
             <thead>
               <tr class="border-0">
@@ -95,8 +109,8 @@
               @isset($parcalar)
               @php $aratoplam = 0; $indirimtoplam=0; @endphp
               @foreach($parcalar as $parca)
-              @php $aratoplam += intval($parca->toplamfiyat); @endphp
-              @php $indirimtoplam += intval($parca->adet * $parca->satisfiyati - $parca->toplamfiyat); @endphp
+              @php $aratoplam += floatval($parca->toplamfiyat); @endphp
+              @php $indirimtoplam += floatval($parca->adet * $parca->satisfiyati - $parca->toplamfiyat); @endphp
               <tr>
                 <td>{{$parca->stokkodu}}</td>
                 <td>{{$parca->stokadi}}</td>
@@ -122,20 +136,21 @@
               <div class="invoice-subtotal">
                 <div class="invoice-calc d-flex justify-content-between">
                   <span class="invoice-title">Ara Toplam</span>
-                  <span class="invoice-value">{{ $aratoplam }} ₺</span>
+                  <span class="invoice-value">{{  number_format((float) $aratoplam, 2, '.', '')  }} ₺</span>
                 </div>
                 <div class="invoice-calc d-flex justify-content-between">
                   <span class="invoice-title">İndirim</span>
-                  <span class="invoice-value">{{$indirimtoplam}} ₺</span>
+                  <span class="invoice-value">{{ number_format((float) $indirimtoplam, 2, '.', '') }} ₺</span>
                 </div>
+
                 <div class="invoice-calc d-flex justify-content-between">
                   <span class="invoice-title">KDV (%18) </span>
-                  <span class="invoice-value">{{ $aratoplam*0.18 }} ₺ </span>
+                  <span class="invoice-value">{{ number_format((float) $aratoplam*0.18, 2, '.', '') }} ₺ </span>
                 </div>
                 <hr>
                 <div class="invoice-calc d-flex justify-content-between">
                   <span class="invoice-title">Fatura Toplamı</span>
-                  <span class="invoice-value">{{ $aratoplam*1.18 }} ₺</span>
+                  <span class="invoice-value">{{ number_format((float) $aratoplam*1.18, 2, '.', '')  }} ₺</span>
                 </div>
               </div>
 
@@ -149,7 +164,7 @@
       <div class="card invoice-action-wrapper shadow-none border">
         <div class="card-body">
           <div class="invoice-action-btn">
-            <button class="btn btn-primary btn-block invoice-send-btn">
+            <button class="btn btn-light-primary btn-block invoice-print">
               <i class="bx bx-send"></i>
               <span>Yazdır</span>
             </button>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Musteri;
 use App\Models\Arac;
 use App\Models\IsEmri;
+use App\Models\YedekParca;
 use App\Models\Ekspertiz;
 use Carbon\Carbon;
 
@@ -67,9 +68,29 @@ class SayfaController extends Controller
         $emirler->whereDate('isemirleri.aracgiristarihi','=',$tarih);
       $emirler->join('araclar','isemirleri.saseno','=','araclar.saseno')->join('musteriler','isemirleri.tc','=','musteriler.tc');
 
-      $emirler = $emirler->get();
+      $emirler = $emirler->select('isemirleri.id','araclar.plaka','musteriler.adsoyad','isemirleri.aracgiristarihi','isemirleri.araccikistarihi')->get();
       return view('sayfalar.arama',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'emirler' => $emirler]);
     }
+    public function aramaParca(Request $request){
+      $pageConfigs = ['pageHeader' => true];
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"],["name" => "Arama"]
+      ];
+
+      $parcalar = YedekParca::select('*');
+      if($request->input('stokkodu'))
+        $parcalar->where('stokkodu','LIKE','%'.$request->input('stokkodu').'%');
+
+      if($request->input('parcaadi'))
+        $parcalar->where('stokadi','LIKE','%'.$request->input('parcaadi').'%');
+
+      if($request->input('grup'))
+        $parcalar->where('urungrup','LIKE','%'.$request->input('grup').'%');
+      
+      $parcalar = $parcalar->get();
+      return view('sayfalar.arama',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'parcalar' => $parcalar]);
+    }
+
 
     public function aramaEkspertiz(Request $request){
       $pageConfigs = ['pageHeader' => true];
@@ -81,14 +102,19 @@ class SayfaController extends Controller
       $eksperler = Ekspertiz::select('*');
       if($request->input('ekspertizkodu'))
         $eksperler->where('ekspertiz.id','LIKE','%'.$request->input('ekspertizkodu').'%');
-      
+
 
       if($request->input('ekspertiztarihi'))
       {
         $tarih = Carbon::parse($request->input('ekspertiztarihi'))->format('Y-m-d');
         $eksperler->whereDate('ekspertiz.aracgiristarihi','=',$tarih);
       }
-        
+
+      if($request->input('plaka'))
+      {
+        $eksperler->where('araclar.plaka','LIKE','%'.$request->input('plaka').'%');
+      }
+
       $eksperler->join('araclar','ekspertiz.saseno','=','araclar.saseno')->join('musteriler','ekspertiz.tc','=','musteriler.tc');
 
       $eksperler = $eksperler->select('ekspertiz.id','araclar.plaka','musteriler.adsoyad','ekspertiz.aracgiristarihi','ekspertiz.resimurl')->get();

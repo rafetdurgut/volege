@@ -48,6 +48,7 @@ Route::get('/', [DashboardController::class, 'dashboardAnalytics'])->name('anasa
 
 Route::group(['prefix' => 'yedekparca'], function () {
     Route::match(['get', 'post'], 'ekle',  [YedekParcaController::class, 'ekle'])->name('yedekparca-ekle');
+    Route::match(['get', 'post'], 'duzenle/{$id}',  [YedekParcaController::class, 'duzenle'])->name('yedekparca-duzenle');
     //Route::get('ekle', [YedekParcaController::class, 'ekle'])->name('yedekparca-ekle');
     Route::get('listele', [YedekParcaController::class, 'listele'])->name('yedekparca-listele');
 });
@@ -163,6 +164,7 @@ Route::post('arama/isemri', [SayfaController::class, 'aramaEmir'])->name('arama-
 Route::post('arama/parca', [SayfaController::class, 'aramaParca'])->name('arama-parca');
 Route::post('arama/ekspertiz', [SayfaController::class, 'aramaEkspertiz'])->name('arama-ekspertiz');
 
+Route::match(['get', 'post'], 'arac/duzenle/{id}',  [AracController::class, 'aracDuzenle'])->name('arac-duzenle');
 Route::group(['prefix' => 'isemri'], function () {
     Route::match(['get', 'post'], 'ekle',  [IsEmriController::class, 'isemriEkle'])->name('isemri-ekle');
     Route::match(['get', 'post'], 'duzenle/{id}',  [IsEmriController::class, 'isemriDuzenle'])->name('isemri-duzenle');

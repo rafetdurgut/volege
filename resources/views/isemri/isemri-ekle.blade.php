@@ -102,10 +102,16 @@
               <div class="form-group row">
                   <label for="marka" class="col-sm-3 col-form-label">Marka:</label>
                   <div class="col-sm-9">
-                  <input type="text" class="form-control" id="marka" name="marka" placeholder="">
+                    <input type="text" class="form-control" id="marka" name="marka" placeholder="">
                   </div>
               </div>
-
+              <div class="form-group row">
+                <label for="yakit" class="col-sm-3 col-form-label">Yıl:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="yil" name="yil" placeholder="">
+                 
+                </div>
+            </div>
               <div class="form-group row">
                   <label for="yakit" class="col-sm-3 col-form-label">Yakıt Durumu:</label>
                   <div class="col-sm-9">
@@ -178,8 +184,8 @@
                 <label for="tahminitutar" class="col-sm-3 col-form-label">Teslim Alan:</label>
                 <div class="col-sm-9">
                     <label for="idtkns">Teknisyen ile Aynı</label>
-                    <input type="checkbox" id="idtkns" name="teslimalanayni" oninput="this.nextElementSibling.value = document.getElementById('teknisyen').options[document.getElementById('teknisyen').selectedIndex].text"> 
-                    
+                    <input type="checkbox" id="idtkns" name="teslimalanayni" oninput="this.nextElementSibling.value = document.getElementById('teknisyen').options[document.getElementById('teknisyen').selectedIndex].text">
+
                    <input type="text" name="teslimalan" id="teslimalan" class="form-control" />
                 </div>
             </div>
@@ -188,7 +194,7 @@
                 <div class="  col-sm-9">
                     <label for="idchck">Araç Sahibi ile Aynı</label>
 
-                    <input type="checkbox" id="idchck" name="teslimedenayni" oninput="this.nextElementSibling.value = document.getElementById('adsoyad').value" /> 
+                    <input type="checkbox" id="idchck" name="teslimedenayni" oninput="this.nextElementSibling.value = document.getElementById('adsoyad').value" />
                    <input type="text" name="teslimeden" id="teslimeden" class="form-control" />
                 </div>
             </div>
@@ -202,7 +208,7 @@
       </div>
       <div class="clearfix">
       <button type="submit" class="btn btn-primary btn-md float-right">İş Emri Girişi Yap</button>
-        
+
     </div>
   </div>
 </form>

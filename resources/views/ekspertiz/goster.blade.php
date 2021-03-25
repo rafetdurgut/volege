@@ -78,6 +78,13 @@
           </div>
           <hr>
         </div>
+        @isset($ekspertiz->resimurl)
+        <div class="invoice-product-details table-responsive">
+          <img class="rounded mx-auto d-block" src="{{asset('storage/'.$ekspertiz->resimurl)}}" />
+        </div>
+        <hr>
+
+        @endisset
         <!-- product details table-->
         <div class="invoice-product-details table-responsive">
           <table class="table table-borderless mb-0">
@@ -143,7 +150,7 @@
       <div class="card invoice-action-wrapper shadow-none border">
         <div class="card-body">
           <div class="invoice-action-btn">
-            <button class="btn btn-primary btn-block invoice-send-btn">
+            <button class="btn btn-primary btn-block invoice-print">
               <i class="bx bx-send"></i>
               <span>Yazdır</span>
             </button>
