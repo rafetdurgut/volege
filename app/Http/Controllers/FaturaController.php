@@ -116,17 +116,6 @@ class FaturaController extends Controller
     }
   }
 
-
-
-  public function hareket()
-  {
-    $pageConfigs = ['pageHeader' => true];
-
-    $breadcrumbs = [
-      ["link" => "/", "name" => "Home"], ["link" => "#", "name" => "Cari"], ["name" => "Hareket"]
-    ];
-    return view('fatura.hareket', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs]);
-  }
   public function goster()
   {
     $pageConfigs = ['pageHeader' => true];

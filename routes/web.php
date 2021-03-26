@@ -57,7 +57,9 @@ Route::group(['prefix' => 'yedekparca'], function () {
 Route::group(['prefix' => 'cari'], function () {
   Route::match(['get', 'post'], 'ekle', [cariController::class, 'cariEkle'])->name('cari-ekle');
   Route::get('listele', [cariController::class, 'cariListele'])->name('cari-listele');
-  Route::get('kontrol', [cariController::class, 'cariKontrol'])->name('cari-kontrol');
+  Route::get('kontrol/{id}', [cariController::class, 'cariKontrol'])->name('cari-kontrol');
+  Route::get('kontrol/', [cariController::class, 'cariKontrolBos'])->name('cari-kontrol');
+  Route::match(['get', 'post'],'kontrol/', [cariController::class, 'cariKontrolBos'])->name('cari-kontrol');
   Route::match(['get', 'post'], 'duzenle/{id}', [cariController::class, 'cariDuzenle'])->name('cari-duzenle');
 });
 
@@ -278,6 +280,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap'])->name('lang-loc
 
 //Autocompletes
 Route::post('/tcmusterigetir', [MusteriController::class, 'tcmusterigetir'])->name('tcmusterigetir');
+Route::post('/adsoyadmusterigetir', [MusteriController::class, 'adsoyadmusterigetir'])->name('adsoyadmusterigetir');
 Route::post('/plakaaracgetir', [AracController::class, 'plakaaracgetir'])->name('plakaaracgetir');
 Route::post('/stoknoparcagetir', [YedekParcaController::class, 'stoknoyedekparca'])->name('stoknoyedekparca');
 Route::post('/stokadparcagetir', [YedekParcaController::class, 'stokadyedekparca'])->name('stokadyedekparca');

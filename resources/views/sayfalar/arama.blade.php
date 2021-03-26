@@ -242,7 +242,7 @@
                         <td>{{$parca->stokadi}}</td>
                         <td>{{$parca->urungrup}}</td>
                         <td>{{$parca->satisfiyati}}</td>
-                        <td><a class="btn btn-info btn-sm" href="{{route('yedekparca-duzenle',$parca->idg)}}" data-toggle="tooltip" data-placement="top" title="Parça düzenle.">
+                        <td><a class="btn btn-info btn-sm" href="{{route('yedekparca-duzenle',$parca->id)}}" data-toggle="tooltip" data-placement="top" title="Parça düzenle.">
                             <i class="fa fa-edit"></i> </a>
                         </td>
                       </tr>

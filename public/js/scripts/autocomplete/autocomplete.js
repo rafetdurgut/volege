@@ -58,42 +58,53 @@ $(document).ready(function(){
 
 
 
-$( "#tckimlik_ac" ).autocomplete({
-source: function( request, response ) {
-// Fetch data
-$.ajax({
-  url:"../tcmusterigetir",
-  type: 'post',
-  dataType: "json",
-  data: {
-     _token: CSRF_TOKEN,
-     search: request.term
-  },
-  success: function( data ) {
-      response( data );
-  },
-});
-},
-select: function (event, ui) {
-       $('#tckimlik_ac').val(ui.item.label);
-       $('#adsoyad').val(ui.item.value.ad);
-       $('#telefon').val(ui.item.value.telefon);
-       $('#vergino').val(ui.item.value.vergino);
-       $('#vergidairesi').val(ui.item.value.vergidairesi);
-       $('#eposta').val(ui.item.value.email);
-       $('#adres').val(ui.item.value.adres);
-       if(ui.item.value.ticaridurum == 1)
-           $("#ticaridurum1").prop("checked", true);
-        else
-
-             $("#ticaridurum0").prop("checked", true);
-       return false;
-    }
-});
-
 $( "#rastgeletc" ).on( "click", function() {
     $("#tckimlik_ac").val(Date.now())
   });
+  $( "#adsoyad_ss" ).autocomplete({
+    source: function( request, response ) {
+    // Fetch data
+    $.ajax({
+        url:window.location.origin+"/adsoyadmusterigetir",
+        type: 'post',
+        dataType: "json",
+        data: {
+            _token: CSRF_TOKEN,
+            search: request.term
+        },
+        success: function( data ) {
+            response( data );   
+        }
+    });
+    },
+        select: function (event, ui) {
+            $('#adsoyad_ss').val(ui.item.label);
+            return false;
+        }
+    });
+$( "#tckimlik_ss" ).autocomplete({
+source: function( request, response ) {
+// Fetch data
+$.ajax({
+    url:window.location.origin+"/tcmusterigetir",
+    type: 'post',
+    dataType: "json",
+    data: {
+        _token: CSRF_TOKEN,
+        search: request.term
+    },
+    success: function( data ) {
+        response( data );   
+    }
+});
+},
+    select: function (event, ui) {
+        $('#tckimlik_ss').val(ui.item.label);
+        return false;
+    }
+});
+
+
 
 $( "#tckimlik_ac" ).autocomplete({
 source: function( request, response ) {
