@@ -202,12 +202,12 @@ $(document).ready( function() {
       iskontolar.forEach(function(value,key){
         toplamfiyat = toplamfiyat- toplamfiyat*parseFloat(value/100);
       });
-      $(this).parent().parent().find('.yptoplam').val(toplamfiyat);
+      $(this).parent().parent().find('.yptoplam').val(toplamfiyat.toFixed(2));
     }
     else
     {
       var toplamfiyat = parseFloat(birimfiyat) * parseFloat(adet);
-      $(this).parent().parent().find('.yptoplam').val(toplamfiyat);
+      $(this).parent().parent().find('.yptoplam').val(toplamfiyat.toFixed(2));
     }
     var altTutar = 0.00;
     $('.yptoplam').each(function( key, value ) {

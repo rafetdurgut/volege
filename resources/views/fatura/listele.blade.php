@@ -34,7 +34,8 @@
                   <th>Fatura Kodu</th>
                   <th>İsim Soyisim</th>
                   <th>Tarih</th>
-                  <th>Tutar</th>
+                  <th>Ödenen</th>
+                  <th>Toplam</th>                  
                   <th>Durumu</th>
                 </tr>
               </thead>
@@ -44,38 +45,19 @@
                   <td>Rafet Durgut</td>
                   <td>18/05/2020 13:00</td>
                   <td>195.00 TL</td>
-                  <td><span class="badge badge-light-success badge-pill">Ödendi</span></td>
-                </tr>
-                <tr>
-                  <td>F00001</td>
-                  <td>Rafet Durgut</td>
-                  <td>18/05/2020 13:00</td>
                   <td>195.00 TL</td>
                   <td><span class="badge badge-light-success badge-pill">Ödendi</span></td>
                 </tr>
-                <tr>
-                  <td>F00001</td>
-                  <td>Rafet Durgut</td>
-                  <td>18/05/2020 13:00</td>
-                  <td>195.00 TL</td>
-                  <td><span class="badge badge-light-success badge-pill">Ödendi</span></td>
-                </tr>
-
-                <tr>
-                  <td>F00001</td>
-                  <td>Rafet Durgut</td>
-                  <td>18/05/2020 13:00</td>
-                  <td>195.00 TL</td>
-                  <td><span class="badge badge-light-warning badge-pill">Kısmen Ödendi</span></td>
-                </tr>
-
-                <tr>
-                  <td>F00001</td>
-                  <td>Rafet Durgut</td>
-                  <td>18/05/2020 13:00</td>
-                  <td>195.00 TL</td>
-                  <td><span class="badge badge-light-danger badge-pill">Ödenmedi</span></td>
-                </tr>
+                @foreach ($faturalar as $f)
+                        <tr>
+                          <th scope="row">{{ $f->faturakodu }}</th>
+                          <td>{{ $f->adsoyad }}</td>
+                          <td>{{ $f->faturatarih }}</td>
+                          <td>{{ $f->toplamodenenmiktar}}</td>
+                          <td>{{ $f->faturatoplam }}</td>
+                          <td>{{ $f->faturadurum }}</td>
+                        </tr>
+                @endforeach
               </tbody>
 
             </table>

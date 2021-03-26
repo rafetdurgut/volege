@@ -28,6 +28,7 @@ class FaturaSeed extends Seeder
                     'faturatipi' => rand(1, 2),
                     'faturadurum' => rand(1, 2),
                     'gibno' => sprintf("G%c%d", rand(65, 90), rand(1000, 50000)),
+                    'faturatoplam' => rand(1000, 5000)/10,
                     'created_at' => date("Y-m-d H:i:s"),
                 ]
             );

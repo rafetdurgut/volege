@@ -21,8 +21,9 @@ class CreateBillTable extends Migration
             //$table->string('cariadi')->nullable(); // burası zaten cari kodda var. Tüm müsterileri kaydetcez.
             $table->dateTime('vade')->comment('Vade tarihi')->nullable();
             $table->enum('faturatipi', ['Alış', 'Satış']);
-            $table->enum('faturadurum', ['Açık', 'Kapalı']);
+            $table->enum('faturadurum', ['Açık', 'Kapalı', 'İptal']);
             $table->string('gibno')->comment('Gelir idaresi kodu')->nullable();
+            $table->double('faturatoplam')->nullable();
             $table->timestamps();
         });
     }
