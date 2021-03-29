@@ -14,7 +14,7 @@ class FaturaController extends Controller
   public function faturaidgetir()
   {
     $son_fatura = Fatura::latest('created_at')->first();
-    return $son_fatura->id+1;
+    return $son_fatura->id + 1;
   }
   //
   public function ekle(Request $request)
@@ -87,7 +87,7 @@ class FaturaController extends Controller
     $breadcrumbs = [
       ["link" => "/", "name" => "Home"], ["link" => "#", "name" => "Fatura"], ["name" => "Ödeme"]
     ];
-  if ($request->isMethod('GET')) {
+    if ($request->isMethod('GET')) {
 
       return view('fatura.odeme', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs]);
     }
@@ -131,8 +131,21 @@ class FaturaController extends Controller
     return view('fatura.goster', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs]);
   }
 
+  private function faturalistelerini_getir(){
+    //her fatura icin parca toplam tutar bul
+    $odenen_miktarlar = DB::table('odeme')
+      ->select("faturakodu", DB::raw("SUM(odenenmiktar) as toplamodenenmiktar"))
+      ->groupBy('faturakodu');
 
+    $birlesik_tablo = DB::table('faturalar')->where('faturadurum', 'Açık')
+      ->join('musteriler', 'musteriler.tc', '=', 'faturalar.carikodu') //musterilerin adsoyad cekmek icin
+      ->joinSub($odenen_miktarlar, 'odenentoplam', function ($join) {  //ödenen tutarı almak için
+        $join->on('faturalar.faturakodu', '=', 'odenentoplam.faturakodu');
+      })->select('faturalar.*', 'musteriler.adsoyad', 'odenentoplam.*')
+      ->get();
 
+      return $birlesik_tablo;
+  }
 
   public function listele()
   {
@@ -142,19 +155,30 @@ class FaturaController extends Controller
     ];
 
     //her fatura icin parca toplam tutar bul
-    $odenen_miktarlar = DB::table('odeme')
-                            ->select("faturakodu", DB::raw("SUM(odenenmiktar) as toplamodenenmiktar"))
-                            ->groupBy('faturakodu')->get();
-    $birlesik_tablo = DB::table('faturalar')
-                          ->join('musteriler', 'musteriler.tc', '=', 'faturalar.carikodu') //musterilerin adsoyad cekmek icin
-                          ->joinSub($odenen_miktarlar, 'odenentoplam', function ($join) {  //ödenen tutarı almak için
-                              $join->on('faturalar.faturakodu', '=', 'odenentoplam.faturakodu');
-                          })->select('faturalar.*', 'musteriler.adsoyad','odenentoplam.*')
-                          ->get();
+    $birlesik_tablo = $this->faturalistelerini_getir();
 
-    return view('fatura.listele', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs, 'faturalar'=>$birlesik_tablo]);
+    return view('fatura.listele', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs, 'faturalar' => $birlesik_tablo]);
+  }
 
 
+  public function faturakapat($faturakodu){
+    $pageConfigs = ['pageHeader' => true];
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"], ["link" => "#", "name" => "Fatura"], ["name" => "Kapat"]
+    ];
+    //faturayi kapalı'ya getir.
+    $fatura = Fatura::where('faturakodu', $faturakodu)->first();
+    if(!isset($fatura))
+    {
+      return view('fatura.listele',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'error'=>"Fatura Kodu Bulunamadı!"]);
+    }
+
+    $fatura->faturadurum = 2; // kapalı
+    $fatura->save();
+    //her fatura icin parca toplam tutar bul
+    $birlesik_tablo = $this->faturalistelerini_getir();
+
+    return view('fatura.listele', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs, 'faturalar' => $birlesik_tablo, 'success' => 'Fatura başarıyla kapatıldı.']);
   }
 
 

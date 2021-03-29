@@ -17,6 +17,16 @@
 
 @section('content')
 <section id="basic-datatable">
+  @isset($success)
+  <div class="alert alert-success">
+      {{$success}}
+  </div>
+  @endisset
+  @isset($error)
+  <div class="alert alert-danger">
+      {{ $error }}
+  </div>
+  @endisset
   <div class="row">
     <div class="col-12">
       <div class="card">
@@ -48,6 +58,10 @@
                           <td>{{$f->toplamodenenmiktar}}</td>
                           <td>{{$f->faturatoplam}}</td>
                           <td>{{$f->faturadurum}}</td>
+                          <td><a class="btn btn-info btn-sm" href="{{route('fatura-kapat', $f->faturakodu)}}" data-toggle="tooltip" data-placement="top" title="Faturayı Kapat">
+                            <i class="fa fa-edit"></i> </a>
+
+                        </td>
                         </tr>
                 @endforeach
               </tbody>

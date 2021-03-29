@@ -17,6 +17,16 @@
 
 @section('content')
 <section id="basic-datatable">
+  @isset($success)
+  <div class="alert alert-success">
+      {{$success}}
+  </div>
+  @endisset
+  @isset($error)
+  <div class="alert alert-danger">
+      {{ $error }}
+  </div>
+  @endisset
   <div class="row">
     <div class="col-12">
       <div class="card">
