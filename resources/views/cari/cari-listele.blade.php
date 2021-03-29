@@ -47,7 +47,7 @@
               <td>{{ $musteri->telefon }}</td>
               <td>{{ $musteri->adres }}</td>
               <td>
-                <a class="btn btn-info btn-sm" href="{{ route('cari-kontrol',$musteri->id) }}" data-toggle="tooltip" data-placement="top" title="Cari hareketlerini gör.">
+                <a class="btn btn-info btn-sm" href="{{ route('cari-a-kontrol',$musteri->id) }}" data-toggle="tooltip" data-placement="top" title="Cari hareketlerini gör.">
                   <i class="fa fa-lira-sign"></i> </a>
 
                 <a class="btn btn-info btn-sm" href="{{ route('cari-duzenle',$musteri->id) }}" data-toggle="tooltip" data-placement="top" title="Cari kaydını güncelle.">

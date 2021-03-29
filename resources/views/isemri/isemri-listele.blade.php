@@ -47,9 +47,9 @@
                   <td>{{$emir->adsoyad}}</td>
                   <td>{{$emir->aracgiristarihi}}</td>
                   <td>{{$emir->teslimalan}}</td>
-                  <td> <a href="{{route('isemri-duzenle',$emir->id)}}" class="btn btn-icon btn-outline-primary mr-1 mb-1"><i class="fa fa-edit"></i></a> 
+                  <td> <a href="{{route('isemri-duzenle',$emir->id)}}" class="btn btn-icon btn-outline-primary mr-1 mb-1"><i class="fa fa-edit"></i></a>
                     <a href="{{route('isemri-goster',$emir->id)}}"  class="btn btn-icon btn-outline-primary mr-1 mb-1"><i class="fa fa-info-circle"></i></a>
-                     <a href="#"  class="btn btn-icon btn-outline-primary mr-1 mb-1"><i class="fa fa-print"></i></a>  </td>
+                     <a href="{{route('isemri-kabul',$emir->id)}}"  class="btn btn-icon btn-outline-primary mr-1 mb-1"><i class="fa fa-print"></i></a>  </td>
                 </tr>
                 @endforeach
               </tbody>

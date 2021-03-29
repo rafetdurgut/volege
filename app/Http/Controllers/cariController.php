@@ -16,7 +16,7 @@ class cariController extends Controller
     {
 
       if($request->isMethod('GET'))
-      { 
+      {
         $pageConfigs = ['pageHeader' => true];
         $breadcrumbs = [
           ["link" => "/", "name" => "Home"], ["link" => "#", "name" => "Cari"], ["name" => "Hareketler"]
@@ -51,7 +51,9 @@ class cariController extends Controller
       ];
 
       $musteri = Musteri::find($id);
-     
+        if(!isset($musteri))
+          abort(404);
+
       $faturalar = Fatura::where("faturalar.carikodu", $musteri->tc)
                     ->select('faturalar.faturakodu','faturalar.faturatoplam')
                     ->orderby('faturalar.updated_at','asc')->get();
@@ -67,7 +69,7 @@ class cariController extends Controller
         if(isset($odemeler))
         {
           $bakiye = $fatura->bakiye;
-          array_push($kayitlar, $fatura);  
+          array_push($kayitlar, $fatura);
           foreach($odemeler as $odeme)
           {
             $n_fatura = $fatura->replicate();;
@@ -77,13 +79,13 @@ class cariController extends Controller
             $n_fatura->odeme = $odeme;
             $genelbakiye += $odeme->odenenmiktar;
 
-            array_push($kayitlar, $n_fatura);  
+            array_push($kayitlar, $n_fatura);
           }
         }
         else
         {
-          array_push($kayitlar, $fatura);  
-        }     
+          array_push($kayitlar, $fatura);
+        }
       }
       //return $kayitlar;
       return view('cari.kontrol', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs,'cari'=>$musteri, 'genelBakiye'=>$genelbakiye,'kayitlar'=>$kayitlar]);

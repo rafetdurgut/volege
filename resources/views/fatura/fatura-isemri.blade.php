@@ -62,21 +62,21 @@
           <div class="form-group row">
               <label for="tckimlik_ss" class="col-sm-3 col-form-label">Cari Kodu:</label>
               <div class="input-group col-sm-9">
-                  <input type="text" class="form-control" id="tckimlik_ss" name="carikodu" placeholder="" required autocomplete="off">
+                  <input type="text" class="form-control" id="tckimlik_ss" name="carikodu" placeholder="" required value="{{ $musteri->tc }}"" autocomplete="off">
               </div>
           </div>
           <div class="form-group row">
               <label for="adsoyad_ss" class="col-sm-3 col-form-label">Cari Adı</label>
               <div class="input-group col-sm-9">
-                      <input type="text" id="adsoyad_ss" name="cariadi" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                      <input type="text" id="adsoyad_ss" name="cariadi" class="form-control" placeholder=""  value="{{ $musteri->adsoyad }}"" aria-label="Username" aria-describedby="basic-addon1">
               </div>
           </div>
           <div class="form-group row">
               <label for="faturatipi" class="col-sm-3 col-form-label">Fatura Tipi</label>
               <div class="col-sm-9">
                   <select id="faturatipi" name="faturatipi" class="form-control" aria-label="Default select example">
-                      <option  value="1" selected>Alış</option>
-                      <option value="2">Satış</option>
+                      <option  value="1">Alış</option>
+                      <option value="2" selected>Satış</option>
                     </select>
                   </div>
           </div>
@@ -112,6 +112,7 @@
 
           </div>
         </div>
+
         <div data-repeater-list="parcalar" id="parcalar" >
             <div data-repeater-item>
               <div class="form-group parca-satir row">
@@ -239,6 +240,35 @@ $(document).ready( function() {
     $('#faturaToplam').text( toplamTutar );
     $('#faturaKDV').text(kdv);
   });
+  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    $.ajax({
+      url:"../isemri/isemrikapatmagetir",
+      type: 'post',
+      dataType: "json",
+      data: {
+         _token: CSRF_TOKEN,
+         search: {{ $emir->id }}
+      },
+      success: function( data ) {
+          console.log(data);
+          $("div#parcalar").empty();
+          if(data[0].parcalar.length == 0)
+          {
+            $("#satirekle").click();
+          }
+          $.each( data[0].parcalar, function( key, value ) {
+             $("#satirekle").click();
+             $('input[name="parcalar['+key+'][stokno]"]').val(value.stokkodu);
+             $('input[name="parcalar['+key+'][stokadi]"]').val(value.stokadi);
+             $('input[name="parcalar['+key+'][adet]"]').val(value.adet);
+             $('input[name="parcalar['+key+'][birimfiyat]"]').val(value.satisfiyati);
+             $('input[name="parcalar['+key+'][iskonto]"]').val(value.iskonto);
+             $('input[name="parcalar['+key+'][toplamtutar]"]').val(value.toplamfiyat);
+             $('input[name="parcalar['+key+'][parcaid]"]').val(value.id);
+          });
+          $(".ypstoknotxt:last").click();
+      },
+    });
 });
 
 </script>

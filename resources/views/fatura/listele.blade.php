@@ -35,19 +35,11 @@
                   <th>İsim Soyisim</th>
                   <th>Tarih</th>
                   <th>Ödenen</th>
-                  <th>Toplam</th>                  
+                  <th>Toplam</th>
                   <th>Durumu</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>F00001</td>
-                  <td>Rafet Durgut</td>
-                  <td>18/05/2020 13:00</td>
-                  <td>195.00 TL</td>
-                  <td>195.00 TL</td>
-                  <td><span class="badge badge-light-success badge-pill">Ödendi</span></td>
-                </tr>
                 @foreach ($faturalar as $f)
                         <tr>
                           <th scope="row">{{ $f->faturakodu }}</th>

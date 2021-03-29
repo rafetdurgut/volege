@@ -50,16 +50,16 @@ Route::group(['prefix' => 'yedekparca'], function () {
     Route::match(['get', 'post'], 'ekle',  [YedekParcaController::class, 'ekle'])->name('yedekparca-ekle');
     Route::match(['get', 'post'], 'duzenle/{$id}',  [YedekParcaController::class, 'duzenle'])->name('yedekparca-duzenle');
     Route::match(['get', 'post'], 'listele',  [YedekParcaController::class, 'listele'])->name('yedekparca-listele');
-    
+
 });
 
 
 Route::group(['prefix' => 'cari'], function () {
   Route::match(['get', 'post'], 'ekle', [cariController::class, 'cariEkle'])->name('cari-ekle');
   Route::get('listele', [cariController::class, 'cariListele'])->name('cari-listele');
-  Route::get('kontrol/{id}', [cariController::class, 'cariKontrol'])->name('cari-kontrol');
+  Route::get('kontrol/{id}', [cariController::class, 'cariKontrol'])->name('cari-a-kontrol');
   Route::get('kontrol/', [cariController::class, 'cariKontrolBos'])->name('cari-kontrol');
-  Route::match(['get', 'post'],'kontrol/', [cariController::class, 'cariKontrolBos'])->name('cari-kontrol');
+  Route::match(['get', 'post'],'kontrol', [cariController::class, 'cariKontrolBos'])->name('cari-kontrol');
   Route::match(['get', 'post'], 'duzenle/{id}', [cariController::class, 'cariDuzenle'])->name('cari-duzenle');
 });
 
@@ -175,6 +175,7 @@ Route::group(['prefix' => 'isemri'], function () {
     Route::post('isemrikapatmagetir', [IsEmriController::class, 'isemrikapatmagetir'])->name('isemrikapatmagetir');
     Route::get('listele', [IsEmriController::class, 'listele'])->name('isemri-listele');
     Route::get('goster/{id}', [IsEmriController::class, 'goster'])->name('isemri-goster');
+    Route::get('kabul/{id}', [IsEmriController::class, 'kabul'])->name('isemri-kabul');
 });
 
 Route::group(['prefix' => 'ekspertiz'], function () {
@@ -284,3 +285,4 @@ Route::post('/adsoyadmusterigetir', [MusteriController::class, 'adsoyadmusterige
 Route::post('/plakaaracgetir', [AracController::class, 'plakaaracgetir'])->name('plakaaracgetir');
 Route::post('/stoknoparcagetir', [YedekParcaController::class, 'stoknoyedekparca'])->name('stoknoyedekparca');
 Route::post('/stokadparcagetir', [YedekParcaController::class, 'stokadyedekparca'])->name('stokadyedekparca');
+Route::post('/faturaidgetir', [FaturaController::class, 'faturaidgetir'])->name('faturaidgetir');

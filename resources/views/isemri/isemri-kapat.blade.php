@@ -47,6 +47,7 @@
                     <textarea id="yapilanlar" rows="10" name="yapilanlar" class="form-control" rows="4"></textarea>
                 </div>
             </div>
+            <!--
             <div class="form-group row">
                 <label for="iscilik" class="col-sm-3 col-form-label">İşçilik:</label>
                 <div class="input-group col-sm-9">
@@ -54,6 +55,7 @@
                     <input type="number" name="iscilik" id="iscilik" class="form-control" placeholder="" aria-label="iscilik" aria-describedby="basic-addon1">
                 </div>
             </div>
+          -->
             <div  class="col-sm-12">
               <legend> Parça Bilgileri </legend>
               <div class="form-group row">
@@ -76,7 +78,7 @@
                       Toplam Tutar
                   </div>
                   <div class="col-sm-1">
-                    
+
                 </div>
               </div>
               <div data-repeater-list="parcalar" id="parcalar" >
@@ -115,7 +117,9 @@
             </div>
           </div>
             <div class="clearfix mt-1 mb-2">
+
                 <button type="submit" name="action" value="cikis"  class="btn btn-danger btn-md">Araç Çıkışı Yap</button>
+                <button type="submit" name="action" value="fatura"  class="btn btn-primary btn-md  ">Faturaya Aktar</button>
                 <button type="submit" name="action" value="kayit"  class="btn btn-success btn-md  ">Kaydet</button>
             </div>
           <div class="row">
@@ -195,8 +199,12 @@ $(document).ready( function() {
       success: function( data ) {
           console.log(data);
           $("#yapilanlar").val(data[0].isemirleri.yapilanlar);
-          $("#iscilik").val(data[0].isemirleri.iscilik);
+          //$("#iscilik").val(data[0].isemirleri.iscilik);
           $("div#parcalar").empty();
+          if(data[0].parcalar.length == 0)
+          {
+            $("#satirekle").click();
+          }
           $.each( data[0].parcalar, function( key, value ) {
              $("#satirekle").click();
              $('input[name="parcalar['+key+'][stokno]"]').val(value.stokkodu);

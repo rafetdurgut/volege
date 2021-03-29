@@ -31,7 +31,7 @@ class EkspertizController extends Controller
     public function ekle(Request $request){
 
 
-      
+
       $pageConfigs = ['pageHeader' => true];
 
       $breadcrumbs = [
@@ -41,7 +41,7 @@ class EkspertizController extends Controller
       if ($request->isMethod('GET')) {
         return view('ekspertiz.ekspertiz',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
       }
-      
+
       $request->validate([
         'tckimlik' => 'required',
         'adsoyad' => 'required',
@@ -82,7 +82,7 @@ class EkspertizController extends Controller
       $ekspertiz->aracgiristarihi = $request->input('giristarihi');
       $ekspertiz->arackm = $request->input('kilometre');
       $ekspertiz->yakitdurumu = $request->input('yakit');
-      
+
       if(($request->has('resim')))
       {
         $ekspertiz->resimurl = $request->file('resim')->store('ekspertiz');
@@ -91,7 +91,7 @@ class EkspertizController extends Controller
 
       //Parçalar.
       $ekspertiz->save();
-     
+
       //Parçalar.
       foreach($request->parcalar as $parca)
       {
@@ -108,9 +108,10 @@ class EkspertizController extends Controller
           ]
         );
         }
-      }  
-      return view('ekspertiz.ekspertiz',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'success'=>"Ekspertiz başarı ile eklendi."]);
-      
+      }
+      return redirect(route('ekspertiz-goster',$ekspertiz->id));
+      //return view('ekspertiz.ekspertiz',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'success'=>"Ekspertiz başarı ile eklendi."]);
+
 
 
     }

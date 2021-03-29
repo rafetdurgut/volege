@@ -2,6 +2,9 @@
 {{-- title --}}
 @section('title','Cari Hareketler')
 
+@section('page-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('css/pages/app-invoice.css')}}">
+@endsection
 
 {{-- page style --}}
 @section('page-styles')
@@ -81,7 +84,7 @@
               </div>
             </div>
             <hr>
-           
+
           <!-- product details table-->
           <div class="table-responsive">
             <table class="table thead-dark mb-0">
@@ -96,7 +99,7 @@
                 </tr>
               </thead>
               @isset($kayitlar)
-              
+
                 <tbody>
                 @foreach($kayitlar as $kayit)
                 @if(isset($kayit->odeme))
@@ -117,7 +120,7 @@
                 @endif
                 @endforeach
               </tbody>
-              
+
               @endisset
             </table>
           </div>
@@ -158,6 +161,8 @@
 @section('vendor-scripts')
 <script src="{{asset('vendors/js/extensions/jquery.steps.min.js')}}"></script>
 <script src="{{asset('vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
+<script src="{{asset('js/scripts/pages/app-invoice.js')}}"></script>
+
 @endsection
 
 {{-- page scripts --}}

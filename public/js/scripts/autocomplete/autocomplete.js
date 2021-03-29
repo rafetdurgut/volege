@@ -59,7 +59,7 @@ $(document).ready(function(){
 
 
 $( "#rastgeletc" ).on( "click", function() {
-    $("#tckimlik_ac").val(Date.now())
+    $("#tckimlik_ac").val(Date.now());
   });
   $( "#adsoyad_ss" ).autocomplete({
     source: function( request, response ) {
@@ -73,7 +73,7 @@ $( "#rastgeletc" ).on( "click", function() {
             search: request.term
         },
         success: function( data ) {
-            response( data );   
+            response( data );
         }
     });
     },
@@ -94,7 +94,7 @@ $.ajax({
         search: request.term
     },
     success: function( data ) {
-        response( data );   
+        response( data );
     }
 });
 },

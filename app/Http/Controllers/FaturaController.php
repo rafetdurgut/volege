@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class FaturaController extends Controller
 {
+  public function faturaidgetir()
+  {
+    $son_fatura = Fatura::latest('created_at')->first();
+    return $son_fatura->id+1;
+  }
   //
   public function ekle(Request $request)
   {
@@ -25,7 +30,7 @@ class FaturaController extends Controller
     }
 
     if ($request->isMethod('POST')) {
-            
+
       //fatura var mı kontrol et, varsa başka kod yazmasını zorla
       $fatura_sayisi = Fatura::where("faturakodu", $request->faturakodu)->count();
       if ($fatura_sayisi > 0) {
@@ -47,7 +52,7 @@ class FaturaController extends Controller
       $yenifatura->faturatipi = $request->faturatipi;
       $yenifatura->faturadurum = $request->faturadurum;
       $yenifatura->gibno = $request->gibkodu;
-      
+
 
       //geri kalan tüm parcalari parca detay tablosuna yaz.
       //işemrinde parçalar aynısı. çek oradan.
@@ -60,7 +65,7 @@ class FaturaController extends Controller
           $detay->miktar = $parca["adet"];
           $detay->fiyat = floatval($parca["birimfiyat"]);
           $detay->iskonto = $parca["iskonto"];
-          $detay->stoktandusme = boolval(0); // Sonradan eklensin 
+          $detay->stoktandusme = boolval(0); // Sonradan eklensin
 
           $detay->save();
           $toplam_tutar = $toplam_tutar + floatval($parca['toplamtutar']);
@@ -82,7 +87,7 @@ class FaturaController extends Controller
     $breadcrumbs = [
       ["link" => "/", "name" => "Home"], ["link" => "#", "name" => "Fatura"], ["name" => "Ödeme"]
     ];
-    if ($request->isMethod('GET')) {
+  if ($request->isMethod('GET')) {
 
       return view('fatura.odeme', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs]);
     }
@@ -129,7 +134,7 @@ class FaturaController extends Controller
 
 
 
-  public function listele(Request $request)
+  public function listele()
   {
     $pageConfigs = ['pageHeader' => true];
     $breadcrumbs = [
@@ -139,17 +144,16 @@ class FaturaController extends Controller
     //her fatura icin parca toplam tutar bul
     $odenen_miktarlar = DB::table('odeme')
                             ->select("faturakodu", DB::raw("SUM(odenenmiktar) as toplamodenenmiktar"))
-                            ->groupBy('faturakodu'); 
-    
-    $birlesik_tablo = DB::table('faturalar') 
+                            ->groupBy('faturakodu')->get();
+    $birlesik_tablo = DB::table('faturalar')
                           ->join('musteriler', 'musteriler.tc', '=', 'faturalar.carikodu') //musterilerin adsoyad cekmek icin
                           ->joinSub($odenen_miktarlar, 'odenentoplam', function ($join) {  //ödenen tutarı almak için
                               $join->on('faturalar.faturakodu', '=', 'odenentoplam.faturakodu');
                           })->select('faturalar.*', 'musteriler.adsoyad','odenentoplam.*')
-                          ->get(); 
-    
+                          ->get();
+
     return view('fatura.listele', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs, 'faturalar'=>$birlesik_tablo]);
-    
+
 
   }
 
