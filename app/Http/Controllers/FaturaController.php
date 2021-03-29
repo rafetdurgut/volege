@@ -137,11 +137,11 @@ class FaturaController extends Controller
       ->select("faturakodu", DB::raw("SUM(odenenmiktar) as toplamodenenmiktar"))
       ->groupBy('faturakodu');
 
-    $birlesik_tablo = DB::table('faturalar')->where('faturadurum', 'Açık')
+    $birlesik_tablo = DB::table('faturalar')->where(['faturadurum'=>'Açık'])
       ->join('musteriler', 'musteriler.tc', '=', 'faturalar.carikodu') //musterilerin adsoyad cekmek icin
       ->joinSub($odenen_miktarlar, 'odenentoplam', function ($join) {  //ödenen tutarı almak için
         $join->on('faturalar.faturakodu', '=', 'odenentoplam.faturakodu');
-      })->select('faturalar.*', 'musteriler.adsoyad', 'odenentoplam.*')
+      })->select('faturalar.*', 'musteriler.adsoyad', 'odenentoplam.*')->orderBy('faturalar.faturatarih')
       ->get();
 
       return $birlesik_tablo;
