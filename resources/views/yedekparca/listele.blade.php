@@ -48,7 +48,7 @@
                           <td>{{ $yedekparca->stokadet }}</td>
                           <td>{{ $yedekparca->alisfiyati }}</td>
                           <td>{{ $yedekparca->satisfiyati }}</td>
-                          <td><a class="btn btn-info btn-sm" href="" data-toggle="tooltip" data-placement="top" title="Sil?">
+                          <td><a class="btn btn-info btn-sm" href="{{ route('yedekparca-duzenle', $yedekparca->id) }}" data-toggle="tooltip" data-placement="top" title="Düzenle">
                               <i class="fa fa-edit"></i> </a>
 
                           </td>

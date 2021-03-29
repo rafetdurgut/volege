@@ -96,4 +96,42 @@ class YedekParcaController extends Controller
     }
     return $response;
   }
+
+  public function duzenle($id, Request $request)
+  {
+    $pageConfigs = ['pageHeader' => true];
+
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"], ["link" => "#", "name" => "Yedek Parça"], ["name" => "Düzenle"]
+    ];
+
+    if ($request->isMethod('GET')) {
+      $yedek_parca = YedekParca::where('id', '=', $id)->first();
+      if (isset($yedek_parca))
+        return view('yedekparca.duzenle', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs, 'yedekparca' => $yedek_parca]);
+      else
+        abort(404);
+    }
+    $request->flash();
+    $yedekparcabilgi = YedekParca::where('id','=', $id)->first();
+    if(!isset($yedekparcabilgi))
+    {
+      return view('yedekparca.duzenle',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'error'=>"Kayıt bulunamadı!"]);
+    }
+    $yedekparcabilgi->ureticikodu = $request->ureticikodu; //input('ureticikodu');
+    $yedekparcabilgi->stokadi = $request->stokadi; //input('stokadi');
+    $yedekparcabilgi->stokkodu = $request->stokkodu; //input('stokkodu');
+    $yedekparcabilgi->barkod = $request->barkod; //input('barkod');
+    $yedekparcabilgi->urungrup = $request->grup; //input('grup');
+    $yedekparcabilgi->birim = $request->birim;
+    $yedekparcabilgi->alisfiyati = $request->alisfiyati;
+    $yedekparcabilgi->stokadet = $request->stokadet;
+    $yedekparcabilgi->kdv = $request->kdv;
+    $yedekparcabilgi->satisfiyati = $request->satisfiyati;
+    $yedekparcabilgi->uyarimiktari = $request->uyarimiktari;
+    $yedekparcabilgi->save();
+    return view('yedekparca.duzenle',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'yedekparca'=>$yedekparcabilgi, 'success'=>"Kayıt başarı ile düzenlendi."]);
+    
+
+  }
 }

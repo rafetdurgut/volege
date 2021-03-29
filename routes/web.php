@@ -48,7 +48,7 @@ Route::get('/', [DashboardController::class, 'dashboardAnalytics'])->name('anasa
 
 Route::group(['prefix' => 'yedekparca'], function () {
     Route::match(['get', 'post'], 'ekle',  [YedekParcaController::class, 'ekle'])->name('yedekparca-ekle');
-    Route::match(['get', 'post'], 'duzenle/{$id}',  [YedekParcaController::class, 'duzenle'])->name('yedekparca-duzenle');
+    Route::match(['get', 'post'], 'duzenle/{id}',  [YedekParcaController::class, 'duzenle'])->name('yedekparca-duzenle');
     Route::match(['get', 'post'], 'listele',  [YedekParcaController::class, 'listele'])->name('yedekparca-listele');
 
 });

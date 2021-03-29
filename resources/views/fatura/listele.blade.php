@@ -28,7 +28,7 @@
             Bu listeden tüm fatura listesini görüntüleyebilirsiniz.
           </p>
           <div class="table-responsive">
-            <table class="table zero-configuration dataTable ">
+            <table class="table zero-configuration">
               <thead>
                 <tr>
                   <th>Fatura Kodu</th>
@@ -42,12 +42,12 @@
               <tbody>
                 @foreach ($faturalar as $f)
                         <tr>
-                          <th scope="row">{{ $f->faturakodu }}</th>
-                          <td>{{ $f->adsoyad }}</td>
-                          <td>{{ $f->faturatarih }}</td>
-                          <td>{{ $f->toplamodenenmiktar}}</td>
-                          <td>{{ $f->faturatoplam }}</td>
-                          <td>{{ $f->faturadurum }}</td>
+                          <td>{{$f->faturakodu}}</th>
+                          <td>{{$f->adsoyad}}</td>
+                          <td>{{$f->faturatarih}}</td>
+                          <td>{{$f->toplamodenenmiktar}}</td>
+                          <td>{{$f->faturatoplam}}</td>
+                          <td>{{$f->faturadurum}}</td>
                         </tr>
                 @endforeach
               </tbody>
