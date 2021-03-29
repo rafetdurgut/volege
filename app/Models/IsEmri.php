@@ -9,4 +9,5 @@ class IsEmri extends Model
 {
     use HasFactory;
     public $table = "isemirleri";
+
 }

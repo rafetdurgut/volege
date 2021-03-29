@@ -18,7 +18,7 @@ class IsEmriController extends Controller
     $breadcrumbs = [
       ["link" => "/", "name" => "Home"],["link" => "#", "name" => "İş Emri"],["name" => "Listele"]
     ];
-    $emirler = DB::table('isemirleri')->join('araclar','isemirleri.saseno','=','araclar.saseno')->join('musteriler','isemirleri.tc','=','musteriler.tc')->where('isemirleri.emiraktif','!=', 0)->select('isemirleri.*','araclar.plaka','musteriler.adsoyad')->get();
+    $emirler = IsEmri::where('emiraktif','=', 1)->leftJoin('araclar','isemirleri.saseno','=','araclar.saseno')->leftJoin('musteriler','isemirleri.tc','=','musteriler.tc')->select('isemirleri.*','araclar.plaka','musteriler.adsoyad')->get();
 
     return view('isemri.isemri-listele',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'emirler'=>$emirler]);
   }
@@ -32,7 +32,7 @@ class IsEmriController extends Controller
       abort(404);
     $musteri =  Musteri::where("tc", "=",$emir->tc)->first();
     $arac = Arac::where("saseno","=",$emir->saseno)->first();
-    $parcalar = DB::table('parcaisemri')->join('yedekparca','parcaisemri.yedekparcaid','=','yedekparca.id')
+    $parcalar = DB::table('parcaisemri')->leftJoin('yedekparca','parcaisemri.yedekparcaid','=','yedekparca.id')
     ->where('parcaisemri.emirid', '=', $id)
     ->orderby('parcaisemri.id')
     ->select('yedekparca.stokkodu','yedekparca.stokadi','parcaisemri.adet','parcaisemri.satisfiyati','parcaisemri.toplamfiyat','parcaisemri.iskonto','yedekparca.id')
@@ -49,7 +49,7 @@ class IsEmriController extends Controller
       abort(404);
     $musteri =  Musteri::where("tc", "=",$emir->tc)->first();
     $arac = Arac::where("saseno","=",$emir->saseno)->first();
-    $parcalar = DB::table('parcaisemri')->join('yedekparca','parcaisemri.yedekparcaid','=','yedekparca.id')
+    $parcalar = DB::table('parcaisemri')->leftJoin('yedekparca','parcaisemri.yedekparcaid','=','yedekparca.id')
     ->where('parcaisemri.emirid', '=', $id)
     ->orderby('parcaisemri.id')
     ->select('yedekparca.stokkodu','yedekparca.stokadi','parcaisemri.adet','parcaisemri.satisfiyati','parcaisemri.toplamfiyat','parcaisemri.iskonto','yedekparca.id')
@@ -215,25 +215,26 @@ class IsEmriController extends Controller
       return view('isemri.isemri-arama',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs]);
 
 
-    $query = IsEmri::join('araclar','isemirleri.saseno','=','araclar.saseno')
-    ->join('musteriler','isemirleri.tc','=','musteriler.tc');
+    $query = IsEmri::leftJoin('araclar','isemirleri.saseno','=','araclar.saseno')
+    ->leftJoin('musteriler','isemirleri.tc','=','musteriler.tc');
     if($request->input('isemrikodu'))
       $query->where('isemirleri.id','=',$request->input('isemrikodu'));
 
-    if($request->input('saseno'))
+    elseif($request->input('saseno'))
      $query->where('isemirleri.saseno','LIKE','%'.$request->input('saseno').'%');
 
-    if($request->input('plaka'))
+     elseif($request->input('plaka'))
       $query->where('araclar.plaka','LIKE','%'.$request->input('plaka').'%');
 
-    if($request->input('tckimlik'))
+     elseif($request->input('tckimlik'))
       $query->where('isemirleri.tc','LIKE','%'.$request->input('tckimlik').'%');
 
-    if($request->input('adsoyad'))
+     elseif($request->input('adsoyad'))
      $query->where('musteriler.adsoyad','LIKE','%'.$request->input('adsoyad').'%');
+
      $query->select('musteriler.adsoyad','isemirleri.id','isemirleri.aracgiristarihi','araclar.plaka','isemirleri.aracgiristarihi','isemirleri.araccikistarihi');
-     $isemirleri = $query->get();
-     $request->flash();
+     $isemirleri = $query->limit(10)->get();
+
 
     return view('isemri.isemri-arama',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'emirler'=>$isemirleri]);
 
@@ -250,7 +251,7 @@ class IsEmriController extends Controller
     if($req->isMethod('GET'))
       {
 
-      $araclar = DB::table('isemirleri')->join('araclar','isemirleri.saseno','=','araclar.saseno')->where('isemirleri.emiraktif',1)->select('isemirleri.id','araclar.saseno','araclar.plaka')->get();
+      $araclar = DB::table('isemirleri')->leftJoin('araclar','isemirleri.saseno','=','araclar.saseno')->where('isemirleri.emiraktif',1)->select('isemirleri.id','araclar.saseno','araclar.plaka')->get();
 
       return view('isemri.isemri-kapat',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'araclar' => $araclar]);
     }
@@ -305,7 +306,7 @@ class IsEmriController extends Controller
           abort(404);
         $musteri =  Musteri::where("tc", "=",$isemri->tc)->first();
         $arac = Arac::where("saseno","=",$isemri->saseno)->first();
-        $parcalar = DB::table('parcaisemri')->join('yedekparca','parcaisemri.yedekparcaid','=','yedekparca.id')
+        $parcalar = DB::table('parcaisemri')->leftJoin('yedekparca','parcaisemri.yedekparcaid','=','yedekparca.id')
         ->where('parcaisemri.emirid', '=', $isemri->id)
         ->orderby('parcaisemri.id')
         ->select('yedekparca.stokkodu','yedekparca.stokadi','parcaisemri.adet','parcaisemri.satisfiyati','parcaisemri.toplamfiyat','parcaisemri.iskonto','yedekparca.id')
@@ -317,7 +318,7 @@ class IsEmriController extends Controller
   {
     $search = $request->search;
 
-    $parcalar = DB::table('parcaisemri')->join('yedekparca','parcaisemri.yedekparcaid','=','yedekparca.id')
+    $parcalar = DB::table('parcaisemri')->leftJoin('yedekparca','parcaisemri.yedekparcaid','=','yedekparca.id')
                               ->where('parcaisemri.emirid', '=', $search)
                               ->orderby('parcaisemri.id')
                               ->select('yedekparca.stokkodu','yedekparca.stokadi','parcaisemri.adet','parcaisemri.satisfiyati','parcaisemri.toplamfiyat','parcaisemri.iskonto','yedekparca.id')
