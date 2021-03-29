@@ -15,6 +15,11 @@ class cariController extends Controller
     public function cariKontrolBos(Request $request)
     {
 
+      $pageConfigs = ['pageHeader' => true];
+
+      $breadcrumbs = [
+        ["link" => "/", "name" => "Home"], ["link" => "#", "name" => "Cari"], ["name" => "Hareket"]
+      ];
       if($request->isMethod('GET'))
       {
         $pageConfigs = ['pageHeader' => true];
@@ -32,11 +37,15 @@ class cariController extends Controller
       {
         $id = Musteri::where('adsoyad',$request->input('adsoyad'))->select('id')->first();
       }
+
       if(isset($id))
       {
         return redirect('/cari/kontrol/'.$id->id);
       }
-      return view('cari.cari-kontrol', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs])->with('error','Böyle bir kayıt bulunamadı!');
+      else
+      {
+        return view('cari.cari-kontrol', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs,'error'=>'Böyle bir kayıt bulunamadı!']);
+      }
 
 
 

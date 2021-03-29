@@ -17,21 +17,23 @@
     <div class="row">
         <div class="col-12">
         <div class="card">
-            @if(Session::get('success'))
-            <div class="alert alert-success">
-                {{ Session('success')}}
-            </div>
-            @endif
-            @if(Session::get('error'))
-            <div class="alert alert-dange">
-                {{ Session('error')}}
-            </div>
-            @endif
+
             <div class="card-header">
+
             <h4 class="card-title">Cari Bilgileri</h4>
             </div>
             <div class="card-body">
-            <form class="needs-validation was-validated" method="POST" action="{{route('cari-kontrol')}}">
+              @if(Session::get('success'))
+              <div class="alert alert-success">
+                  {{ Session('success')}}
+              </div>
+              @endif
+              @isset($error)
+              <div class="alert alert-danger">
+                  {{ $error }}
+              </div>
+              @endif
+            <form method="POST" action="{{route('cari-kontrol')}}">
                 @csrf
                 <div class="form-row">
                 <div class="col-md-4 mb-3">
@@ -40,7 +42,7 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="adsoyad">İsim Soyisim</label>
-                    <input type="text" class="form-control" id="adsoyad_ss">
+                    <input type="text" class="form-control" name="adsoyad" id="adsoyad_ss">
 
                 </div>
                 <div class="col-md-4 mt-2">

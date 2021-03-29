@@ -1,10 +1,8 @@
 @extends('layouts.contentLayoutMaster')
 {{-- title --}}
 @section('title','Cari Hareketler')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
-@section('page-styles')
-<link rel="stylesheet" type="text/css" href="{{asset('css/pages/app-invoice.css')}}">
-@endsection
 
 {{-- page style --}}
 @section('page-styles')
@@ -42,7 +40,7 @@
               </div>
               <div class="col-md-4 mb-3">
                   <label for="adsoyad">İsim Soyisim</label>
-                  <input type="text" class="form-control" id="adsoyad_ss">
+                  <input type="text" class="form-control" name="adsoyad" id="adsoyad_ss" autocomplete="off">
 
               </div>
               <div class="col-md-4 mt-2">
