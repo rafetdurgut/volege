@@ -18,9 +18,19 @@ class FaturaController extends Controller
     $nextId = $son_fatura[0]->Auto_increment;
     //  return $nextId;
     //error_log(sprintf("FA%05d", $nextId));
-    $a =  sprintf("FA%05d", $nextId);
+    $a =  sprintf("FA-%06d", $nextId);
     return json_encode($a);
   }
+
+  public function odemeidgetir(){
+    $son_fatura = DB::select("SHOW TABLE STATUS LIKE 'odeme'");
+    $nextId = $son_fatura[0]->Auto_increment;
+    //  return $nextId;
+    //error_log(sprintf("FA%05d", $nextId));
+    $a =  sprintf("PA-%06d", $nextId);
+    return json_encode($a);
+  }
+
   //
   public function ekle(Request $request)
   {

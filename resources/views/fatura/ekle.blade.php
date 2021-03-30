@@ -221,8 +221,6 @@
             search: this.value
           },
           success: function(data) {
-            console.log('basari');
-            console.log(data);
             $('#faturakodu').val(data);
 
           }

@@ -295,3 +295,4 @@ Route::post('/plakaaracgetir', [AracController::class, 'plakaaracgetir'])->name(
 Route::post('/stoknoparcagetir', [YedekParcaController::class, 'stoknoyedekparca'])->name('stoknoyedekparca');
 Route::post('/stokadparcagetir', [YedekParcaController::class, 'stokadyedekparca'])->name('stokadyedekparca');
 Route::post('/faturaidgetir', [FaturaController::class, 'faturaidgetir'])->name('faturaidgetir');
+Route::post('/odemeidgetir', [FaturaController::class, 'odemeidgetir'])->name('odemeidgetir');
