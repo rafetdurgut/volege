@@ -13,8 +13,9 @@ class FaturaController extends Controller
 {
   public function faturaidgetir()
   {
-    $son_fatura = Fatura::latest('created_at')->first();
-    return $son_fatura->id + 1;
+    $son_fatura = DB::select("SHOW TABLE STATUS LIKE 'faturalar'");
+    $nextId = $son_fatura[0]->Auto_increment;
+    return $nextId;
   }
   //
   public function ekle(Request $request)

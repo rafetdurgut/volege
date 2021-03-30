@@ -13,7 +13,7 @@ public function tcmusterigetir(Request $request)
       if($search == ''){
          $musteriler = Musteri::orderby('tc','asc')->limit(5)->get();
       }else{
-         $musteriler = Musteri::orderby('tc','asc')->where('tc', 'like', '%' .$search . '%')->limit(5)->get();
+         $musteriler = Musteri::orderby('tc','asc')->where('tc', 'like',$search . '%')->limit(5)->get();
       }
 
       $response = array();
@@ -28,7 +28,7 @@ public function tcmusterigetir(Request $request)
       if($search == ''){
          $musteriler = Musteri::orderby('adsoyad','asc')->limit(5)->get();
       }else{
-         $musteriler = Musteri::orderby('adsoyad','asc')->where('adsoyad', 'like', '%' .$search . '%')->limit(5)->get();
+         $musteriler = Musteri::orderby('adsoyad','asc')->where('adsoyad', 'like', $search . '%')->limit(5)->get();
       }
 
       $response = array();

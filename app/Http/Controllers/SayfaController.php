@@ -34,7 +34,7 @@ class SayfaController extends Controller
       if($request->input('adsoyad'))
         $musteriler->where('adsoyad','LIKE','%'.$request->input('adsoyad').'%');
 
-        $musteriler = $musteriler->get();
+        $musteriler = $musteriler->limit(50)->get();
       return view('sayfalar.arama',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'musteriler' => $musteriler]);
     }
 
@@ -50,7 +50,7 @@ class SayfaController extends Controller
       if($request->input('saseno'))
         $araclar->where('saseno','LIKE','%'.$request->input('saseno').'%');
 
-        $araclar = $araclar->get();
+        $araclar = $araclar->limit(50)->get();
       return view('sayfalar.arama',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'araclar' => $araclar]);
     }
 
@@ -66,9 +66,9 @@ class SayfaController extends Controller
 
       if($request->input('emirtarihi'))
         $emirler->whereDate('isemirleri.aracgiristarihi','=',$tarih);
-      $emirler->join('araclar','isemirleri.saseno','=','araclar.saseno')->join('musteriler','isemirleri.tc','=','musteriler.tc');
+      $emirler->leftJoin('araclar','isemirleri.saseno','=','araclar.saseno')->leftJoin('musteriler','isemirleri.tc','=','musteriler.tc');
 
-      $emirler = $emirler->select('isemirleri.id','araclar.plaka','musteriler.adsoyad','isemirleri.aracgiristarihi','isemirleri.araccikistarihi')->get();
+      $emirler = $emirler->select('isemirleri.id','araclar.plaka','musteriler.adsoyad','isemirleri.aracgiristarihi','isemirleri.araccikistarihi')->limit(50)->get();
       return view('sayfalar.arama',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'emirler' => $emirler]);
     }
     public function aramaParca(Request $request){
@@ -86,8 +86,8 @@ class SayfaController extends Controller
 
       if($request->input('grup'))
         $parcalar->where('urungrup','LIKE','%'.$request->input('grup').'%');
-      
-      $parcalar = $parcalar->get();
+
+      $parcalar = $parcalar->limit(50)->get();
       return view('sayfalar.arama',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'parcalar' => $parcalar]);
     }
 
@@ -115,9 +115,9 @@ class SayfaController extends Controller
         $eksperler->where('araclar.plaka','LIKE','%'.$request->input('plaka').'%');
       }
 
-      $eksperler->join('araclar','ekspertiz.saseno','=','araclar.saseno')->join('musteriler','ekspertiz.tc','=','musteriler.tc');
+      $eksperler->leftJoin('araclar','ekspertiz.saseno','=','araclar.saseno')->leftJoin('musteriler','ekspertiz.tc','=','musteriler.tc');
 
-      $eksperler = $eksperler->select('ekspertiz.id','araclar.plaka','musteriler.adsoyad','ekspertiz.aracgiristarihi','ekspertiz.resimurl')->get();
+      $eksperler = $eksperler->select('ekspertiz.id','araclar.plaka','musteriler.adsoyad','ekspertiz.aracgiristarihi','ekspertiz.resimurl')->limit(50)->get();
       return view('sayfalar.arama',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'eksperler' => $eksperler]);
     }
 
