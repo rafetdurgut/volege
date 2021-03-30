@@ -81,6 +81,16 @@ class FaturaController extends Controller
     }
   }
 
+  public function odemelistele()
+  {
+    $pageConfigs = ['pageHeader' => true];
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"], ["link" => "#", "name" => "Fatura"], ["name" => "Ödeme Listele"]
+    ];
+
+    $odemeler = Odeme::select('*')->orderByDesc('odemetarihi')->get();
+    return view('fatura.odemelistele', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs, 'odemeler' => $odemeler]);
+  }
 
   public function odeme(Request $request)
   {
@@ -132,20 +142,21 @@ class FaturaController extends Controller
     return view('fatura.goster', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs]);
   }
 
-  private function faturalistelerini_getir(){
+  private function faturalistelerini_getir()
+  {
     //her fatura icin parca toplam tutar bul
     $odenen_miktarlar = DB::table('odeme')
       ->select("faturakodu", DB::raw("SUM(odenenmiktar) as toplamodenenmiktar"))
       ->groupBy('faturakodu');
 
-    $birlesik_tablo = DB::table('faturalar')->where(['faturadurum'=>'Açık'])
+    $birlesik_tablo = DB::table('faturalar')->where(['faturadurum' => 'Açık'])
       ->join('musteriler', 'musteriler.tc', '=', 'faturalar.carikodu') //musterilerin adsoyad cekmek icin
       ->joinSub($odenen_miktarlar, 'odenentoplam', function ($join) {  //ödenen tutarı almak için
         $join->on('faturalar.faturakodu', '=', 'odenentoplam.faturakodu');
       })->select('faturalar.*', 'musteriler.adsoyad', 'odenentoplam.*')->orderBy('faturalar.faturatarih')
       ->get();
 
-      return $birlesik_tablo;
+    return $birlesik_tablo;
   }
 
   public function listele()
@@ -162,16 +173,16 @@ class FaturaController extends Controller
   }
 
 
-  public function faturakapat($faturakodu){
+  public function faturakapat($faturakodu)
+  {
     $pageConfigs = ['pageHeader' => true];
     $breadcrumbs = [
       ["link" => "/", "name" => "Home"], ["link" => "#", "name" => "Fatura"], ["name" => "Kapat"]
     ];
     //faturayi kapalı'ya getir.
     $fatura = Fatura::where('faturakodu', $faturakodu)->first();
-    if(!isset($fatura))
-    {
-      return view('fatura.listele',['pageConfigs'=>$pageConfigs,'breadcrumbs'=>$breadcrumbs,'error'=>"Fatura Kodu Bulunamadı!"]);
+    if (!isset($fatura)) {
+      return view('fatura.listele', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs, 'error' => "Fatura Kodu Bulunamadı!"]);
     }
 
     $fatura->faturadurum = 2; // kapalı

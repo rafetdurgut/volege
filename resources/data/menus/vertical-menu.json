@@ -114,6 +114,12 @@
       "icon": "credit-card-in"
     },
     {
+      "url": "fatura/odemelistele",
+      "name": "Ödeme Listele",
+      "slug": "odeme-listele",
+      "icon": "file-import"
+    },
+    {
       "navheader": "İstatistik"
     },
     {
@@ -121,6 +127,12 @@
       "name": "Fatura Listele",
       "slug": "fatura-listele",
       "icon": "file-import"
+    },
+    {
+      "url": "analiz",
+      "name": "Detaylı Analizler",
+      "slug": "analiz",
+      "icon": "search"
     }
   ]
 }

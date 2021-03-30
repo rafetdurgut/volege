@@ -32,39 +32,35 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Fatura Listele</h4>
+            <h4 class="card-title">Ödemeleri Listele</h4>
           </div>
           <div class="card-body card-dashboard">
             <p class="card-text">
-              Bu listeden tüm fatura listesini görüntüleyebilirsiniz.
+              Bu listeden tüm ödeme listesini görüntüleyebilirsiniz.
             </p>
             <div class="table-responsive">
-              <table class="table zero-configuration dataTable">
+              <table class="table zero-configuration dataTable ">
                 <thead>
                   <tr>
                     <th>Fatura Kodu</th>
-                    <th>İsim Soyisim</th>
-                    <th>Tarih</th>
-                    <th>Ödenen</th>
-                    <th>Toplam</th>
-                    <th>Durumu</th>
-                    <th>İşlem</th>
+                    <th>Cari Kodu</th>
+                    <th>Ödeme Tarihi</th>
+                    <th>Ödeme Tipi</th>
+                    <th>Ödeme Tutarı</th>
+                    <th>Ödeme Kanalı</th>
+                    <th>Açıklama</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($faturalar as $f)
+                  @foreach ($odemeler as $odeme)
                     <tr>
-                      <td>{{ $f->faturakodu }}</th>
-                      <td>{{ $f->adsoyad }}</td>
-                      <td>{{ $f->faturatarih }}</td>
-                      <td>{{ $f->toplamodenenmiktar }}</td>
-                      <td>{{ $f->faturatoplam }}</td>
-                      <td>{{ $f->faturadurum }}</td>
-                      <td><a class="btn btn-info btn-sm" href="{{ route('fatura-kapat', $f->faturakodu) }}"
-                          data-toggle="tooltip" data-placement="top" title="Faturayı Kapat">
-                          <i class="fa fa-edit"></i> </a>
-
-                      </td>
+                      <td>{{ $odeme->faturakodu }}</th>
+                      <td>{{ $odeme->carikodu }}</td>
+                      <td>{{ $odeme->odemetarihi }}</td>
+                      <td>{{ $odeme->odemetipi }}</td>
+                      <td>{{ $odeme->odenenmiktar }}</td>
+                      <td>{{ $odeme->odemekanali }}</td>
+                      <td>{{ $odeme->aciklama }}</td>
                     </tr>
                   @endforeach
                 </tbody>

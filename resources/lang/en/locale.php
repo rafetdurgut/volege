@@ -26,6 +26,8 @@ return [
   "Cari" => "Cari",
   "Cari Kayıt" => "Cari Kayıt",
   "Ödeme Girişi" => "Ödeme Girişi",
+  "Ödeme Listele" => "Ödeme Listele",
+  "Detaylı Analizler" => "Detaylı Analizler",
   "Dashboard" => "Panel",
   "eCommerce" => "eCommerce",
   "Analytics" => "İstatistikler",

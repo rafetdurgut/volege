@@ -47,6 +47,7 @@
                   <th>Stok</th>
                   <th>Alış Fiyatı</th>
                   <th>Satış Fiyatı</th>
+                  <th>İşlem</th>
                 </tr>
               </thead>
               <tbody>
