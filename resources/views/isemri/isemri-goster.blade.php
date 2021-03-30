@@ -23,7 +23,7 @@
               <div class="d-flex align-items-center justify-content-lg-end flex-wrap">
                 <div class="mr-3">
                   <small class="text-muted">Oluşturulma Tarihi:</small>
-                  <span>{{$emir->created_at}}</span>
+                  <span>{{$emir->aracgiristarihi}}</span>
                 </div>
                 <div>
                   <small class="text-muted">Araç Çıkış Tarihi:</small>
@@ -77,16 +77,34 @@
             </div>
           </div>
           <hr>
-
+          {{ $emir->talep }}
         <div class="row invoice-info">
           <div class="col-sm-6 col-12 mt-1">
             <h6 class="invoice-from">Müşteri Talepleri</h6>
-              {!! nl2br(e($emir->talep)) !!}
-
+            @php
+            $lines = explode("\n", e($emir->talep));
+            @endphp
+            <ol>
+           @foreach ($lines as $line)
+            @if(trim($line) != "")
+            <li>{{ $line }}</li>
+            @endif
+           @endforeach
+            </ol>
           </div>
           <div class="col-sm-6 col-12 mt-1">
             <h6 class="invoice-from">Yapılan İşlemler / Açıklamalar</h6>
-            {!! nl2br(e($emir->yapilanlar)) !!}
+
+            @php
+            $lines = explode("\n", e($emir->yapilanlar));
+            @endphp
+            <ol>
+           @foreach ($lines as $line)
+            @if(trim($line) != "")
+            <li>{{ $line }}</li>
+            @endif
+           @endforeach
+            </ol>
           </div>
         </div>
         <hr>
