@@ -14,24 +14,22 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        
+
         //php artisan db:seed 
         //veritabanini doldur
         $this->call(
             [
-                AracSeed::class, 
                 MusteriSeed::class,
+                AracSeed::class,
+                YedekParcaSeed::class,
                 IsEmriSeed::class,
-                OdemeSeed::class,
                 FaturaSeed::class,
                 FaturaDetaySeed::class,
+                OdemeSeed::class,
                 ParcaIsemriSeed::class,
                 SorunIsemriSeed::class,
-                YedekParcaSeed::class,
-
 
             ]
         );
-        
     }
 }

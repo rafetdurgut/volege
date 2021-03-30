@@ -32,7 +32,7 @@
               <label for="faturakodu" class="col-sm-3 col-form-label">Fatura Kodu:</label>
               <div class="input-group col-sm-9">
                   <input type="text" class="form-control" name="faturakodu" id="faturakodu" placeholder="" autocomplete="off" required>
-                  <input type="button" id="faturaKoduOlustur" value="Oluştur" class="btn btn-info btn-sm" />
+                  <input type="button" id="faturaKoduOlustur" name="faturaKoduOlustur" value="Oluştur" class="btn btn-info btn-sm" />
               </div>
           </div>
           <div class="form-group row">
@@ -192,7 +192,7 @@ $(document).ready( function() {
       url:"../faturaidgetir",
       type: 'post',
       dataType: "json",
-      data: {
+      data: {       
          _token: CSRF_TOKEN,
          search: this.value
       },

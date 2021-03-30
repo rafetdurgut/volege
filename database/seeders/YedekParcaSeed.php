@@ -22,8 +22,8 @@ class YedekParcaSeed extends Seeder
                 [
                     'ureticikodu' => sprintf("FR%c-%d", rand(65,90), rand(1000,5000)),
                     'stokkodu' => sprintf("%c-%d", rand(65,90), rand(1000,5000)),
-                    'stokadi' => $faker->name,
-                    'urungrup' => $faker->name,
+                    'stokadi' => $faker->lastName,
+                    'urungrup' => $faker->firstname,
                     'stokadet' => rand(1,500),
                     'uyarimiktari' => rand(1,50),
                     'birim' => rand(1,5),

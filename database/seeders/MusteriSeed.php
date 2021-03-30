@@ -15,7 +15,7 @@ class MusteriSeed extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
+        $faker = Faker::create('tr_TR');
             
         // Musteri tablosuna rastgele veri doldurur.
         for ($i=0;$i<10;$i++)
