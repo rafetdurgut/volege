@@ -12,7 +12,7 @@
             @if(!empty($configData['templateTitle']) && isset($configData['templateTitle']))
             {{$configData['templateTitle']}}
             @else
-            Frest
+            Volege
             @endif
           </h2>
         </a>
