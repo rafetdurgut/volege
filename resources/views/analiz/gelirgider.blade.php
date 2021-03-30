@@ -31,7 +31,7 @@
                   <a class="list-group-item list-group-item-action {{ \Request::is('analiz/gider') ? 'active' : '' }}"
                     id="list-gider-list" data-toggle="list" href="#list-gider" role="tab">Gider</a>
                   <!--<a class="list-group-item list-group-item-action {{ \Request::is('analiz/toplam') ? 'active' : '' }}" id="list-toplam-list" data-toggle="list"
-                              href="#list-toplam" role="tab">Toplam</a>-->
+                                  href="#list-toplam" role="tab">Toplam</a>-->
                   <a class="list-group-item list-group-item-action {{ \Request::is('analiz/stokencok') ? 'active' : '' }}"
                     id="list-stokencok-list" data-toggle="list" href="#list-stokencok" role="tab">En Çok
                     Satılanlar</a>
@@ -46,10 +46,17 @@
                   id="list-gelir" role="tabpanel" aria-labelledby="list-gelir-list">
                   <form method="POST" action="{{ route('analiz-gelir') }}">
                     @csrf
-                    <h5 class="card-text" style="color:darkgreen">
-                      Bu menüden ödeme alınan (Gelir) tüm faturaları ve toplamını verilen tarih
-                      aralıkları için görüntüleyebilirsiniz.
-                    </h5> <br />
+                    <div class="alert border-warning alert-dismissible mb-2" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <div class="d-flex align-items-center">
+                        <i class="bx bx-error-circle"></i>
+                        <span>
+                          Bu menüden ödeme alınan (Gelir) tüm faturaları ve toplamını verilen tarih
+                          aralıkları için görüntüleyebilirsiniz.</span>
+                      </div>
+                    </div>
                     <div class="form-group row">
                       <label for="baslangictarihi" class="col-sm-3 col-form-label">Başlangıç
                         Tarihi</label>
@@ -120,10 +127,17 @@
                   role="tabpanel" aria-labelledby="list-gider-list">
                   <form method="POST" action="{{ route('analiz-gider') }}">
                     @csrf
-                    <h5 class="card-text" style="color:darkgreen">
-                      Bu menüden ödeme yaptığınız (Gider) tüm faturaları ve toplamını verilen tarih
-                      aralıkları için görüntüleyebilirsiniz.
-                    </h5> <br />
+                    <div class="alert border-warning alert-dismissible mb-2" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <div class="d-flex align-items-center">
+                        <i class="bx bx-error-circle"></i>
+                        <span>
+                          Bu menüden ödeme yaptığınız (Gider) tüm faturaları ve toplamını verilen tarih aralıkları için
+                          görüntüleyebilirsiniz.</span>
+                      </div>
+                    </div>
                     <div class="form-group row">
                       <label for="baslangictarihi" class="col-sm-3 col-form-label">Başlangıç
                         Tarihi</label>
@@ -195,10 +209,17 @@
                   role="tabpanel" aria-labelledby="list-stokencok-list">
                   <form method="POST" action='{{ route('analiz-stokencok') }}'>
                     @csrf
-                    <h5 class="card-text" style="color:darkgreen">
-                      Bu menüden girilen tarih aralığında en çok satılan yedek-parça listesini
-                      görüntüyelebilirsiniz.
-                    </h5> <br />
+                    <div class="alert border-warning alert-dismissible mb-2" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <div class="d-flex align-items-center">
+                        <i class="bx bx-error-circle"></i>
+                        <span>
+                          Bu menüden girilen tarih aralığında en çok satılan yedek-parça listesini
+                          görüntüyelebilirsiniz.</span>
+                      </div>
+                    </div>
                     <div class="form-group row">
                       <label for="baslangictarihi" class="col-sm-3 col-form-label">Başlangıç
                         Tarihi</label>
@@ -253,14 +274,21 @@
                   role="tabpanel" aria-labelledby="list-stokazalan-list">
                   <form method="POST" action='{{ route('analiz-stokazalan') }}'>
                     @csrf
-                    <h5 class="card-text" style="color:darkgreen">
-                      Bu menüden girdiğiniz miktardan az olan yedek parça listesini
-                      görüntüleyebilirsiniz.
-                    </h5> <br />
+                    <div class="alert border-warning alert-dismissible mb-2" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <div class="d-flex align-items-center">
+                        <i class="bx bx-error-circle"></i>
+                        <span>
+                          Bu menüden girdiğiniz miktardan az olan yedek parça listesini
+                          görüntüleyebilirsiniz.</span>
+                      </div>
+                    </div>
                     <div class="form-group row">
                       <label for="lblstokadet" class="col-sm-3 col-form-label">Stok Adeti</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="stokadet" name="stokadet" placeholder="10">
+                        <input type="text" class="form-control" id="stokadet" name="stokadet" placeholder="10" required>
                       </div>
                     </div>
 

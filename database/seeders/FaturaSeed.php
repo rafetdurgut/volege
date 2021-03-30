@@ -20,7 +20,7 @@ class FaturaSeed extends Seeder
         $start_date = strtotime("2020/01/01");
         $end_date = strtotime(strval(date("Y-m-d H:i:s")));
         // fauralar tablosuna rastgele veri doldurur.
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 500; $i++) {
             $cari_kodu = strval($musteri[rand(0, $l-1)]->tc);
             DB::table('faturalar')->insert(
                 [

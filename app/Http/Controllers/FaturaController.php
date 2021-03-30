@@ -7,6 +7,7 @@ use App\Models\Odeme;
 use App\Models\Musteri;
 use App\Models\Fatura;
 use App\Models\FaturaDetay;
+use App\Models\YedekParca;
 use Illuminate\Support\Facades\DB;
 
 class FaturaController extends Controller
@@ -15,7 +16,10 @@ class FaturaController extends Controller
   {
     $son_fatura = DB::select("SHOW TABLE STATUS LIKE 'faturalar'");
     $nextId = $son_fatura[0]->Auto_increment;
-    return $nextId;
+    //  return $nextId;
+    //error_log(sprintf("FA%05d", $nextId));
+    $a =  sprintf("FA%05d", $nextId);
+    return json_encode($a);
   }
   //
   public function ekle(Request $request)
@@ -61,15 +65,37 @@ class FaturaController extends Controller
       foreach ($request->parcalar as $parca) {
         if (isset($parca["parcaid"])) {
           $detay = new FaturaDetay();
-          $detay->faturaid = $request->faturakodu;
+          $detay->faturakodu = $request->faturakodu;
           $detay->yedekparcaid = intval($parca["parcaid"]);
           $detay->miktar = $parca["adet"];
           $detay->fiyat = floatval($parca["birimfiyat"]);
           $detay->iskonto = $parca["iskonto"];
-          $detay->stoktandusme = boolval(0); // Sonradan eklensin
+          $detay->stoktandusme = isset($request->stoktandus);
 
           $detay->save();
           $toplam_tutar = $toplam_tutar + floatval($parca['toplamtutar']);
+
+          //stokları azalt ve artır
+          if (isset($request->stoktandus)) {
+            // stoktan düşme/ekleme işlemleri
+            //error_log("Stoktan Dusme isleme: " . $request->stoktandus);
+            //yedek parcayi bul
+            $yedekparca = YedekParca::find($parca["parcaid"]);
+
+            $artirma_miktar =  intval($parca["adet"]);
+            if (isset($yedekparca)) {
+              //stok ekle
+              if (strcmp($request->faturatipi, '1') == 0) { //Alış
+                $yeni_miktar = $artirma_miktar + $yedekparca->stokadet;
+              } else {
+                //stok düş
+                $yeni_miktar = $yedekparca->stokadet - $artirma_miktar;
+              }
+              //update
+              //error_log("Eklenme miktari " . $yeni_miktar);
+              YedekParca::where('id', '=', intval($parca["parcaid"]))->update(['stokadet' => $yeni_miktar]);
+            }
+          }
         }
       }
       //toplam tutarı kaydet.

@@ -22,7 +22,7 @@ class OdemeSeed extends Seeder
         $start_date = strtotime("2020/01/01");
         $end_date = strtotime(strval(date("Y-m-d H:i:s")));
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 500; $i++) {
             DB::table('odeme')->insert(
                 [
                     'faturakodu' => strval($faturalar[rand(0, $fatura_sayisi - 1)]->faturakodu),
