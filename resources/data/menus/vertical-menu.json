@@ -120,6 +120,12 @@
       "icon": "file-import"
     },
     {
+      "url": "fatura/vadesigecmis",
+      "name": "Vadesi Geçmiş Fatura",
+      "slug": "vade-listele",
+      "icon": "bx bxs-hourglass-bottom"
+    },
+    {
       "navheader": "İstatistik"
     },
     {

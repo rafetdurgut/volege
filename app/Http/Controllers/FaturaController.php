@@ -22,7 +22,8 @@ class FaturaController extends Controller
     return json_encode($a);
   }
 
-  public function odemeidgetir(){
+  public function odemeidgetir()
+  {
     $son_fatura = DB::select("SHOW TABLE STATUS LIKE 'odeme'");
     $nextId = $son_fatura[0]->Auto_increment;
     //  return $nextId;
@@ -115,6 +116,27 @@ class FaturaController extends Controller
 
       return redirect()->route('fatura-ekle')->with('success', 'Fatura başarıyla eklendi.');
     }
+  }
+
+  public function vadesiGecmisFaturalar()
+  {
+    $pageConfigs = ['pageHeader' => true];
+    $breadcrumbs = [
+      ["link" => "/", "name" => "Home"], ["link" => "#", "name" => "Fatura"], ["name" => "Vadesi Geçmiş Faturalar"]
+    ];
+
+
+    $vadesi_gecmis = Fatura::select('*')
+      ->where('vade', '<', date("Y-m-d H:i:s")) //vadesi gecmis
+      ->where('faturadurum', '=', 'Açık') // Açık faturalarda bak
+      ->orderBy('vade') // zamana göre in vadesi çok geçmişini ilk göster
+      ->leftJoin(DB::raw('(SELECT faturakodu, SUM(odenenmiktar) as toplamodenen from odeme GROUP BY(faturakodu)) as T'), function ($join) { //odeme tablosuyla birlestir
+        $join->on('faturalar.faturakodu', '=', 'T.faturakodu');
+      })
+      ->where('faturalar.faturatoplam', '>', 'T.toplamodenen')
+      ->get();
+    
+    return view('fatura.vadesigecmis', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs, 'odemeler' => $vadesi_gecmis]);
   }
 
   public function odemelistele()

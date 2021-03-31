@@ -11,6 +11,22 @@ use Illuminate\Support\Facades\DB;
 
 class AnalizController extends Controller
 {
+    //0-3 ay arasında değilse, yanlış gönder
+    private function zamanKontrol($date1, $date2)
+    {
+        $diff = strtotime($date2) - strtotime($date1);
+        if ($diff >  90 * 24 * 60 || $diff < 0) {
+            return false;
+        }
+        return true;
+        //usage
+        // 3 aylık zaman bak
+        //$aylikkontrol = $this->zamanKontrol($request->tarihilk, $request->tarihson);
+        //if(!$aylikkontrol){
+        //    return view('analiz.gelirgider', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs, 'error' => 'Maksimum 3 aylık zaman dilimi için analiz yapılabilir. İlk tarih son tarihten büyük olamaz']);
+        //}
+    }
+
     //
     public function analiz()
     {
@@ -80,7 +96,8 @@ class AnalizController extends Controller
     }
 
 
-    public function gelir(Request $request){
+    public function gelir(Request $request)
+    {
         $pageConfigs = ['pageHeader' => true];
         $breadcrumbs = [
             ["link" => "/", "name" => "Home"], ["name" => "Analiz"]
@@ -99,6 +116,5 @@ class AnalizController extends Controller
         })->select('odemedetay.*', 'faturalar.faturadurum', 'faturalar.carikodu', 'faturalar.faturatoplam')->orderByDesc('faturalar.faturatarih')->get();
         //return $yedekparcaliste;
         return view('analiz.gelirgider', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs, 'odemegelir' => $faturalar]);
- 
     }
 }

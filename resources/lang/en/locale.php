@@ -43,6 +43,7 @@ return [
   "Invoice Edit" => "Fatura Düzenlee",
   "Invoice Add" => "Fatura Ekle",
   "File Manager" => "Dosya Yönetici",
+  "Vadesi Geçmiş Fatura" => "Vadesi Geçmiş Fatura",
   "UI" => "UI",
   "Content" => "Content",
   "Grid" => "Grid",
