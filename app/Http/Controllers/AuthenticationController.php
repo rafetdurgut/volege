@@ -9,7 +9,7 @@ class AuthenticationController extends Controller
   //Login page
   public function loginPage(){
     $pageConfigs = ['bodyCustomClass'=> 'bg-full-screen-image'];
-    return view('pages.auth-login',['pageConfigs' => $pageConfigs]);
+    return view('kullanici.giris',['pageConfigs' => $pageConfigs]);
   }
   //Register page
   public function registerPage(){
@@ -19,7 +19,7 @@ class AuthenticationController extends Controller
    //forget Password page
    public function forgetPasswordPage(){
     $pageConfigs = ['bodyCustomClass'=> 'bg-full-screen-image'];
-    return view('pages.auth-forgot-password',['pageConfigs' => $pageConfigs]);
+    return view('kullanici.sifre-unuttum',['pageConfigs' => $pageConfigs]);
   }
    //reset Password page
    public function resetPasswordPage(){

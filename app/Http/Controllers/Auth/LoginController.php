@@ -44,7 +44,7 @@ class LoginController extends Controller
         $pageConfigs = ['bodyCustomClass' => 'bg-full-screen-image'];
 
         return view(
-            '/auth/login',
+            '/kullanici/giris',
             [
                 'pageConfigs' => $pageConfigs
             ]

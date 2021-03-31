@@ -1,10 +1,7 @@
 @extends('layouts.fullLayoutMaster')
 {{-- title --}}
-
-@section('title','Login')
-
+@section('title','Kullanıcı Girişi')
 {{-- page scripts --}}
-
 @section('page-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('css/pages/authentication.css')}}">
 @endsection
@@ -23,6 +20,7 @@
                 <h4 class="text-center mb-2">Hoşgeldiniz!</h4>
               </div>
             </div>
+            <div class="card-body">
               {{-- form  --}}
               <form method="POST" action="{{ route('login') }}">
                 @csrf
