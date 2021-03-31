@@ -14,7 +14,11 @@ $(document).ready(function() {
     *       js of zero configuration        *
     ****************************************/
 
-    $('.zero-configuration').DataTable();
+    $('.zero-configuration').DataTable(
+      {"language": {
+        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+    }}
+    );
 
     /********************************************
      *        js of Order by the grouping        *

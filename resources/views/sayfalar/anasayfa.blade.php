@@ -1,18 +1,8 @@
 @extends('layouts.contentLayoutMaster')
 
 {{-- title --}}
-@section('title','Dashboard Analytics')
-{{-- venodr style --}}
-@section('vendor-styles')
-<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/charts/apexcharts.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('vendors/css/extensions/dragula.min.css')}}">
-@endsection
+@section('title','Oto Servis Yazılımı')
 
-{{-- page style --}}
-@section('page-styles')
-<link rel="stylesheet" type="text/css" href="{{asset('css/pages/widgets.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('css/pages/dashboard-analytics.css')}}">
-@endsection
 
 @section('content')
 <!-- Dashboard Analytics Start -->
@@ -30,14 +20,4 @@
   </div>
 </section>
 <!-- Dashboard Analytics end -->
-@endsection
-
-{{-- vendor scripts --}}
-@section('vendor-scripts')
-<script src="{{asset('vendors/js/charts/apexcharts.min.js')}}"></script>
-<script src="{{asset('vendors/js/extensions/dragula.min.js')}}"></script>
-@endsection
-
-@section('page-scripts')
-<script src="{{asset('js/scripts/pages/dashboard-analytics.js')}}"></script>
 @endsection
