@@ -23,11 +23,11 @@
               <div class="d-flex align-items-center justify-content-lg-end flex-wrap">
                 <div class="mr-3">
                   <small class="text-muted">Oluşturulma Tarihi:</small>
-                  <span>{{$emir->created_at}}</span>
+                  <span> {{ \Carbon\Carbon::parse($emir->aracgiristarihi)->format('d/m/Y h:i')}} </span>
                 </div>
                 <div>
                   <small class="text-muted">Araç Çıkış Tarihi:</small>
-                  <span>{{$emir->araccikistarihi}}</span>
+                  <span>{{ \Carbon\Carbon::parse($emir->araccikistarihi)->format('d/m/Y h:i')}}</span>
                 </div>
               </div>
             </div>
