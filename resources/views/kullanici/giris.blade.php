@@ -1,7 +1,10 @@
 @extends('layouts.fullLayoutMaster')
-{{-- page title --}}
-@section('title','Login Page')
+{{-- title --}}
+
+@section('title','Login')
+
 {{-- page scripts --}}
+
 @section('page-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('css/pages/authentication.css')}}">
 @endsection
@@ -21,33 +24,45 @@
               </div>
             </div>
             <div class="card-body">
-
-              <form action="{{url('/')}}">
-                  <div class="form-group mb-50">
-                      <label class="text-bold-600" for="exampleInputEmail1">E-Posta Adresi:</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1"
-                          placeholder="info@x.com"></div>
-                  <div class="form-group">
-                      <label class="text-bold-600" for="exampleInputPassword1">Şifre</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1"
-                          placeholder="">
+              {{-- form  --}}
+              <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="form-group mb-50">
+                  <label class="text-bold-600" for="email">E-Posta Adresi</label>
+                  <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email" autofocus placeholder="Email address">
+                  @error('email')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label class="text-bold-600" for="password">Şifre:</label>
+                  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="current-password" placeholder="Password">
+                  @error('password')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                <div class="form-group d-flex flex-md-row flex-column justify-content-between align-items-center">
+                  <div class="text-left">
+                    <div class="checkbox checkbox-sm">
+                      <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                      <label class="form-check-label" for="remember">
+                        <small>Girişi Hatırla</small>
+                      </label>
+                    </div>
                   </div>
-                  <div
-                      class="form-group d-flex flex-md-row flex-column justify-content-between align-items-center">
-                      <div class="text-left">
-                          <div class="checkbox checkbox-sm">
-                              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                              <label class="checkboxsmall" for="exampleCheck1"><small>Beni hatırla.</small></label>
-                          </div>
-                      </div>
-                      <div class="text-right"><a href="{{asset('auth/forgot/password')}}"
-                              class="card-link"><small>Şifrenizi mi unuttunuz?</small></a></div>
-                  </div>
-                  <button type="submit" class="btn btn-primary glow w-100 position-relative">Giriş Yap<i
-                          id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
+                </div>
+                <div class="text-right"><a href="{{route('kullanici-sifre-unuttum')}}"
+                  class="card-link"><small>Şifrenizi mi unuttunuz?</small></a></div>
+                <button type="submit" class="btn btn-primary glow w-100 position-relative">Giriş
+                  <i id="icon-arrow" class="bx bx-right-arrow-alt"></i>
+                </button>
+              </div>
               </form>
               <hr>
-            </div>
           </div>
         </div>
         <!-- right section image -->
@@ -59,5 +74,4 @@
   </div>
 </section>
 <!-- login page ends -->
-
 @endsection

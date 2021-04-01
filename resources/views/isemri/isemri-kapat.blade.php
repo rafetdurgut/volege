@@ -175,17 +175,17 @@ $(document).ready( function() {
     }
 
   });
-  //$("#kapatmaFormuDiv").hide();
+  $("#kapatmaFormuDiv").hide();
   $('#icerdekiArac').on('change', function() {
   if(this.value == -1)
   {
-    //$("#kapatmaFormuDiv").hide();
+    $("#kapatmaFormuDiv").hide();
     $("div#parcalar").empty();
     $("#satirekle").click();
   }
   else
   {
-    //$("#kapatmaFormuDiv").show();
+    $("#kapatmaFormuDiv").show();
     //Get Ajax
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     $.ajax({

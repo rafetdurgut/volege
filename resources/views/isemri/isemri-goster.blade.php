@@ -23,11 +23,11 @@
               <div class="d-flex align-items-center justify-content-lg-end flex-wrap">
                 <div class="mr-3">
                   <small class="text-muted">Oluşturulma Tarihi:</small>
-                  <span>{{$emir->aracgiristarihi}}</span>
+                  <span> {{ \Carbon\Carbon::parse($emir->aracgiristarihi)->format('d/m/Y h:i')}} </span>
                 </div>
                 <div>
                   <small class="text-muted">Araç Çıkış Tarihi:</small>
-                  <span>{{$emir->araccikistarihi}}</span>
+                  <span>{{ \Carbon\Carbon::parse($emir->araccikistarihi)->format('d/m/Y h:i')}}</span>
                 </div>
               </div>
             </div>
@@ -77,7 +77,6 @@
             </div>
           </div>
           <hr>
-          {{ $emir->talep }}
         <div class="row invoice-info">
           <div class="col-sm-6 col-12 mt-1">
             <h6 class="invoice-from">Müşteri Talepleri</h6>
@@ -187,17 +186,7 @@
               <span>Yazdır</span>
             </button>
           </div>
-          <div class="invoice-action-btn">
-            <a href="{{asset('app/invoice/edit')}}" class="btn btn-light-primary btn-block">
-              <span>Araç Kartı Oluştur</span>
-            </a>
-          </div>
-          <div class="invoice-action-btn">
-            <button class="btn btn-success btn-block">
-              <i class='bx bx-dollar'></i>
-              <span>Fatura Kes</span>
-            </button>
-          </div>
+
         </div>
       </div>
     </div>

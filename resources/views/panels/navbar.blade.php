@@ -15,14 +15,7 @@ data-bgcolor="@if(isset($configData['navbarBgColor'])){{$configData['navbarBgCol
         </div>
         <ul class="nav navbar-nav float-right">
           <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand"><i class="ficon bx bx-fullscreen"></i></a></li>
-          <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon bx bx-search"></i></a>
-            <div class="search-input">
-              <div class="search-input-icon"><i class="bx bx-search primary"></i></div>
-              <input class="input" type="text" placeholder="Genel Arama..." tabindex="-1" data-search="template-search">
-              <div class="search-input-close"><i class="bx bx-x"></i></div>
-              <ul class="search-list"></ul>
-            </div>
-          </li>
+         
 
           <li class="dropdown dropdown-user nav-item">
             <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
@@ -42,20 +35,20 @@ data-bgcolor="@if(isset($configData['navbarBgColor'])){{$configData['navbarBgCol
               </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right pb-0">
-              <a class="dropdown-item" href="{{asset('page/user/profile')}}">
+              {{-- <a class="dropdown-item" href="{{asset('page/user/profile')}}">
                 <i class="bx bx-user mr-50"></i> Profil Düzenle
               </a>
               <a class="dropdown-item" href="{{asset('app/email')}}">
                 <i class="bx bx-envelope mr-50"></i> Mesaj Kutusu
-              </a>
+              </a>  
               <a class="dropdown-item" href="{{asset('app/todo')}}">
                 <i class="bx bx-check-square mr-50"></i> Görevler</a>
                 <a class="dropdown-item" href="{{asset('app/chat')}}"><i class="bx bx-message mr-50"></i> Mesajlar
-              </a>
+              </a> --}}
               <div class="dropdown-divider mb-0"></div>
               <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                <a class="dropdown-item"  href="{{ route('logout') }}"
+                <a class="dropdown-item"  href="{{ route('kullanici-cikis') }}"
                 onclick="event.preventDefault();
                  this.closest('form').submit();" ><i class="bx bx-power-off mr-50"></i> Çıkış Yap</a>
               </form>
