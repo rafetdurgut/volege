@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
                 MusteriSeed::class,
                 AracSeed::class,
                 YedekParcaSeed::class,
+                ExpertizSeeder::class,
+                ParcaEkspertizSeeder::class,
                 IsEmriSeed::class,
                 FaturaSeed::class,
                 FaturaDetaySeed::class,

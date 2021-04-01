@@ -3,10 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
 use Illuminate\Support\Facades\DB;
 
-class ParcaIsemriSeed extends Seeder
+class ParcaEkspertizSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +14,9 @@ class ParcaIsemriSeed extends Seeder
      */
     public function run()
     {
-        $isemir = DB::table('isemirleri')->select('id')->limit(100)->get();
-        $isemri_sayisi = count($isemir);
+        $expertiz = DB::table('ekspertiz')->select('id')->limit(100)->get();
+        $expertiz_sayisi = count($expertiz);
+
         $yedekparca = DB::table('yedekparca')->select('id', 'satisfiyati')->limit(100)->get();
         $yedekparca_sayisi = count($yedekparca);
 
@@ -26,7 +26,7 @@ class ParcaIsemriSeed extends Seeder
             $toplamfiyat = $adet * $yedekparca[$yedekid]->satisfiyati;
             DB::table('parcaekspertiz')->insert(
                 [
-                    'ekspertizid' => $isemir[rand(0, $isemri_sayisi - 1)]->id,
+                    'ekspertizid' => $expertiz[rand(0, $expertiz_sayisi - 1)]->id,
                     'yedekparcaid' => $yedekid,
                     'satisfiyati' => $yedekparca[$yedekid]->satisfiyati,
                     'toplamfiyat' => $toplamfiyat,
